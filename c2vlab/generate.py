@@ -1,0 +1,207 @@
+"""Topic -> plan -> one Manim scene per section -> rendered video. The Code2Video shape (planner, coder), kept small.
+
+A run lives in one folder:
+    plan.json           title + sections (what each teaches, what it shows, its narration)
+    sections/sN.py      the Manim code of section N (class SN)
+    video.mp4           the sections joined; sections.json gives each one's start and end
+"""
+
+from __future__ import annotations
+
+import json
+import re
+import subprocess
+import sys
+
+from . import llm
+
+PYTHON = sys.executable
+
+PLAN = """Plan a short silent educational animation (Manim) that teaches: "{topic}" to class {grade} students.
+Write {n} sections in teaching order. Each section is one scene of 15 to 25 seconds.
+For each: what it teaches (one learning point), what is drawn and how it moves (concrete objects, numbers, labels),
+and 2-3 sentences of narration that the on-screen text will carry.
+Return JSON: {{"title": "...", "sections": [{{"id": "s1", "title": "...", "teaches": "...", "visual": "...",
+"narration": "..."}}]}}"""
+
+CODE = """Write Manim Community v0.20 code for ONE section of an educational video.
+
+Video: {title}
+Section {id}: {stitle}
+It teaches: {teaches}
+What to draw: {visual}
+Narration (show its key words as short on-screen text, not whole sentences): {narration}
+{extra}
+Rules:
+- Exactly: `from manim import *` then `class {cls}(Scene):` with `def construct(self):`. No other imports, no files.
+- 15 to 25 seconds in total (sum of run_time and wait).
+- Keep everything inside the frame (x in [-7, 7], y in [-3.9, 3.9]). Title at the top edge, small (font_size <= 36).
+- Text never on top of other text or shapes: place with .next_to / .to_edge / .arrange, and FadeOut what is no
+  longer needed before adding new things in the same place.
+- Use Text for words; MathTex only for formulas. Font sizes 24 to 40.
+- Give every object you show a variable name.
+Return only the Python code."""
+
+FIX_BLOCK = """This Manim section fails or has a layout fault. Fix ONLY the lines shown (lines {a} to {b}).
+
+Problem: {problem}
+
+Lines {a}-{b}:
+{block}
+
+Return JSON: {{"lines": "<the replacement for lines {a}-{b}, same indentation>"}}"""
+
+FIX_WHOLE = """Rewrite this Manim section so it runs and has no layout faults. Keep what it teaches and shows.
+
+Problems:
+{problem}
+
+Code:
+{code}
+
+Return only the Python code (same class name {cls})."""
+
+
+def slug(text):
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")[:48]
+
+
+def plan(topic, grade, n, out):
+    path = out / "plan.json"
+    if path.exists():
+        return json.loads(path.read_text())
+    p = llm.ask(llm.PLANNER, PLAN.format(topic=topic, grade=grade, n=n), temperature=0.3, seed=3)
+    for i, s in enumerate(p["sections"], 1):
+        s["id"] = f"s{i}"
+    p.update(topic=topic, grade=grade)
+    out.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(p, indent=1, ensure_ascii=False))
+    return p
+
+
+def cls_of(section):
+    return section["id"].upper()
+
+
+def strip_fence(text):
+    m = re.search(r"```(?:python)?\n(.*?)```", text, re.DOTALL)
+    return (m.group(1) if m else text).strip() + "\n"
+
+
+def write_code(p, section, extra=""):
+    text = llm.ask(
+        llm.CODER,
+        CODE.format(
+            title=p["title"],
+            id=section["id"],
+            stitle=section["title"],
+            teaches=section["teaches"],
+            visual=section["visual"],
+            narration=section["narration"],
+            extra=extra,
+            cls=cls_of(section),
+        ),
+        temperature=0.2,
+        as_json=False,
+    )
+    return strip_fence(text)
+
+
+def render(code_path, cls, media):
+    """Render one section at low quality. Returns (mp4 path or None, error text)."""
+    try:
+        r = subprocess.run(
+            [PYTHON, "-m", "manim", "-ql", "--media_dir", str(media), "--disable_caching", str(code_path), cls],
+            capture_output=True,
+            text=True,
+            timeout=600,
+            check=False,
+        )
+    except subprocess.TimeoutExpired:
+        return None, "render timed out after 600 s (an endless loop or a very long animation)"
+    mp4 = media / "videos" / code_path.stem / "480p15" / f"{cls}.mp4"
+    if r.returncode == 0 and mp4.exists():
+        return mp4, ""
+    return None, (r.stderr or r.stdout)[-3000:]
+
+
+def error_line(err, code_path):
+    """The last line of the section's own file in a traceback."""
+    lines = re.findall(rf'{re.escape(code_path.name)}", line (\d+)', err)
+    return int(lines[-1]) if lines else None
+
+
+def patch_block(code, a, b, problem):
+    """ScopeRefine's block scope: the model sees and replaces lines a..b only."""
+    rows = code.splitlines()
+    a, b = max(1, a), min(len(rows), b)
+    block = "\n".join(f"{rows[i - 1]}" for i in range(a, b + 1))
+    reply = llm.ask(llm.CODER, FIX_BLOCK.format(a=a, b=b, problem=problem[-1500:], block=block), temperature=0.1)
+    new = str(reply.get("lines") or "").rstrip("\n").splitlines()
+    if not new:
+        return None
+    return "\n".join(rows[: a - 1] + new + rows[b:]) + "\n"
+
+
+def rewrite(code, cls, problem):
+    """ScopeRefine's section scope: the whole scene again, with the problems named."""
+    text = llm.ask(
+        llm.CODER, FIX_WHOLE.format(problem=problem[-3000:], code=code, cls=cls), temperature=0.2, as_json=False
+    )
+    return strip_fence(text)
+
+
+def build_section(p, section, out, log=print, extra=""):
+    """Write, render, and on failure repair line block -> whole section (at most 4 tries). Returns mp4 or None."""
+    folder = out / "sections"
+    folder.mkdir(parents=True, exist_ok=True)
+    path = folder / f"{section['id']}.py"
+    cls = cls_of(section)
+    if not path.exists() or extra:
+        path.write_text(write_code(p, section, extra))
+    history = []
+    for attempt in range(4):
+        mp4, err = render(path, cls, out / "media")
+        if mp4:
+            history.append({"attempt": attempt, "ok": True})
+            (folder / f"{section['id']}.repairs.json").write_text(json.dumps(history, indent=1))
+            return mp4
+        line = error_line(err, path)
+        code = path.read_text()
+        scope = "block" if (line and attempt < 2) else "section"
+        history.append({"attempt": attempt, "ok": False, "line": line, "scope": scope, "error": err[-400:]})
+        log(f"[gen] {section['id']}: render failed at line {line}, repairing by {scope}")
+        new = patch_block(code, line - 5, line + 5, err) if scope == "block" else rewrite(code, cls, err)
+        if new:
+            path.write_text(new)
+    (folder / f"{section['id']}.repairs.json").write_text(json.dumps(history, indent=1))
+    return None
+
+
+def duration(mp4):
+    r = subprocess.run(
+        ["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(mp4)],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    return float(r.stdout.strip())
+
+
+def join(out, p, clips):
+    """Join section clips into video.mp4 and write sections.json (start, end of each)."""
+    listing = out / "clips.txt"
+    listing.write_text("".join(f"file '{c.resolve()}'\n" for c in clips.values()))
+    subprocess.run(
+        ["ffmpeg", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(listing), "-c", "copy",
+         str(out / "video.mp4")],
+        check=True,
+    )  # fmt: skip
+    t, rows = 0.0, []
+    for s in p["sections"]:
+        if s["id"] in clips:
+            d = duration(clips[s["id"]])
+            rows.append({**s, "start": round(t, 2), "end": round(t + d, 2)})
+            t += d
+    (out / "sections.json").write_text(json.dumps(rows, indent=1, ensure_ascii=False))
+    return rows
