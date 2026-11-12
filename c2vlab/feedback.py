@@ -93,7 +93,7 @@ def plan_fixes(plan, failed):
 def revise(run_dir, new_dir, fixes, log=print):
     if new_dir.exists():
         shutil.rmtree(new_dir)
-    shutil.copytree(run_dir, new_dir, ignore=shutil.ignore_patterns("frames", *MODES))
+    shutil.copytree(run_dir, new_dir, ignore=shutil.ignore_patterns("frames", "eval_*.json", "row.json", *MODES))  # a copied score would be read as this video's
     plan = json.loads((new_dir / "plan.json").read_text())
     clips, changed = {}, []
     kept = new_dir / "kept"
