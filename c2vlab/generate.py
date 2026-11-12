@@ -63,6 +63,45 @@ Code:
 Return only the Python code (same class name {cls})."""
 
 
+#: known Manim CE mistakes -> the fix (Code2Video's ScopeRefine keeps a table like this). Seen in our runs.
+HINTS = [
+    (
+        r"getter\(\) takes 1 positional argument",
+        (
+            "That get_... method does not exist in Manim CE: Mobject turns unknown get_* names into attribute getters that "
+            "take no arguments. Compute the value yourself (e.g. np.linalg.norm(p2 - p1) on get_vertices() points)."
+        ),
+    ),
+    (
+        r"has no attribute 'reverse'|has no attribute 'move_corner_to'|object has no attribute",
+        (
+            "That method does not exist on this Manim CE object. Use only documented methods (shift, move_to, next_to, "
+            "scale, rotate, to_edge, set_color, become) or build the shape from points."
+        ),
+    ),
+    (
+        r"NoneType' and 'float'|NoneType' object",
+        "A value is None: a helper returned nothing or a variable was never set. Compute coordinates as numpy arrays.",
+    ),
+    (
+        r"list index out of range",
+        "An index is past the end of a list (often get_vertices() or submobjects). Check the length before indexing.",
+    ),
+    (
+        r"NameError: name '(\w+)' is not defined",
+        "A name is used before it is defined, or a math symbol was written as Python. Define it, or put it in a string.",
+    ),
+    (
+        r"latex|LaTeX|dvi",
+        "LaTeX failed: use Text instead of MathTex for anything that is not a formula, and escape backslashes.",
+    ),
+]
+
+
+def hint(problem):
+    return next((h for pattern, h in HINTS if re.search(pattern, problem)), "")
+
+
 def slug(text):
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")[:48]
 
@@ -171,6 +210,8 @@ def build_section(p, section, out, log=print, extra=""):
         crash = graph(path, cls, folder / f"{section['id']}.crash.json")["error"] or {}
         line = crash.get("line") or error_line(err, path)
         problem = f"{crash['type']}: {crash['message']}" if crash.get("type") else err
+        if hint(problem):
+            problem += "\nHINT: " + hint(problem)
         code = path.read_text()
         # ScopeRefine: the failing line and its neighbours, then a larger block, then the whole section
         scope, reach = (("line", 2), ("block", 6), ("section", 0), ("section", 0))[attempt] if line else ("section", 0)

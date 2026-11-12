@@ -48,13 +48,12 @@ For each question give your choice (A, B, C, D or NULL), the moment of the video
 mm:ss (null when none), and at most 15 words on why.
 Return JSON: {{"answers": [{{"id": "q1", "choice": "A|B|C|D|NULL", "time": "mm:ss|null", "why": "..."}}]}}"""
 
-EVIDENCE = """A student answered quiz questions from a lesson video and cited the second that taught each answer.
-For each item: the question, the RIGHT answer, the text of the section playing at that second, and one image (the
-frame at that second; image k belongs to item k). Does this moment TEACH or SHOW what is needed to choose the right
-answer? Quote what teaches it, then answer.
-Return JSON: {{"items": [{{"id": "q1", "quote": "...", "teaches": "yes|no"}}]}}
+EVIDENCE = """A student answered a quiz question from a lesson video and cited the second that taught the answer.
+You get the question, the RIGHT answer, the text of the section playing at that second, and the frame at that second.
+Does this moment TEACH or SHOW what is needed to choose the right answer? Quote what teaches it, then answer.
+Return JSON: {{"quote": "...", "teaches": "yes|no"}}
 
-{items}"""
+{item}"""
 
 
 def quiz_text(qs):
@@ -63,7 +62,7 @@ def quiz_text(qs):
     )
 
 
-def make_quiz(topic, grade, out, n=16):
+def make_quiz(topic, grade, out, n=24):
     path = out / "quiz.json"
     if path.exists():
         return json.loads(path.read_text())
@@ -158,20 +157,18 @@ def evidence(run_dir, questions, result):
     sections = json.loads((run_dir / "sections.json").read_text())
     end = sections[-1]["end"]
     key = {q["id"]: q for q in questions}
-    items, images = [], []
-    for r in result["answers"]:
+    ok = {}
+    for r in result["answers"]:  # one call per item: asked for a list, the judge copies the template's ids
         t = seconds(r["time"])
         if not r["right"] or t is None or t > end + 1:
             continue
         s = section_at(sections, t)
         q = key[r["id"]]
-        images.append(grab(run_dir / "video.mp4", min(t, end - 0.3), frames_dir(run_dir) / f"t{t:04}.jpg"))
-        items.append(f"ITEM {len(items) + 1} ({r['id']}), cited {stamp(t)}\nQ: {q['question']}\n"
-                     f"RIGHT ANSWER: {q['options'][q['answer']]}\nSECTION TEXT: {s['teaches']} / {s['narration']}")  # fmt: skip
-    ok = {}
-    if items:
-        reply = llm.ask(llm.JUDGE, EVIDENCE.format(items="\n\n".join(items)), images=images, note="evidence")
-        ok = {i.get("id"): str(i.get("teaches", "")).lower().startswith("y") for i in reply.get("items") or []}
+        image = grab(run_dir / "video.mp4", min(t, end - 0.3), frames_dir(run_dir) / f"t{t:04}.jpg")
+        item = (f"Cited {stamp(t)}\nQ: {q['question']}\nRIGHT ANSWER: {q['options'][q['answer']]}\n"
+                f"SECTION TEXT: {s['teaches']} / {s['narration']}")  # fmt: skip
+        reply = llm.ask(llm.JUDGE, EVIDENCE.format(item=item), images=[image], note="evidence")
+        ok[r["id"]] = str(reply.get("teaches", "")).strip().lower().startswith("y")
     for r in result["answers"]:
         r["backed"] = bool(r["right"] and ok.get(r["id"]))
     result["evidence"] = round(100 * sum(r["backed"] for r in result["answers"]) / max(1, len(result["answers"])), 1)

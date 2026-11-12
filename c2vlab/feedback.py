@@ -91,19 +91,36 @@ def revise(run_dir, new_dir, fixes, log=print):
         shutil.rmtree(new_dir)
     shutil.copytree(run_dir, new_dir, ignore=shutil.ignore_patterns("frames", "round*", "generic*"))
     plan = json.loads((new_dir / "plan.json").read_text())
-    clips = {}
+    clips, changed = {}, []
+    kept = new_dir / "kept"
+    kept.mkdir(exist_ok=True)
     for s in plan["sections"]:
-        if s["id"] in fixes:
-            extra = "This section must ALSO show and say:\n" + "\n".join(f"- {m}" for m in fixes[s["id"]])
-            mp4 = generate.build_section(plan, s, new_dir, log, extra=extra)
+        sid, folder = s["id"], new_dir / "sections"
+        old_mp4 = new_dir / "media" / "videos" / sid / "480p15" / f"{sid.upper()}.mp4"
+        mp4 = None
+        if sid in fixes:
+            # the incumbent is never lost: keep the old code, layout record and clip until the new one renders
+            backup = {f: f.read_bytes() for f in (folder / f"{sid}.py", folder / f"{sid}.layout.json") if f.exists()}
+            if old_mp4.exists():
+                shutil.copy(old_mp4, kept / f"{sid}.mp4")
+            extra = "This section must ALSO show and say:\n" + "\n".join(f"- {m}" for m in fixes[sid])
+            if generate.build_section(plan, s, new_dir, log, extra=extra):
+                layout.repair(sid, new_dir, log=log)
+                mp4, _ = generate.render(folder / f"{sid}.py", sid.upper(), new_dir / "media")
             if mp4:
-                layout.repair(s["id"], new_dir, log=log)
-                mp4, _ = generate.render(new_dir / "sections" / f"{s['id']}.py", s["id"].upper(), new_dir / "media")
-        else:
-            mp4 = new_dir / "media" / "videos" / s["id"] / "480p15" / f"{s['id'].upper()}.mp4"
-        if mp4 and mp4.exists():
-            clips[s["id"]] = mp4
+                changed.append(sid)
+            else:
+                log(f"[feedback] {sid}: the new version did not render; the old one stays")
+                for path, data in backup.items():
+                    path.write_bytes(data)
+                if (kept / f"{sid}.mp4").exists():
+                    shutil.copy(kept / f"{sid}.mp4", old_mp4)
+        if not mp4 and old_mp4.exists():
+            mp4 = old_mp4
+        if mp4:
+            clips[sid] = mp4
     generate.join(new_dir, plan, clips)
+    return changed
 
 
 def section_mvqs(run_dir):
@@ -127,12 +144,12 @@ def round_(run_dir, mode="learner", log=print):
     if not fixes:
         return {"mode": mode, "kept": False, "reason": "no gaps"}
     new_dir = run_dir / ("round1" if mode == "learner" else "generic1")
-    revise(run_dir, new_dir, fixes, log)
+    changed = revise(run_dir, new_dir, fixes, log)
     before = teachquiz.evaluate(run_dir, "dev", runs=2)
     after = teachquiz.evaluate(new_dir, "dev", runs=2)
     m0, m1 = section_mvqs(run_dir), section_mvqs(new_dir)
     kept = after["teachquiz"] >= before["teachquiz"] and (m0 is None or m1 is None or m1 > m0 - 5)
-    report = {"mode": mode, "gaps": [q["id"] for q in failed], "fixes": fixes, "dev_before": before["teachquiz"],
+    report = {"mode": mode, "gaps": [q["id"] for q in failed], "fixes": fixes, "changed": changed, "dev_before": before["teachquiz"],
               "dev_after": after["teachquiz"], "mvqs_before": m0, "mvqs_after": m1, "kept": kept,
               "dir": str(new_dir)}  # fmt: skip
     (new_dir / "feedback.json").write_text(json.dumps(report, indent=1, ensure_ascii=False))
