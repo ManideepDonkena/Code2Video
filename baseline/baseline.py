@@ -122,7 +122,6 @@ _claude_spent = 0.0
 def ask_claude(prompt, images=(), system=None):
     global _claude_spent
     from dotenv import dotenv_values
-
     from lessonforge import spend
 
     if _claude_spent >= CLAUDE_CAP_USD:
@@ -194,7 +193,7 @@ def stamp(seconds):
 def captions(path):
     cues, text = [], path.read_text(encoding="utf-8")
     for block in re.split(r"\n\s*\n", text):
-        m = re.search(r"(\d+):(\d+):([\d.]+)\s+-->\s+(\d+):(\d+):([\d.]+)\s*\n(.+)", block, re.S)
+        m = re.search(r"(\d+):(\d+):([\d.]+)\s+-->\s+(\d+):(\d+):([\d.]+)\s*\n(.+)", block, re.DOTALL)
         if m:
             a = int(m[1]) * 3600 + int(m[2]) * 60 + float(m[3])
             b = int(m[4]) * 3600 + int(m[5]) * 60 + float(m[6])

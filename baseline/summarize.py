@@ -122,7 +122,7 @@ def main():
                 )
             },
         }
-    pick = lambda k: [row.get(k) for row in lessons]  # noqa: E731
+    pick = lambda k: [row.get(k) for row in lessons]
     agreement = {
         "aes gemma~claude": spearman(pick("aes_gemma"), pick("aes_claude")),
         "aes qwen~claude": spearman(pick("aes_qwen"), pick("aes_claude")),

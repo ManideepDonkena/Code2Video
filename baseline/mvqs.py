@@ -26,7 +26,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-import baseline  # noqa: E402  (the corpus)
+import baseline
 
 W, H = 14.222, 8.0
 
@@ -128,7 +128,7 @@ def mvqs(stills, intent=False):
     rows = [r for r in (score_still(s.get("graph") or [], intent) for s in stills) if r]
     if not rows:
         return None
-    mean = lambda k: sum(r[k] for r in rows) / len(rows)  # noqa: E731
+    mean = lambda k: sum(r[k] for r in rows) / len(rows)
     anim = sum(r["persistent"] == 0 for r in rows) / len(rows)
     s_ed = 0.4 * mean("labelled") + 0.6 * anim
     total = 0.5 * mean("s_sp") + 0.2 * mean("s_ly") + 0.3 * s_ed
