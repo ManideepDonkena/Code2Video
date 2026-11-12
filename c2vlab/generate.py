@@ -14,6 +14,7 @@ import subprocess
 import sys
 
 from . import llm
+from .scene_graph import graph
 
 PYTHON = sys.executable
 
@@ -166,12 +167,19 @@ def build_section(p, section, out, log=print, extra=""):
             history.append({"attempt": attempt, "ok": True})
             (folder / f"{section['id']}.repairs.json").write_text(json.dumps(history, indent=1))
             return mp4
-        line = error_line(err, path)
+        # Manim's rich traceback hides the line; the partial execution (SGA) gives it plainly, in about a second
+        crash = graph(path, cls, folder / f"{section['id']}.crash.json")["error"] or {}
+        line = crash.get("line") or error_line(err, path)
+        problem = f"{crash['type']}: {crash['message']}" if crash.get("type") else err
         code = path.read_text()
-        scope = "block" if (line and attempt < 2) else "section"
-        history.append({"attempt": attempt, "ok": False, "line": line, "scope": scope, "error": err[-400:]})
-        log(f"[gen] {section['id']}: render failed at line {line}, repairing by {scope}")
-        new = patch_block(code, line - 5, line + 5, err) if scope == "block" else rewrite(code, cls, err)
+        # ScopeRefine: the failing line and its neighbours, then a larger block, then the whole section
+        scope, reach = (("line", 2), ("block", 6), ("section", 0), ("section", 0))[attempt] if line else ("section", 0)
+        history.append({"attempt": attempt, "ok": False, "line": line, "scope": scope, "error": problem[-400:]})
+        log(f"[gen] {section['id']}: render failed at line {line} ({problem[:80]}), repairing by {scope}")
+        if scope == "section":
+            new = rewrite(code, cls, f"line {line}: {problem}" if line else problem)
+        else:
+            new = patch_block(code, line - reach, line + reach, problem)
         if new:
             path.write_text(new)
     (folder / f"{section['id']}.repairs.json").write_text(json.dumps(history, indent=1))
