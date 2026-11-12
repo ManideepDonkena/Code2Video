@@ -100,6 +100,36 @@ $PY -m c2vlab.scene_graph tests/overlap_scene.py S1 /tmp/g.json   # scene graph 
 | `c2vlab/feedback.py` | learner-feedback round and the generic ablation |
 | `run.py` | command line |
 
+## First result (one topic: an anecdote, not evidence)
+
+Pythagoras theorem, class 8, 4 sections, all models local. The quiz had 24 questions written; 23 were known to the
+student and 4 of those leaked (answered right with no video), leaving 19: 10 DEV and 9 TEST. Three student runs
+each.
+
+| Video | TEST: no video | TEST: with video | TeachQuiz | Evidence-backed | First section only | MVQS |
+|---|---|---|---|---|---|---|
+| Baseline | 0 | 22.2 (22, 22, 22) | +22.2 | 22.2 | 11.1 | 87.4 |
+| Learner feedback (s3 rewritten; s4's rewrite failed, old one kept) | 0 | 29.6 (33, 33, 22) | +29.6 | 18.5 | 11.1 | 84.0 |
+| Generic revision (s1, s2 rewritten) | 0 | 22.2 (22, 22, 22) | +22.2 | 22.2 | 11.1 | 85.0 |
+
+The learner round gained 0.67 of a question on average out of 9; the generic round gained nothing. That direction
+supports the idea, but the difference is two student runs getting one more question right, on one topic. A claim
+needs many topics and more questions. The repairs also cost about 3 MVQS points.
+
+What the first runs taught (each is now fixed in code):
+
+- **Unfiltered quizzes leak.** The unlearned student scored 36% with no video, and the first section alone beat the
+  whole video. Items it answers right with no video are now dropped.
+- **Evidence must be judged one item at a time.** Asked for a list, the judge copied the template's id, and every
+  "yes" was lost.
+- **A failed regeneration must keep the old section.** Otherwise the "revised" video is missing sections, and the
+  comparison is meaningless.
+- **Manim's rich traceback hides the line number.** The scene graph's partial execution gives the line and a plain
+  message in about a second, so line and block repair can run.
+- **The local coder repeats the same API inventions:** `get_side_length("BC")`, `.reverse()`, `Mobject(height=)`.
+  A hint table helps but does not cure it. Section rewrites still fail about a third of the time with
+  `qwen3-coder:30b`.
+
 ## Known limits
 
 - The student sees 3 frames per section, not the video, so motion is not judged. Code2Video's student watched the
