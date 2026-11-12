@@ -4,4 +4,4 @@ __pycache__/
 .env
 media/
 manual/
-bench/pilot.log
+bench/*.log
