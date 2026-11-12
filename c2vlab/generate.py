@@ -176,7 +176,10 @@ def patch_block(code, a, b, problem):
     rows = code.splitlines()
     a, b = max(1, a), min(len(rows), b)
     block = "\n".join(f"{rows[i - 1]}" for i in range(a, b + 1))
-    reply = llm.ask(llm.CODER, FIX_BLOCK.format(a=a, b=b, problem=problem[-1500:], block=block), temperature=0.1)
+    try:
+        reply = llm.ask(llm.CODER, FIX_BLOCK.format(a=a, b=b, problem=problem[-1500:], block=block), temperature=0.1)
+    except RuntimeError:
+        return None  # a repair that cannot be had stands aside
     new = str(reply.get("lines") or "").rstrip("\n").splitlines()
     if not new:
         return None
@@ -185,9 +188,12 @@ def patch_block(code, a, b, problem):
 
 def rewrite(code, cls, problem):
     """ScopeRefine's section scope: the whole scene again, with the problems named."""
-    text = llm.ask(
-        llm.CODER, FIX_WHOLE.format(problem=problem[-3000:], code=code, cls=cls), temperature=0.2, as_json=False
-    )
+    try:
+        text = llm.ask(
+            llm.CODER, FIX_WHOLE.format(problem=problem[-3000:], code=code, cls=cls), temperature=0.2, as_json=False
+        )
+    except RuntimeError:
+        return None  # a repair that cannot be had stands aside
     return strip_fence(text)
 
 

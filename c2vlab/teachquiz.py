@@ -1,7 +1,7 @@
 """TeachQuiz (Code2Video, arXiv 2510.01174) with the controls and the evidence check from our baseline study.
 
 * The quiz is written from the TOPIC only (never from the video) and kept only where the student, with its own
-  knowledge, gets it right. It is split in two: DEV (feedback may look at it) and TEST (never seen by any repair).
+  knowledge, gets it right AND the unlearned student with no video never does (3 seeds). It is split in two: DEV (feedback may look at it) and TEST (never seen by any repair).
 * The student is told to forget the topic (shadow blocklist, NULL when the material does not teach it), then
   answers with nothing (S1) and with the video (S2). TQ = S2 - S1, on TEST.
 * The video is shown as frames: 3 per section, at 40%, 70% and 95% of it (the student cannot take an mp4).
@@ -74,8 +74,15 @@ def make_quiz(topic, grade, out, n=24):
     solved = {
         a.get("id"): a.get("choice") for a in llm.ask(llm.STUDENT, KNOW.format(questions=quiz_text(raw)))["answers"]
     }
-    kept = [q for q in raw if solved.get(q["id"]) == q["answer"]]
-    record = {"dev": kept[0::2], "test": kept[1::2], "written": len(raw), "kept": len(kept)}
+    known = [q for q in raw if solved.get(q["id"]) == q["answer"]]
+    # Item filter: an item the UNLEARNED student gets right with no video measures guessing, not teaching
+    # (our lessonforge baseline: 36% right with no video on an unfiltered quiz). Three seeds; right once = dropped.
+    leaked = set()
+    for seed in (1, 2, 3):
+        leaked |= {a["id"] for a in student(topic, grade, known, seed=seed)["answers"] if a["right"]}
+    kept = [q for q in known if q["id"] not in leaked]
+    record = {"dev": kept[0::2], "test": kept[1::2], "written": len(raw), "known": len(known),
+              "leaked": sorted(leaked), "kept": len(kept)}  # fmt: skip
     path.write_text(json.dumps(record, indent=1, ensure_ascii=False))
     return record
 
