@@ -189,7 +189,8 @@ def evaluate(run_dir, split="test", runs=3, narration=False, other=None):
     qs = quiz[split]
     topic, grade = plan["topic"], plan["grade"]
     images, body = material(run_dir, narration)
-    none = [student(topic, grade, qs, seed=r) for r in range(1, runs + 1)]
+    # seeds other than the item filter's (1-3), so S1 is not near zero by construction
+    none = [student(topic, grade, qs, seed=10 + r) for r in range(1, runs + 1)]
     full = [evidence(run_dir, qs, student(topic, grade, qs, images, body, seed=r)) for r in range(1, runs + 1)]
 
     def mean(xs):
