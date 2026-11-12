@@ -14,7 +14,7 @@ Our reading where SGA gives no formula: severity weights 1 / 0.5 / 0.2; a text w
 (a label in its box); separation = mean nearest-neighbour centroid distance of texts over 10% of the diagonal, capped 1.
 Labelling cannot use SGA's identifier match (we have no MathTex names per shape), so it uses nearness.
 
-    PYTHONPATH=<scratch copy> python baseline/mvqs.py --out <dir> [--lessons id,id]
+    PYTHONPATH=<scratch copy> python extras/lessonforge_baseline/mvqs.py --out <dir> [--lessons id,id]
 """
 
 from __future__ import annotations

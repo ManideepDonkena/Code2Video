@@ -1,7 +1,7 @@
 """Tables from the baseline run (``baseline.py``) and the MVQS run (``mvqs.py``): per lesson, overall, and how far the
 judges and the runs agree. Prints a summary and writes ``summary.json`` next to the baseline results.
 
-    python baseline/summarize.py --baseline <dir> --mvqs <dir>
+    python extras/lessonforge_baseline/summarize.py --baseline <dir> --mvqs <dir>
 """
 
 from __future__ import annotations

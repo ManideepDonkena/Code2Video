@@ -20,7 +20,7 @@ Metrics (each named after where it comes from):
 The quiz is written from the lesson's BRIEF only (topic, class, goal), never from its script or video, and kept only
 where a second model of another family answers it right with its own knowledge.
 
-    python baseline/baseline.py --out <dir> [--runs 3] [--lessons id,id]
+    python extras/lessonforge_baseline/baseline.py --out <dir> [--runs 3] [--lessons id,id]
         [--steps timing,quiz,student,evidence,judge,claude]
 """
 
