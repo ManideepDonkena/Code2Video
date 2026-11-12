@@ -5,7 +5,7 @@ A small research codebase: code-generated teaching videos (Code2Video's pipeline
 are traced to the section that should have taught them, and only that section is rewritten. The result is scored on
 held-out questions written by other people (MMMC's official TeachQuiz).
 
-No frontend, no server. The core is `c2vlab/` (about 1,100 lines); the benchmark is `bench/`; everything else is in
+No frontend, no server. The core is `c2vlab/` (about 1,600 lines); the benchmark is `bench/`; everything else is in
 `docs/`.
 
 ## Run
