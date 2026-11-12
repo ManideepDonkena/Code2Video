@@ -1,9 +1,50 @@
 # Results
 
-## Pilot on MMMC (in progress)
+## Pilot on MMMC (2026-11-12): no signal, and why
 
-12 topics, `bench/run_bench.py --n 12 --seed 0`, all models local. The tables are written by `bench/analyze.py`
-into `bench/results/mmmc-n12-seed0/analysis.json` and copied here when the run finishes.
+12 topics (`bench/run_bench.py --n 12 --seed 0`), all models local, 4 planned sections each. TEST = MMMC's 5
+official questions per topic, 3 student runs (`gemma4:26b` on 3 frames per section). Analysis:
+`bench/results/mmmc-n12-seed0/analysis.json`. No leaked TEST items in any topic, so `teachquiz_clean` equals
+`teachquiz`.
+
+| Condition | TeachQuiz | Evidence-backed | MVQS | Sections rendered (of 4) |
+|---|---|---|---|---|
+| base | 10.6 | 7.8 | 78.5 | 3.25 |
+| learner (ours) | 12.2 | 8.9 | 79.3 | 3.67 |
+| generic (same number of sections) | 14.4 | 6.7 | 79.2 | 3.58 |
+| learner_all (every section) | 16.7 | 11.1 | 72.6 | 3.50 |
+
+Paired over topics (mean difference, bootstrap 95% CI, wins / ties / losses, Wilcoxon p):
+
+| Comparison | TeachQuiz | Evidence | MVQS |
+|---|---|---|---|
+| learner − base | +1.7 [−1.7, 5.5], 3/7/2, p 0.50 | +1.1 [−1.1, 3.9], 2/9/1 | +0.7 [−2.1, 4.0] |
+| learner − generic | −2.2 [−10.6, 6.1], 1/9/2, p 1.0 | +2.2 [−3.9, 9.4], 2/9/1 | 0.0 [−3.1, 3.2] |
+| learner − learner_all | −4.5 [−11.1, 0.6], 1/8/3, p 0.25 | −2.2 [−9.4, 3.9], 1/9/2 | **+6.7 [0.8, 13.5]**, 8/0/4, p 0.08 |
+| generic − base | +3.9 [−5.0, 14.4], 2/7/3, p 0.75 | −1.1 [−6.7, 5.0], 1/8/3 | +0.7 [−2.3, 3.7] |
+
+**Reading.** Nothing here supports the claim, and nothing refutes it either: every TeachQuiz interval contains 0
+and 7 to 9 of 12 topics are ties. The point estimates go the wrong way (learner below generic and learner_all).
+The one interval clear of 0 is layout: rewriting every section costs about 7 MVQS points against rewriting only
+the flagged ones.
+
+**Why the pilot cannot answer the question** (both are fixable, neither is a result about the method):
+
+1. **Floor effect.** With the base video the local student scores 0 on 8 of 12 topics and on 7 topics every
+   condition scores 0. MMMC topics are 3Blue1Brown-level; a 26B model seeing 3 stills per section learns almost
+   nothing from them. A tie at 0 carries no information.
+2. **Localisation was barely exercised.** 9 to 12 of 9 to 12 DEV questions were gaps on every topic, so `learner`
+   rewrote 2 to 4 sections of videos with 2 to 4 sections: nearly the scope of `learner_all`. A localised repair
+   needs a base video that teaches *some* of the DEV items.
+
+**What would make it a test.** A student that learns from the video (Gemini watching the mp4, Code2Video's own
+protocol: `run.py manual-export` for free by hand, or `run.py c2v` at about $13 for these 12 topics × 3 runs on
+Gemini 3 Flash), and/or topics where the base video already teaches part of the DEV quiz. Run the same four
+conditions; the claim needs learner > generic and learner > learner_all on TEST.
+
+**A bug found on the way.** The first analysis showed all four conditions identical in every measure: each
+revised run was copied from the base folder with the base's saved TEST score, and the evaluation returned that
+file. Fixed in `feedback.revise` (scores and rows are not copied) and re-scored; the videos were not regenerated.
 
 ## First single-topic run (Pythagoras theorem, before the MMMC protocol): an anecdote
 
