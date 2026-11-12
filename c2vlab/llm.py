@@ -68,7 +68,7 @@ def _ollama(model, messages, images, temperature, seed, ctx, as_json):
     return json.load(urllib.request.urlopen(req, timeout=900))["message"]["content"]
 
 
-def _openrouter(model, messages, images, temperature, seed, as_json, note):
+def _openrouter(model, messages, images, temperature, seed, as_json, note, video=None):
     if spent() >= CAP_USD:
         raise RuntimeError(f"study cap reached ({spent():.3f} of {CAP_USD} USD); raise C2V_CAP_USD to go on")
     if images:
@@ -77,6 +77,10 @@ def _openrouter(model, messages, images, temperature, seed, as_json, note):
             for i in images
         ]  # fmt: skip
         messages[-1]["content"] = [*parts, {"type": "text", "text": messages[-1]["content"]}]
+    if video:  # a whole mp4, as Code2Video sends it to Gemini (base64 data URL)
+        data = "data:video/mp4;base64," + base64.b64encode(Path(video).read_bytes()).decode()
+        text = messages[-1]["content"]
+        messages[-1]["content"] = [{"type": "text", "text": text}, {"type": "video_url", "video_url": {"url": data}}]
     body = {
         "model": model,
         "messages": messages,
@@ -113,13 +117,27 @@ def _openrouter(model, messages, images, temperature, seed, as_json, note):
     return reply["choices"][0]["message"]["content"] or ""
 
 
-def ask(model, prompt, images=(), system=None, temperature=0.0, seed=0, tries=4, ctx=32768, as_json=True, note=""):
+def ask(
+    model,
+    prompt,
+    images=(),
+    system=None,
+    temperature=0.0,
+    seed=0,
+    tries=4,
+    ctx=32768,
+    as_json=True,
+    note="",
+    video=None,
+):
     last = None
     for attempt in range(tries):
         messages = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": prompt}]
         try:
             if model.startswith("or:"):
-                text = _openrouter(model[3:], messages, images, temperature, seed, as_json, note)
+                text = _openrouter(model[3:], messages, images, temperature, seed, as_json, note, video)
+            elif video:
+                raise RuntimeError(f"{model}: a local model cannot take a video file; use an or: Gemini model")
             else:
                 text = _ollama(model, messages, images, temperature, seed, ctx, as_json)
             return _parse(text, as_json)

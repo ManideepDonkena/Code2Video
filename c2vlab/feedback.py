@@ -1,38 +1,41 @@
 """The idea under test: repair a generated video where a simulated, unlearned student failed to learn.
 
-One round:
-  1. The student answers the DEV quiz with the video (2 runs). A gap is a DEV question it got wrong or NULL in
-     both runs, or got right only without a backed citation (the evidence judge says the cited moment does not
-     teach it).
-  2. The planner maps each gap to the section that should have taught it and says, in its own words, the idea that
-     is missing. A missing idea that copies the question or an option (6 words in a row) is refused: the repair
-     must teach the idea, not the item.
-  3. Only those sections are written again (with the missing ideas), then layout-checked and rendered.
-  4. The new video is kept only if DEV TeachQuiz does not fall and MVQS falls by less than 5 points.
-TEST is never shown to any step; it is what the result is reported on.
+  1. diagnose: the student answers the DEV quiz with the video (2 runs). A gap is a DEV question it never got right
+     with a backed citation (wrong, NULL, or right while the evidence judge says the cited moment does not teach it).
+     The planner maps each gap, one call per gap, to the section that should have taught it and names, in its own
+     words, the missing idea. An idea that copies the question or an option (6 words in a row) is refused.
+  2. revise: only the sections named are written again with their missing ideas, layout-checked and rendered. A
+     section whose new version does not render keeps its old one (the incumbent is never lost).
+  3. gate: the revision is marked kept when DEV TeachQuiz does not fall and MVQS falls by less than 5 points.
+TEST is never shown to any step.
 
-Ablation ("generic"): the same number of sections, chosen without the student, are written again with "teach this
-more clearly" (a critic-style revision with no learner signal). If it gains as much on TEST, the learner signal
-adds nothing.
+Modes (same diagnosis, so the same number of sections is rewritten where it applies):
+  learner      the missing ideas, in the sections they belong to (ours)
+  generic      as many sections, chosen at random, rewritten with "teach this more clearly" (no learner signal)
+  learner_all  every section rewritten with all the missing ideas (learner signal, no localisation)
 """
 
 from __future__ import annotations
 
 import json
+import random
 import re
 import shutil
 
 from . import generate, layout, llm, teachquiz
 
+MODES = ("learner", "generic", "learner_all")
+GENERIC = "teach this section's point more clearly and completely"
+
 MAP = """A video teaching "{topic}" has these sections:
 {sections}
 
-A student who watched it could not answer these questions:
-{questions}
+A student who watched it could not answer this question:
+{question}
 
-For each question, which section should have taught what it needs, and what idea is missing from that section?
-Write the missing idea in your own words as something to SHOW and SAY (an object, a number, a comparison), never by
-repeating the question or its options. Return JSON: {{"gaps": [{{"id": "q1", "section": "s1", "missing": "..."}}]}}"""
+Which section should have taught what it needs, and what idea is missing from that section? Write the missing idea
+in your own words as something to SHOW and SAY (an object, a number, a comparison), never by repeating the question
+or its options. Return JSON: {{"section": "s1", "missing": "..."}}"""
 
 
 def words(text):
@@ -63,33 +66,34 @@ def gaps(run_dir, quiz, runs=2):
 
 
 def plan_fixes(plan, failed):
-    if not failed:
-        return {}
+    """One call per gap: asked for a list, a small model copies the template's ids."""
     sections = "\n".join(
         f"{s['id']}: {s['title']} - teaches {s['teaches']}; shows {s['visual']}" for s in plan["sections"]
     )
-    reply = llm.ask(
-        llm.PLANNER,
-        MAP.format(topic=plan["topic"], sections=sections, questions=teachquiz.quiz_text(failed)),
-        note="map",
-    )
-    by_id = {q["id"]: q for q in failed}
+    ids = {s["id"] for s in plan["sections"]}
     fixes = {}
-    for g in reply.get("gaps") or []:
-        q = by_id.get(g.get("id"))
-        missing = str(g.get("missing") or "").strip()
-        if not q or g.get("section") not in {s["id"] for s in plan["sections"]} or not missing:
+    for q in failed:
+        try:
+            reply = llm.ask(
+                llm.PLANNER,
+                MAP.format(topic=plan["topic"], sections=sections, question=teachquiz.quiz_text([q])),
+                note="map",
+            )
+        except RuntimeError:
+            continue
+        missing = str(reply.get("missing") or "").strip()
+        if reply.get("section") not in ids or not missing:
             continue
         if copies(missing, q["question"] + " " + " ".join(q["options"].values())):
             continue  # teaches the item, not the idea
-        fixes.setdefault(g["section"], []).append(missing)
+        fixes.setdefault(reply["section"], []).append(missing)
     return fixes
 
 
 def revise(run_dir, new_dir, fixes, log=print):
     if new_dir.exists():
         shutil.rmtree(new_dir)
-    shutil.copytree(run_dir, new_dir, ignore=shutil.ignore_patterns("frames", "round*", "generic*"))
+    shutil.copytree(run_dir, new_dir, ignore=shutil.ignore_patterns("frames", *MODES))
     plan = json.loads((new_dir / "plan.json").read_text())
     clips, changed = {}, []
     kept = new_dir / "kept"
@@ -132,25 +136,43 @@ def section_mvqs(run_dir):
     return round(sum(scores) / len(scores), 2) if scores else None
 
 
-def round_(run_dir, mode="learner", log=print):
+def diagnose(run_dir, log=print):
+    """Gaps and the fixes they ask for, worked out once per base video and shared by every mode."""
+    path = run_dir / "diagnosis.json"
+    if path.exists():
+        return json.loads(path.read_text())
     quiz = json.loads((run_dir / "quiz.json").read_text())
     plan = json.loads((run_dir / "plan.json").read_text())
     failed, _ = gaps(run_dir, quiz)
     fixes = plan_fixes(plan, failed)
-    log(f"[feedback] {len(failed)} DEV gaps -> fixes for {sorted(fixes)}")
-    if mode == "generic":
-        n = max(1, len(fixes))
-        fixes = {s["id"]: ["teach this section's point more clearly and completely"] for s in plan["sections"][:n]}
+    record = {"gaps": [q["id"] for q in failed], "dev": len(quiz["dev"]), "fixes": fixes}
+    path.write_text(json.dumps(record, indent=1, ensure_ascii=False))
+    log(f"[feedback] {len(failed)} of {len(quiz['dev'])} DEV questions are gaps -> sections {sorted(fixes)}")
+    return record
+
+
+def round_(run_dir, mode="learner", log=print):
+    assert mode in MODES
+    plan = json.loads((run_dir / "plan.json").read_text())
+    diag = diagnose(run_dir, log)
+    fixes = diag["fixes"]
     if not fixes:
-        return {"mode": mode, "kept": False, "reason": "no gaps"}
-    new_dir = run_dir / ("round1" if mode == "learner" else "generic1")
+        return {"mode": mode, "kept": False, "changed": [], "reason": "no gaps"}
+    ids = [s["id"] for s in plan["sections"]]
+    if mode == "generic":
+        chosen = random.Random(plan["topic"]).sample(ids, len(fixes))
+        fixes = {sid: [GENERIC] for sid in chosen}
+    elif mode == "learner_all":
+        every = [m for ms in fixes.values() for m in ms]
+        fixes = {sid: every for sid in ids}
+    new_dir = run_dir / mode
     changed = revise(run_dir, new_dir, fixes, log)
     before = teachquiz.evaluate(run_dir, "dev", runs=2)
     after = teachquiz.evaluate(new_dir, "dev", runs=2)
     m0, m1 = section_mvqs(run_dir), section_mvqs(new_dir)
-    kept = after["teachquiz"] >= before["teachquiz"] and (m0 is None or m1 is None or m1 > m0 - 5)
-    report = {"mode": mode, "gaps": [q["id"] for q in failed], "fixes": fixes, "changed": changed, "dev_before": before["teachquiz"],
-              "dev_after": after["teachquiz"], "mvqs_before": m0, "mvqs_after": m1, "kept": kept,
-              "dir": str(new_dir)}  # fmt: skip
+    kept = bool(changed) and after["teachquiz"] >= before["teachquiz"] and (m0 is None or m1 is None or m1 > m0 - 5)
+    report = {"mode": mode, "gaps": diag["gaps"], "fixes": fixes, "changed": changed,
+              "dev_before": before["teachquiz"], "dev_after": after["teachquiz"], "mvqs_before": m0,
+              "mvqs_after": m1, "kept": kept, "dir": str(new_dir)}  # fmt: skip
     (new_dir / "feedback.json").write_text(json.dumps(report, indent=1, ensure_ascii=False))
     return report
