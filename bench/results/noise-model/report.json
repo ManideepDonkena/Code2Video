@@ -1725,6 +1725,796 @@
     }
    ],
    "verdict": "within noise"
+  },
+  {
+   "id": "R1",
+   "family": "secondary",
+   "question": "NOVEL-12, stage F1: learner repair − base (M9)",
+   "n": 10,
+   "mean": 0.07708745221550954,
+   "ci": [
+    -0.042465959723995035,
+    0.25307152815224765
+   ],
+   "se": 0.07739869184481185,
+   "mde": 0.21671633716547317,
+   "p_measurement": 0.1316868313168683,
+   "p_topics": 0.125,
+   "positive": 4,
+   "per_topic": [
+    {
+     "topic": "Tovan sums",
+     "value": 0.10864852221038623,
+     "p": 0.14028597140285973,
+     "sd_items": 0.09632316927045391
+    },
+    {
+     "topic": "Krell steps on a grid",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Vorn sequences",
+     "value": 0.19135482011542926,
+     "p": 0.7484251574842515,
+     "sd_items": 0.382548393245858
+    },
+    {
+     "topic": "Glint numbers",
+     "value": -0.07713737508268403,
+     "p": 0.10778922107789221,
+     "sd_items": 0.09632173195226268
+    },
+    {
+     "topic": "Mirthful triangles",
+     "value": 0.10095347978388397,
+     "p": 0.8264173582641736,
+     "sd_items": 0.36793581394321595
+    },
+    {
+     "topic": "Sorrel counts of lattice rectangles",
+     "value": 0.44705507512808,
+     "p": 0.1105889411058894,
+     "sd_items": 0.20300217328144696
+    },
+    {
+     "topic": "Quill distance",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Dapple numbers",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Orbit words",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Vells of 2×2 grids",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    }
+   ],
+   "verdict": "within noise"
+  },
+  {
+   "id": "R1g",
+   "family": "secondary",
+   "question": "NOVEL-12, stage F1: learner repair − generic repair (M9)",
+   "n": 10,
+   "mean": 0.056112564294428714,
+   "ci": [
+    -0.09365608619362427,
+    0.2225470415703982
+   ],
+   "se": 0.08008930307609523,
+   "mde": 0.22425004861306663,
+   "p_measurement": 0.32526747325267474,
+   "p_topics": 0.328125,
+   "positive": 4,
+   "per_topic": [
+    {
+     "topic": "Tovan sums",
+     "value": -0.0001542950475720284,
+     "p": 0.877012298770123,
+     "sd_items": 0.00020011965675678214
+    },
+    {
+     "topic": "Krell steps on a grid",
+     "value": -0.02833774999999994,
+     "p": 0.35896410358964104,
+     "sd_items": 0.021487558216723084
+    },
+    {
+     "topic": "Vorn sequences",
+     "value": -0.030007995137798504,
+     "p": 1.0,
+     "sd_items": 0.25954998426319764
+    },
+    {
+     "topic": "Glint numbers",
+     "value": 0.15548455780328163,
+     "p": 0.8814118588141185,
+     "sd_items": 0.3839806934501842
+    },
+    {
+     "topic": "Mirthful triangles",
+     "value": 0.10095347978388397,
+     "p": 0.823017698230177,
+     "sd_items": 0.36330627773513574
+    },
+    {
+     "topic": "Sorrel counts of lattice rectangles",
+     "value": 0.44705507512808,
+     "p": 0.1050894910508949,
+     "sd_items": 0.20747096905646695
+    },
+    {
+     "topic": "Quill distance",
+     "value": -0.082444578902929,
+     "p": 0.7191280871912809,
+     "sd_items": 0.18324554559614672
+    },
+    {
+     "topic": "Dapple numbers",
+     "value": -0.01683786277993854,
+     "p": 0.39986001399860016,
+     "sd_items": 0.014815731473208029
+    },
+    {
+     "topic": "Orbit words",
+     "value": 0.015415012097279468,
+     "p": 0.7175282471752825,
+     "sd_items": 0.033526012812594326
+    },
+    {
+     "topic": "Vells of 2×2 grids",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    }
+   ],
+   "verdict": "within noise"
+  },
+  {
+   "id": "R2",
+   "family": "secondary",
+   "question": "NOVEL-12, stage F2: learner repair − base (M9)",
+   "n": 10,
+   "mean": 0.12195700394451825,
+   "ci": [
+    -0.000363320128757592,
+    0.3276626825083642
+   ],
+   "se": 0.08452203488347121,
+   "mde": 0.23666169767371936,
+   "p_measurement": 0.017298270172982702,
+   "p_topics": 0.125,
+   "positive": 4,
+   "per_topic": [
+    {
+     "topic": "Tovan sums",
+     "value": 0.11089877434798667,
+     "p": 0.38936106389361064,
+     "sd_items": 0.10137788184835514
+    },
+    {
+     "topic": "Krell steps on a grid",
+     "value": 0.33267516666666647,
+     "p": 0.1902809719028097,
+     "sd_items": 0.16852526150136846
+    },
+    {
+     "topic": "Vorn sequences",
+     "value": 0.10630006005397641,
+     "p": 1.0,
+     "sd_items": 0.39143403231535595
+    },
+    {
+     "topic": "Glint numbers",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Mirthful triangles",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Sorrel counts of lattice rectangles",
+     "value": 0.6696960383765529,
+     "p": 0.050294970502949704,
+     "sd_items": 0.23298255966849515
+    },
+    {
+     "topic": "Quill distance",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Dapple numbers",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Orbit words",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Vells of 2×2 grids",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    }
+   ],
+   "verdict": "beyond noise for these videos only (not over topics / not after correction)"
+  },
+  {
+   "id": "R2g",
+   "family": "secondary",
+   "question": "NOVEL-12, stage F2: learner repair − generic repair (M9)",
+   "n": 10,
+   "mean": 0.03392586368561771,
+   "ci": [
+    -0.035579402192849115,
+    0.12412038086822842
+   ],
+   "se": 0.04054389085680335,
+   "mde": 0.11352289439904938,
+   "p_measurement": 0.1708829117088291,
+   "p_topics": 0.34375,
+   "positive": 4,
+   "per_topic": [
+    {
+     "topic": "Tovan sums",
+     "value": 0.004345702927226358,
+     "p": 0.7448255174482552,
+     "sd_items": 0.00428402064667736
+    },
+    {
+     "topic": "Krell steps on a grid",
+     "value": 0.27380658333333324,
+     "p": 0.070992900709929,
+     "sd_items": 0.13551425982933132
+    },
+    {
+     "topic": "Vorn sequences",
+     "value": -0.013918684745566567,
+     "p": 0.8125187481251874,
+     "sd_items": 0.15269924655779343
+    },
+    {
+     "topic": "Glint numbers",
+     "value": 0.018140433009574686,
+     "p": 0.7527247275272473,
+     "sd_items": 0.07961702269297963
+    },
+    {
+     "topic": "Mirthful triangles",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Sorrel counts of lattice rectangles",
+     "value": 0.12369257779494608,
+     "p": 0.23177682231776822,
+     "sd_items": 0.1098926491507886
+    },
+    {
+     "topic": "Quill distance",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Dapple numbers",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Orbit words",
+     "value": -0.06680797546333672,
+     "p": 0.43895610438956106,
+     "sd_items": 0.04983250779155449
+    },
+    {
+     "topic": "Vells of 2×2 grids",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    }
+   ],
+   "verdict": "within noise"
+  },
+  {
+   "id": "R3",
+   "family": "secondary",
+   "question": "NOVEL-12, stage F3: learner repair − base (M9)",
+   "n": 10,
+   "mean": 0.03410110447852764,
+   "ci": [
+    0.0,
+    0.13515441679888626
+   ],
+   "se": 0.03931265421960932,
+   "mde": 0.11007543181490609,
+   "p_measurement": 0.007699230076992301,
+   "p_topics": 1.0,
+   "positive": 1,
+   "per_topic": [
+    {
+     "topic": "Tovan sums",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Krell steps on a grid",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Vorn sequences",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Glint numbers",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Mirthful triangles",
+     "value": 0.3410110447852764,
+     "p": 0.007699230076992301,
+     "sd_items": 0.20326330841127885
+    },
+    {
+     "topic": "Sorrel counts of lattice rectangles",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Quill distance",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Dapple numbers",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Orbit words",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Vells of 2×2 grids",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    }
+   ],
+   "verdict": "beyond noise for these videos only (not over topics / not after correction)"
+  },
+  {
+   "id": "R3g",
+   "family": "secondary",
+   "question": "NOVEL-12, stage F3: learner repair − generic repair (M9)",
+   "n": 10,
+   "mean": 0.021041847985704958,
+   "ci": [
+    -0.04133279605794244,
+    0.12174755289164294
+   ],
+   "se": 0.042031858388505566,
+   "mde": 0.11768920348781557,
+   "p_measurement": 0.5635436456354365,
+   "p_topics": 0.875,
+   "positive": 2,
+   "per_topic": [
+    {
+     "topic": "Tovan sums",
+     "value": -0.10511707690500594,
+     "p": 0.5042495750424958,
+     "sd_items": 0.10194446692086243
+    },
+    {
+     "topic": "Krell steps on a grid",
+     "value": -0.02833774999999994,
+     "p": 0.35566443355664434,
+     "sd_items": 0.02146100761341541
+    },
+    {
+     "topic": "Vorn sequences",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Glint numbers",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Mirthful triangles",
+     "value": 0.3410110447852764,
+     "p": 0.006799320067993201,
+     "sd_items": 0.19853273443448047
+    },
+    {
+     "topic": "Sorrel counts of lattice rectangles",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Quill distance",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Dapple numbers",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Orbit words",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Vells of 2×2 grids",
+     "value": 0.002862261976779079,
+     "p": 0.8087191280871913,
+     "sd_items": 0.013931008488803272
+    }
+   ],
+   "verdict": "within noise"
+  },
+  {
+   "id": "R4",
+   "family": "secondary",
+   "question": "NOVEL-12, stage F4: learner repair − base (M9)",
+   "n": 10,
+   "mean": 0.024677154679484066,
+   "ci": [
+    -0.0005133472916666557,
+    0.07139245499649832
+   ],
+   "se": 0.02002103852049355,
+   "mde": 0.056058907857381934,
+   "p_measurement": 0.10128987101289871,
+   "p_topics": 0.25,
+   "positive": 3,
+   "per_topic": [
+    {
+     "topic": "Tovan sums",
+     "value": 0.1089381260404475,
+     "p": 0.1503849615038496,
+     "sd_items": 0.1018022401227598
+    },
+    {
+     "topic": "Krell steps on a grid",
+     "value": 0.004262666666666637,
+     "p": 0.8697130286971303,
+     "sd_items": 0.010430431310272981
+    },
+    {
+     "topic": "Vorn sequences",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Glint numbers",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Mirthful triangles",
+     "value": 0.1335707540877265,
+     "p": 0.30496950304969506,
+     "sd_items": 0.0865540530415369
+    },
+    {
+     "topic": "Sorrel counts of lattice rectangles",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Quill distance",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Dapple numbers",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Orbit words",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Vells of 2×2 grids",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    }
+   ],
+   "verdict": "within noise"
+  },
+  {
+   "id": "R4g",
+   "family": "secondary",
+   "question": "NOVEL-12, stage F4: learner repair − generic repair (M9)",
+   "n": 10,
+   "mean": 0.019861575736631696,
+   "ci": [
+    -0.01874432566261883,
+    0.07262460777661785
+   ],
+   "se": 0.023212370236776508,
+   "mde": 0.06499463666297421,
+   "p_measurement": 0.267973202679732,
+   "p_topics": 0.375,
+   "positive": 3,
+   "per_topic": [
+    {
+     "topic": "Tovan sums",
+     "value": 0.0015716830235449342,
+     "p": 1.0,
+     "sd_items": 0.0015476856844682857
+    },
+    {
+     "topic": "Krell steps on a grid",
+     "value": 0.08657366666666669,
+     "p": 0.42695730426957307,
+     "sd_items": 0.10057303977680067
+    },
+    {
+     "topic": "Vorn sequences",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Glint numbers",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Mirthful triangles",
+     "value": 0.1335707540877265,
+     "p": 0.30786921307869214,
+     "sd_items": 0.08516076422303535
+    },
+    {
+     "topic": "Sorrel counts of lattice rectangles",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Quill distance",
+     "value": -0.023100346411621175,
+     "p": 0.8992100789921008,
+     "sd_items": 0.10735104375243278
+    },
+    {
+     "topic": "Dapple numbers",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Orbit words",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Vells of 2×2 grids",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    }
+   ],
+   "verdict": "within noise"
+  },
+  {
+   "id": "R5",
+   "family": "secondary",
+   "question": "NOVEL-12, stage F5: learner repair − base (M9)",
+   "n": 10,
+   "mean": 0.06008012144900125,
+   "ci": [
+    0.0004796471452038073,
+    0.15655649280737644
+   ],
+   "se": 0.0418001139087795,
+   "mde": 0.1170403189445826,
+   "p_measurement": 0.023497650234976502,
+   "p_topics": 0.125,
+   "positive": 4,
+   "per_topic": [
+    {
+     "topic": "Tovan sums",
+     "value": 0.10863510524972764,
+     "p": 0.21007899210078992,
+     "sd_items": 0.09548608084702911
+    },
+    {
+     "topic": "Krell steps on a grid",
+     "value": 0.16947600000000002,
+     "p": 0.08489151084891511,
+     "sd_items": 0.16332958315787624
+    },
+    {
+     "topic": "Vorn sequences",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Glint numbers",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Mirthful triangles",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Sorrel counts of lattice rectangles",
+     "value": 0.30185369503084136,
+     "p": 0.14158584141585842,
+     "sd_items": 0.16670192241893597
+    },
+    {
+     "topic": "Quill distance",
+     "value": 0.020836414209443488,
+     "p": 0.7275272472752725,
+     "sd_items": 0.03852925873144179
+    },
+    {
+     "topic": "Dapple numbers",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Orbit words",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Vells of 2×2 grids",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    }
+   ],
+   "verdict": "beyond noise for these videos"
+  },
+  {
+   "id": "R5g",
+   "family": "secondary",
+   "question": "NOVEL-12, stage F5: learner repair − generic repair (M9)",
+   "n": 10,
+   "mean": 0.06277331345188482,
+   "ci": [
+    0.003102717882471795,
+    0.16535625065349138
+   ],
+   "se": 0.04158840924161864,
+   "mde": 0.1164475458765322,
+   "p_measurement": 0.015398460153984602,
+   "p_topics": 0.0625,
+   "positive": 5,
+   "per_topic": [
+    {
+     "topic": "Tovan sums",
+     "value": 0.10863510524972764,
+     "p": 0.20607939206079393,
+     "sd_items": 0.10077778240533805
+    },
+    {
+     "topic": "Krell steps on a grid",
+     "value": 0.17644416666666674,
+     "p": 0.18768123187681232,
+     "sd_items": 0.16179376593815734
+    },
+    {
+     "topic": "Vorn sequences",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Glint numbers",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Mirthful triangles",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Sorrel counts of lattice rectangles",
+     "value": 0.30185369503084136,
+     "p": 0.134986501349865,
+     "sd_items": 0.17551951260978554
+    },
+    {
+     "topic": "Quill distance",
+     "value": 0.020836414209443488,
+     "p": 0.7238276172382762,
+     "sd_items": 0.03935470423597737
+    },
+    {
+     "topic": "Dapple numbers",
+     "value": 0.019963753362168934,
+     "p": 0.43855614438556145,
+     "sd_items": 0.026844177196906977
+    },
+    {
+     "topic": "Orbit words",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    },
+    {
+     "topic": "Vells of 2×2 grids",
+     "value": 0.0,
+     "p": 1.0,
+     "sd_items": 0.0
+    }
+   ],
+   "verdict": "beyond noise for these videos"
   }
  ],
  "claude_repeat": {
@@ -1732,13 +2522,13 @@
    "answers": 320,
    "changed": 8,
    "floor_one_topic_M9": 0.2222222222222222,
-   "floor_mean_of_topics_M9": 0.06454545454545454
+   "floor_mean_of_topics_M9": 0.065
   },
   "claude_sonnet_5_5": {
    "answers": 320,
    "changed": 10,
    "floor_one_topic_M9": 0.25,
-   "floor_mean_of_topics_M9": 0.07584864696706801
+   "floor_mean_of_topics_M9": 0.07728696741854635
   }
  },
  "students": {

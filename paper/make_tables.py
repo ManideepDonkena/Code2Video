@@ -552,6 +552,8 @@ def noise_model(macros):
     keys = {"N1": "Gain", "N2": "Spec", "N3": "Dense", "N4": "FramesDense", "L1": "Layout", "P1": "Small",
             "N5": "Size", "N6": "Count", "H1": "HGain", "H2": "HSpec", "H3": "HLayout", "S1": "SGain", "S2": "SSpec",
             "S3": "SLayout", "N7": "Repair", "N8": "RepairGeneric"}  # fmt: skip
+    for i, word in enumerate(("One", "Two", "Three", "Four", "Five"), 1):  # stages F1-F5 (bench/noise_model.py R1..R5g)
+        keys[f"R{i}"], keys[f"R{i}g"] = f"Stage{word}", f"Stage{word}Generic"
     for name, row in (rep.get("students") or {}).items():
         for k, v in row.items():
             if v is not None:
@@ -565,6 +567,8 @@ def noise_model(macros):
             continue
         macros[f"NM{k}"], macros[f"NM{k}Pos"], macros[f"NM{k}N"] = pts(c["mean"]), c["positive"], c["n"]
         macros[f"NM{k}MDE"] = pts(c["mde"], False)
+        if c.get("p_measurement") is not None:  # randomisation over questions; sign flip over topics
+            macros[f"NM{k}P"], macros[f"NM{k}PTopics"] = f"{c['p_measurement']:.3f}", f"{c['p_topics']:.3f}"
         if c.get("rule_false_positive_rate") is not None:
             macros["NMRuleFPR"] = f"{100 * c['rule_false_positive_rate']:.1f}"
 

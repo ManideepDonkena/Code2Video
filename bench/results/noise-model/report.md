@@ -32,12 +32,22 @@ Repeat noise alone puts 95% of version differences within ±7.2 M9 points on one
 | S3 | Sonnet 5.5 student: Claude-fixed − ours (M9) | 10 | -16.3 | [-58.5, +6.9] | 49.3 | 0.0796 | n/a | 0.539 | 4/10 | within noise |
 | N7 | NOVEL-12, stage F0: learner repair − base (M9) | 10 | +6.1 | [-12.9, +28.1] | 29.5 | 0.3560 | n/a | 0.453 | 6/10 | within noise |
 | N8 | NOVEL-12, stage F0: learner repair − generic repair (M9) | 10 | +6.1 | [-14.1, +27.2] | 29.9 | 0.3918 | n/a | 0.449 | 6/10 | within noise |
+| R1 | NOVEL-12, stage F1: learner repair − base (M9) | 10 | +7.7 | [-4.2, +25.3] | 21.7 | 0.1317 | n/a | 0.125 | 4/10 | within noise |
+| R1g | NOVEL-12, stage F1: learner repair − generic repair (M9) | 10 | +5.6 | [-9.4, +22.3] | 22.4 | 0.3253 | n/a | 0.328 | 4/10 | within noise |
+| R2 | NOVEL-12, stage F2: learner repair − base (M9) | 10 | +12.2 | [-0.0, +32.8] | 23.7 | 0.0173 | n/a | 0.125 | 4/10 | beyond noise for these videos only (not over topics / not after correction) |
+| R2g | NOVEL-12, stage F2: learner repair − generic repair (M9) | 10 | +3.4 | [-3.6, +12.4] | 11.4 | 0.1709 | n/a | 0.344 | 4/10 | within noise |
+| R3 | NOVEL-12, stage F3: learner repair − base (M9) | 10 | +3.4 | [+0.0, +13.5] | 11.0 | 0.0077 | n/a | 1 | 1/10 | beyond noise for these videos only (not over topics / not after correction) |
+| R3g | NOVEL-12, stage F3: learner repair − generic repair (M9) | 10 | +2.1 | [-4.1, +12.2] | 11.8 | 0.5635 | n/a | 0.875 | 2/10 | within noise |
+| R4 | NOVEL-12, stage F4: learner repair − base (M9) | 10 | +2.5 | [-0.1, +7.1] | 5.6 | 0.1013 | n/a | 0.25 | 3/10 | within noise |
+| R4g | NOVEL-12, stage F4: learner repair − generic repair (M9) | 10 | +2.0 | [-1.9, +7.3] | 6.5 | 0.2680 | n/a | 0.375 | 3/10 | within noise |
+| R5 | NOVEL-12, stage F5: learner repair − base (M9) | 10 | +6.0 | [+0.0, +15.7] | 11.7 | 0.0235 | n/a | 0.125 | 4/10 | beyond noise for these videos |
+| R5g | NOVEL-12, stage F5: learner repair − generic repair (M9) | 10 | +6.3 | [+0.3, +16.5] | 11.6 | 0.0154 | n/a | 0.0625 | 5/10 | beyond noise for these videos |
 
 Preregistered layout rule (mean >= +5 and >= 70% of topics ahead): fires now = False; it fires on noise alone in 8.2% of randomisations.
 
 Repeat noise, claude_haiku_5_5: 8 of 320 answers changed when the frames pass was asked again; 95% of M9 differences within ±22.2 on one topic and ±6.5 on the mean.
 
-Repeat noise, claude_sonnet_5_5: 10 of 320 answers changed when the frames pass was asked again; 95% of M9 differences within ±25.0 on one topic and ±7.6 on the mean.
+Repeat noise, claude_sonnet_5_5: 10 of 320 answers changed when the frames pass was asked again; 95% of M9 differences within ±25.0 on one topic and ±7.7 on the mean.
 
 ## Per topic (value, item-level p, SD from resampling the questions)
 
@@ -321,3 +331,133 @@ Repeat noise, claude_sonnet_5_5: 10 of 320 answers changed when the frames pass 
 - Dapple numbers: -39.3 (p 0.186, SD 22.4)
 - Orbit words: +10.2 (p 0.757, SD 20.1)
 - Vells of 2×2 grids: +2.7 (p 1, SD 8.7)
+
+**R1** NOVEL-12, stage F1: learner repair − base (M9)
+
+- Tovan sums: +10.9 (p 0.14, SD 9.6)
+- Krell steps on a grid: +0.0 (p 1, SD 0.0)
+- Vorn sequences: +19.1 (p 0.748, SD 38.3)
+- Glint numbers: -7.7 (p 0.108, SD 9.6)
+- Mirthful triangles: +10.1 (p 0.826, SD 36.8)
+- Sorrel counts of lattice rectangles: +44.7 (p 0.111, SD 20.3)
+- Quill distance: +0.0 (p 1, SD 0.0)
+- Dapple numbers: +0.0 (p 1, SD 0.0)
+- Orbit words: +0.0 (p 1, SD 0.0)
+- Vells of 2×2 grids: +0.0 (p 1, SD 0.0)
+
+**R1g** NOVEL-12, stage F1: learner repair − generic repair (M9)
+
+- Tovan sums: -0.0 (p 0.877, SD 0.0)
+- Krell steps on a grid: -2.8 (p 0.359, SD 2.1)
+- Vorn sequences: -3.0 (p 1, SD 26.0)
+- Glint numbers: +15.5 (p 0.881, SD 38.4)
+- Mirthful triangles: +10.1 (p 0.823, SD 36.3)
+- Sorrel counts of lattice rectangles: +44.7 (p 0.105, SD 20.7)
+- Quill distance: -8.2 (p 0.719, SD 18.3)
+- Dapple numbers: -1.7 (p 0.4, SD 1.5)
+- Orbit words: +1.5 (p 0.718, SD 3.4)
+- Vells of 2×2 grids: +0.0 (p 1, SD 0.0)
+
+**R2** NOVEL-12, stage F2: learner repair − base (M9)
+
+- Tovan sums: +11.1 (p 0.389, SD 10.1)
+- Krell steps on a grid: +33.3 (p 0.19, SD 16.9)
+- Vorn sequences: +10.6 (p 1, SD 39.1)
+- Glint numbers: +0.0 (p 1, SD 0.0)
+- Mirthful triangles: +0.0 (p 1, SD 0.0)
+- Sorrel counts of lattice rectangles: +67.0 (p 0.0503, SD 23.3)
+- Quill distance: +0.0 (p 1, SD 0.0)
+- Dapple numbers: +0.0 (p 1, SD 0.0)
+- Orbit words: +0.0 (p 1, SD 0.0)
+- Vells of 2×2 grids: +0.0 (p 1, SD 0.0)
+
+**R2g** NOVEL-12, stage F2: learner repair − generic repair (M9)
+
+- Tovan sums: +0.4 (p 0.745, SD 0.4)
+- Krell steps on a grid: +27.4 (p 0.071, SD 13.6)
+- Vorn sequences: -1.4 (p 0.813, SD 15.3)
+- Glint numbers: +1.8 (p 0.753, SD 8.0)
+- Mirthful triangles: +0.0 (p 1, SD 0.0)
+- Sorrel counts of lattice rectangles: +12.4 (p 0.232, SD 11.0)
+- Quill distance: +0.0 (p 1, SD 0.0)
+- Dapple numbers: +0.0 (p 1, SD 0.0)
+- Orbit words: -6.7 (p 0.439, SD 5.0)
+- Vells of 2×2 grids: +0.0 (p 1, SD 0.0)
+
+**R3** NOVEL-12, stage F3: learner repair − base (M9)
+
+- Tovan sums: +0.0 (p 1, SD 0.0)
+- Krell steps on a grid: +0.0 (p 1, SD 0.0)
+- Vorn sequences: +0.0 (p 1, SD 0.0)
+- Glint numbers: +0.0 (p 1, SD 0.0)
+- Mirthful triangles: +34.1 (p 0.0077, SD 20.3)
+- Sorrel counts of lattice rectangles: +0.0 (p 1, SD 0.0)
+- Quill distance: +0.0 (p 1, SD 0.0)
+- Dapple numbers: +0.0 (p 1, SD 0.0)
+- Orbit words: +0.0 (p 1, SD 0.0)
+- Vells of 2×2 grids: +0.0 (p 1, SD 0.0)
+
+**R3g** NOVEL-12, stage F3: learner repair − generic repair (M9)
+
+- Tovan sums: -10.5 (p 0.504, SD 10.2)
+- Krell steps on a grid: -2.8 (p 0.356, SD 2.1)
+- Vorn sequences: +0.0 (p 1, SD 0.0)
+- Glint numbers: +0.0 (p 1, SD 0.0)
+- Mirthful triangles: +34.1 (p 0.0068, SD 19.9)
+- Sorrel counts of lattice rectangles: +0.0 (p 1, SD 0.0)
+- Quill distance: +0.0 (p 1, SD 0.0)
+- Dapple numbers: +0.0 (p 1, SD 0.0)
+- Orbit words: +0.0 (p 1, SD 0.0)
+- Vells of 2×2 grids: +0.3 (p 0.809, SD 1.4)
+
+**R4** NOVEL-12, stage F4: learner repair − base (M9)
+
+- Tovan sums: +10.9 (p 0.15, SD 10.2)
+- Krell steps on a grid: +0.4 (p 0.87, SD 1.0)
+- Vorn sequences: +0.0 (p 1, SD 0.0)
+- Glint numbers: +0.0 (p 1, SD 0.0)
+- Mirthful triangles: +13.4 (p 0.305, SD 8.7)
+- Sorrel counts of lattice rectangles: +0.0 (p 1, SD 0.0)
+- Quill distance: +0.0 (p 1, SD 0.0)
+- Dapple numbers: +0.0 (p 1, SD 0.0)
+- Orbit words: +0.0 (p 1, SD 0.0)
+- Vells of 2×2 grids: +0.0 (p 1, SD 0.0)
+
+**R4g** NOVEL-12, stage F4: learner repair − generic repair (M9)
+
+- Tovan sums: +0.2 (p 1, SD 0.2)
+- Krell steps on a grid: +8.7 (p 0.427, SD 10.1)
+- Vorn sequences: +0.0 (p 1, SD 0.0)
+- Glint numbers: +0.0 (p 1, SD 0.0)
+- Mirthful triangles: +13.4 (p 0.308, SD 8.5)
+- Sorrel counts of lattice rectangles: +0.0 (p 1, SD 0.0)
+- Quill distance: -2.3 (p 0.899, SD 10.7)
+- Dapple numbers: +0.0 (p 1, SD 0.0)
+- Orbit words: +0.0 (p 1, SD 0.0)
+- Vells of 2×2 grids: +0.0 (p 1, SD 0.0)
+
+**R5** NOVEL-12, stage F5: learner repair − base (M9)
+
+- Tovan sums: +10.9 (p 0.21, SD 9.5)
+- Krell steps on a grid: +16.9 (p 0.0849, SD 16.3)
+- Vorn sequences: +0.0 (p 1, SD 0.0)
+- Glint numbers: +0.0 (p 1, SD 0.0)
+- Mirthful triangles: +0.0 (p 1, SD 0.0)
+- Sorrel counts of lattice rectangles: +30.2 (p 0.142, SD 16.7)
+- Quill distance: +2.1 (p 0.728, SD 3.9)
+- Dapple numbers: +0.0 (p 1, SD 0.0)
+- Orbit words: +0.0 (p 1, SD 0.0)
+- Vells of 2×2 grids: +0.0 (p 1, SD 0.0)
+
+**R5g** NOVEL-12, stage F5: learner repair − generic repair (M9)
+
+- Tovan sums: +10.9 (p 0.206, SD 10.1)
+- Krell steps on a grid: +17.6 (p 0.188, SD 16.2)
+- Vorn sequences: +0.0 (p 1, SD 0.0)
+- Glint numbers: +0.0 (p 1, SD 0.0)
+- Mirthful triangles: +0.0 (p 1, SD 0.0)
+- Sorrel counts of lattice rectangles: +30.2 (p 0.135, SD 17.6)
+- Quill distance: +2.1 (p 0.724, SD 3.9)
+- Dapple numbers: +2.0 (p 0.439, SD 2.7)
+- Orbit words: +0.0 (p 1, SD 0.0)
+- Vells of 2×2 grids: +0.0 (p 1, SD 0.0)

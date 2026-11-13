@@ -20,8 +20,10 @@
   \item \textbf{The local coder.} After one retry, two of twelve NOVEL-12 videos were still incomplete and only
   \AdmClean{} of \AdmTotal{} were clean. Stronger code models are future work; the Claude-fixed versions show the
   room.
-  \item \textbf{The repair is only partly evaluated on NOVEL-12.} The pilot loop (F0) is scored, and its gain is
-  within noise; the stages that add features are built and their rules fixed in advance, and their runs continue.
+  \item \textbf{The repair study is small.} All six stages are scored, on 10 concepts with one student. From F1 on,
+  the gate kept the learner revision on at most half of them. A gain beyond noise across concepts was therefore out of
+  reach, and small benefits of the repair remain possible. The two measures also disagree: kept revisions raise the
+  gain on 3 frames (M9) but not on the dense video (M7).
   \item \textbf{The model-free checks are narrow.} The timing check covers two kinds of fault; the attachment check
   skips labels anchored to a text glyph.
   % Hand-typed from bench/layout_study.log, layout_study_rerun.log, layout_study_attach.log (sum of 'conflicts').
@@ -40,5 +42,5 @@ prior, normalisation, dense silent frames, a motion control, continuous scoring 
 named failure, and the ladder shows which of them a teaching metric actually needs. A benchmark whose prior is
 controlled by construction is the precondition for asking whether a repair teaches. The layout score has the same
 weakness from the other side: it measures box separation, not whether a viewer can read what belongs to what. On
-NOVEL-12, the pilot's repair loop gives no gain beyond noise; whether the added features (F1--F5) change that is
-the next step.
+NOVEL-12, the repair loop gives no gain beyond noise at any stage. None of the added features makes the student's
+answers beat a repair of the same size made without them.

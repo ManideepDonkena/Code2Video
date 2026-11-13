@@ -107,9 +107,31 @@ falls by 26 points. No single concept's change in M9 is beyond noise (Section~\r
 \label{fig:layout_examples}
 \end{figure*}
 
-\paragraph{Pipeline ablation.} The stages F0--F5 (\S\ref{sec:ablation}) are built and their decision rules fixed.
-The first stage, F0, is the pilot's loop on the admitted NOVEL-12 videos. Its learner repair scores \NMRepair{} points
-of M9 above the base video, ahead on \NMRepairPos{} of \NMRepairN{} concepts. It scores \NMRepairGeneric{} points above
-the generic repair of the same size. Neither difference is beyond noise. With 10 concepts, the study can only detect a
-difference of about \NMRepairMDE{} points, so a small benefit of the repair remains possible. The later stages are
-still running.
+\paragraph{Pipeline ablation} (Table~\ref{tab:stages}). All six stages (\S\ref{sec:ablation}) are scored on the
+admitted NOVEL-12 concepts. The first stage, F0, is the pilot's loop. Its learner repair scores \NMRepair{} points of
+M9 above the base video, ahead on \NMRepairPos{} of \NMRepairN{} concepts, and \NMRepairGeneric{} points above the
+generic repair of the same size. Neither difference is beyond noise. Four insights follow from the later stages.
+(i) \textbf{No feature makes the student's answers count.} By the rule fixed in advance, a feature helps if it
+raises the learner repair's lead over the generic repair. From F1 to F5 that lead is \NMStageOneGeneric{},
+\NMStageTwoGeneric{}, \NMStageThreeGeneric{}, \NMStageFourGeneric{} and \NMStageFiveGeneric{} points, against
+\NMRepairGeneric{} at F0. Finding the weak section (F3) also does not beat rewriting every section beyond noise.
+(ii) \textbf{The enforced gate keeps few revisions.} From F1 on, a revision that fails the gate is not used, and TEST
+sees the base video instead. The gate kept the learner revision on only 1 to 5 of the 10 concepts per stage. So most
+of each stage's learner videos are the base video.
+(iii) \textbf{Kept revisions help on the 3 frames, not on the dense video.} The learner repair scores
+\NMStageOne{}, \NMStageTwo{}, \NMStageThree{}, \NMStageFour{} and \NMStageFive{} points of M9 above the base video at
+F1 to F5. Of the 17 revisions the gate kept, 16 raised M9. On the dense video (M7), the learner repair is at or below
+the base video at every stage. Some gains rest on very little: on \emph{Tovan sums}, every kept revision fixes the same
+single answer.
+% Hand-counted from bench/results/noise-model/report.json (R1..R5, non-zero per-topic values: 17, of which 16 > 0);
+% M7 learner - base and the edit sizes from bench/results/novel12-stages/report.md.
+(iv) \textbf{None of these differences is beyond noise.} Four pass the question-swap test: F2, F3 and F5 against
+the base video, and F5 against the generic repair. None holds across concepts, and none can: that test needs at least
+six concepts to change in the same direction, and the gate let at most five change. Allowing for the ten stage
+comparisons, none passes the question-swap test either. F3's difference comes from a single concept.
+Two features do what they were built for. Checking the code before rendering (F2) raised the rewritten sections that
+rendered from 25 to 28 of 32. Small edits (F5) change about 23\% of a section's lines, against about 70\% for the
+rewrites of F2--F4. No stage made the layout worse. So on NOVEL-12, with this student, the repair loop gives no gain
+beyond noise at any stage. With ten concepts and most revisions refused, small benefits could not have been detected.
+
+\input{tables/stages}

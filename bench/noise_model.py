@@ -350,7 +350,40 @@ def comparisons():
     C.append(("N8", "secondary", "NOVEL-12, stage F0: learner repair − generic repair (M9)",
               build(nv, {"blind": "dv_blind_test.json", "x": "learner/dv_frames_test.json",
                          "y": "generic/dv_frames_test.json"}), st_dgain, [("x", "y")]))  # fmt: skip
+    # stages F1-F5: the video TEST sees, i.e. the base video where the stage's gate refused the revision (as in
+    # bench/stages.py), so such a topic's difference is exactly 0. Appended after N7/N8 for the same reason.
+    for k, stage in enumerate(STAGES_LATER, 1):
+        C.append((f"R{k}", "secondary", f"NOVEL-12, stage {stage}: learner repair − base (M9)",
+                  stage_build(nv, stage, "learner", "base"), st_dgain, [("x", "y")]))
+        C.append((f"R{k}g", "secondary", f"NOVEL-12, stage {stage}: learner repair − generic repair (M9)",
+                  stage_build(nv, stage, "learner", "generic"), st_dgain, [("x", "y")]))
     return C, nv
+
+
+STAGES_LATER = ("F1", "F2", "F3", "F4", "F5")
+
+
+def stage_build(runs, stage, x, y):
+    """build() over the videos a stage served: rows_<stage>.json says, per topic and mode, revision or base."""
+    path = ROOT / "bench" / "results" / "novel12-stages" / f"rows_{stage}.json"
+    if not path.exists():
+        return []
+    served = {r["topic"]: r for r in json.loads(path.read_text())}
+
+    def frames(run, mode):
+        r = served.get(run.name)
+        if mode == "base" or r is None or r[mode]["served"] != "revision":
+            return "dv_frames_test.json"
+        return f"{mode}/dv_frames_test.json" if stage == "F1" else f"stages/{stage}/{mode}/dv_frames_test.json"
+
+    out = []
+    for name, run in runs.items():
+        if run.name not in served:
+            continue
+        t = topic(run, {"blind": "dv_blind_test.json", "x": frames(run, x), "y": frames(run, y)})
+        if t is not None:
+            out.append((name, t))
+    return out
 
 
 def students(nv):
