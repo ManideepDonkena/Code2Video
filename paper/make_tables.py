@@ -380,8 +380,12 @@ def novel_first_look():
     from c2vlab import dvgain, generate
 
     qs = json.loads((ROOT / "bench" / "novel" / "questions.json").read_text())
+    admitted = ROOT / "bench" / "results" / "novel12" / "topics.json"  # only the admitted concepts, as in every study
+    keep = set(json.loads(admitted.read_text())) if admitted.exists() else set(qs)
     rows, cols = [], []
     for t in qs:
+        if t not in keep:
+            continue
         d = ROOT / "runs" / generate.slug(t)
         files = {k: d / f"dv_{k}_test.json" for k in ("blind", "frames", "static", "visual")}
         if not all(f.exists() for f in files.values()):
