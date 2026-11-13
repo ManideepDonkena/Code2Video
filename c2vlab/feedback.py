@@ -76,7 +76,8 @@ def plan_fixes(plan, failed):
         try:
             reply = llm.ask(
                 llm.PLANNER,
-                MAP.format(topic=plan["topic"], sections=sections, question=teachquiz.quiz_text([q])),
+                MAP.format(topic=plan["topic"], sections=sections, question=teachquiz.quiz_text([q]))
+                + (generate.SOURCE.format(source=plan["source"]) if plan.get("source") else ""),
                 note="map",
             )
         except RuntimeError:

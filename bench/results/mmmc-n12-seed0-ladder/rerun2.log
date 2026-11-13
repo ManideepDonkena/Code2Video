@@ -1,0 +1,129 @@
+[ladder] blind 1.00 P 1.000 The inscribed square or rectangle problem in topol
+[ladder] blind 1.00 P 1.000 Hamming error correction codes
+[ladder] blind 1.00 P 1.000 Space-filling curves and the relationship between 
+[ladder] blind 1.00 P 1.000 Uncertainty Principle in the Context of Fourier Tr
+[ladder] blind 1.00 P 1.000 Holomorphic dynamics and iterated complex function
+[ladder] blind 1.00 P 1.000 Backpropagation calculus
+[ladder] blind 1.00 P 1.000 Error correction codes and Hamming codes
+[ladder] blind 1.00 P 1.000 Large Language Models and Transformers in Deep Lea
+[ladder] blind 1.00 P 1.000 Interconnections in number theory: π, primes, comp
+[ladder] blind 1.00 P 1.000 Higher order derivatives
+[ladder] blind 1.00 P 1.000 Sum of normal distributions, Gaussian + Gaussian =
+[ladder] blind 1.00 P 1.000 The determinant
+[ladder] measured learner     The inscribed square or rectangle problem in topol
+[ladder] measured base        The inscribed square or rectangle problem in topol
+[ladder] measured generic     The inscribed square or rectangle problem in topol
+[ladder] measured learner_all The inscribed square or rectangle problem in topol
+[ladder] measured base        Hamming error correction codes
+[ladder] measured learner     Hamming error correction codes
+[ladder] measured generic     Hamming error correction codes
+[ladder] measured learner_all Hamming error correction codes
+[ladder] measured base        Space-filling curves and the relationship between 
+[ladder] measured generic     Space-filling curves and the relationship between 
+[ladder] measured learner     Space-filling curves and the relationship between 
+[ladder] measured learner_all Space-filling curves and the relationship between 
+[ladder] measured learner     Uncertainty Principle in the Context of Fourier Tr
+[ladder] measured base        Uncertainty Principle in the Context of Fourier Tr
+[ladder] measured generic     Uncertainty Principle in the Context of Fourier Tr
+[ladder] measured learner_all Uncertainty Principle in the Context of Fourier Tr
+[ladder] measured learner     Holomorphic dynamics and iterated complex function
+[ladder] measured base        Holomorphic dynamics and iterated complex function
+[ladder] measured generic     Holomorphic dynamics and iterated complex function
+[ladder] measured learner_all Holomorphic dynamics and iterated complex function
+[ladder] measured learner     Backpropagation calculus
+[ladder] measured generic     Backpropagation calculus
+[ladder] measured base        Backpropagation calculus
+[ladder] measured learner_all Backpropagation calculus
+[ladder] measured learner     Error correction codes and Hamming codes
+[ladder] measured base        Error correction codes and Hamming codes
+[ladder] measured generic     Error correction codes and Hamming codes
+[ladder] measured learner_all Error correction codes and Hamming codes
+[ladder] measured learner     Large Language Models and Transformers in Deep Lea
+[ladder] measured base        Large Language Models and Transformers in Deep Lea
+[ladder] measured learner_all Large Language Models and Transformers in Deep Lea
+[ladder] measured generic     Large Language Models and Transformers in Deep Lea
+[ladder] measured base        Interconnections in number theory: π, primes, comp
+[ladder] measured learner     Interconnections in number theory: π, primes, comp
+[ladder] measured generic     Interconnections in number theory: π, primes, comp
+[ladder] measured base        Higher order derivatives
+[ladder] measured learner     Higher order derivatives
+[ladder] measured generic     Higher order derivatives
+[ladder] measured learner_all Higher order derivatives
+[ladder] measured base        Sum of normal distributions, Gaussian + Gaussian =
+[ladder] measured learner     Sum of normal distributions, Gaussian + Gaussian =
+[ladder] measured generic     Sum of normal distributions, Gaussian + Gaussian =
+[ladder] measured learner_all Sum of normal distributions, Gaussian + Gaussian =
+[ladder] measured base        The determinant
+[ladder] measured learner     The determinant
+[ladder] measured generic     The determinant
+[ladder] measured learner_all The determinant
+[ladder] FAILED learner_all Interconnections in number theory: π, primes, complex numbers, and prime regularities: RuntimeError: gemma4:26b: no usable reply (Expecting value: line 1 column 1 (char 0))
+# Metric ladder: mmmc-n12-seed0
+
+12 topics, 47 distinct videos.
+
+| Rung | Change | Defined | Distinct values | Own − other topic (base) | Reliability | learner−base ties |
+|---|---|---|---|---|---|---|
+| M0 | TeachQuiz, as in the pilot | 47/47 | 8 | +0.110 [+0.010, +0.220] 4/8/0, p 0.125 | n/a | 7 |
+| M1 | + answers matched by order | 47/47 | 9 | +0.110 [+0.020, +0.220] 5/7/0, p 0.0625 | 0.956 (seed 1 vs seeds 2-3) | 7 |
+| M2 | + forced choice | 47/47 | 2 | +0.170 [+0.050, +0.330] 6/6/0, p 0.0312 | 1.0 (option order 0 vs 1) | 12 |
+| M3 | + normalised gain (NVG) | 0/47 | 0 | n/a | n/a | None |
+| M4 | + dense silent video | 0/47 | 0 | n/a | n/a | None |
+| M5 | + motion control (D-VGAIN) | 0/47 | 0 | n/a | n/a | None |
+| M6 | + continuous scoring | 0/47 | 0 | n/a | n/a | None |
+| M7 | + option rotation | 0/47 | 0 | n/a | n/a | None |
+| M8 | + prior filter (unknown items only) | 0/47 | 0 | n/a | n/a | None |
+| M9 | M7 on 3 frames per section (no dense video) | 0/47 | 0 | n/a | n/a | None |
+| R7 | raw: dense video P(right) minus no-video P(right) | 47/47 | 17 | +0.040 [-0.030, +0.150] 9/0/3, p 0.3804 | 0.654 (option order 0 vs 1) | 1 |
+| R9 | raw: 3 frames/section P(right) minus no-video P(right) | 47/47 | 21 | +0.130 [+0.040, +0.240] 12/0/0, p 0.0005 | 0.773 (option order 0 vs 1) | 0 |
+
+## Paired condition differences per rung
+
+mean [bootstrap 95% CI] wins/ties/losses, Wilcoxon p
+
+| Rung | learner − base | learner − generic | learner − learner_all | generic − base |
+|---|---|---|---|---|
+| M0 | +0.020 [-0.020, +0.060] 3/7/2, p 0.5 | -0.020 [-0.110, +0.060] 1/9/2, p 0.75 | -0.010 [-0.070, +0.030] 2/8/2, p 0.875 | +0.040 [-0.050, +0.140] 2/7/3, p 0.75 |
+| M1 | +0.070 [-0.010, +0.180] 3/7/2, p 0.3125 | +0.030 [-0.040, +0.120] 2/8/2, p 0.875 | +0.040 [-0.010, +0.110] 2/9/1, p 0.5 | +0.040 [-0.010, +0.120] 3/7/2, p 0.5 |
+| M2 | +0.000 [+0.000, +0.000] 0/12/0, p 1.0 | +0.000 [+0.000, +0.000] 0/12/0, p 1.0 | +0.000 [+0.000, +0.000] 0/12/0, p 1.0 | +0.000 [+0.000, +0.000] 0/12/0, p 1.0 |
+| M3 | n/a | n/a | n/a | n/a |
+| M4 | n/a | n/a | n/a | n/a |
+| M5 | n/a | n/a | n/a | n/a |
+| M6 | n/a | n/a | n/a | n/a |
+| M7 | n/a | n/a | n/a | n/a |
+| M8 | n/a | n/a | n/a | n/a |
+| M9 | n/a | n/a | n/a | n/a |
+| R7 | +0.010 [-0.000, +0.030] 8/1/3, p 0.2783 | -0.000 [-0.000, +0.000] 6/0/6, p 0.9097 | +0.000 [-0.000, +0.010] 9/0/3, p 0.2661 | +0.010 [+0.000, +0.030] 9/0/3, p 0.0923 |
+| R9 | +0.000 [-0.000, +0.000] 6/0/6, p 0.5186 | +0.000 [-0.000, +0.000] 7/0/5, p 0.9097 | +0.000 [-0.000, +0.000] 9/0/3, p 0.3013 | +0.000 [-0.000, +0.000] 5/0/7, p 0.9697 |
+
+## What the student knows without the video
+
+```
+{
+ "s_blind_mean": 1.0,
+ "s_blind_p_mean": 1.0,
+ "topics_blind_all_right": 12,
+ "unknown_items_per_topic": [
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0
+ ],
+ "s_visual_mean": 0.996,
+ "s_static_mean": 0.987,
+ "s_frames_mean": 0.983,
+ "s_visual_p_mean": 0.994,
+ "s_frames_p_mean": 0.982,
+ "s_static_p_mean": 0.988,
+ "tq_abstained_mean": 85.4
+}
+```
+

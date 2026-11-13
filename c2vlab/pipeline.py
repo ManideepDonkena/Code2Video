@@ -9,10 +9,10 @@ from pathlib import Path
 from . import feedback, generate, layout, teachquiz
 
 
-def make_video(topic, grade, out, sections=4, log=print):
+def make_video(topic, grade, out, sections=4, log=print, source=None):
     if (out / "video.mp4").exists() and (out / "sections.json").exists():
         return out
-    p = generate.plan(topic, grade, sections, out)
+    p = generate.plan(topic, grade, sections, out, source=source)
     clips = {}
     for s in p["sections"]:
         if generate.build_section(p, s, out, log):
@@ -45,11 +45,11 @@ def headline(e):
     return {k: e.get(k) for k in keys}
 
 
-def run_topic(topic, grade, out, modes=feedback.MODES, official=None, other=None, sections=4, log=print):
+def run_topic(topic, grade, out, modes=feedback.MODES, official=None, other=None, sections=4, log=print, source=None):
     """Everything for one topic; returns the row the benchmark tables are made from."""
     out = Path(out)
-    make_video(topic, grade, out, sections, log)
-    teachquiz.make_quiz(topic, grade, out, official=official)
+    make_video(topic, grade, out, sections, log, source=source)
+    teachquiz.make_quiz(topic, grade, out, official=official, source=source)
     row = {"topic": topic, "base": headline(evaluate(out, "test", other))}
     for mode in modes:
         done = out / mode / "feedback.json"

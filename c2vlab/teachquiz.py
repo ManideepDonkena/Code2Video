@@ -84,16 +84,31 @@ def leaked(topic, grade, questions, seeds=(1, 2, 3)):
     return out
 
 
-def make_quiz(topic, grade, out, n=12, official=None):
+def text_options(qs):
+    """The quiz writer sometimes gives a number as an option (2.0); every option is text from here on."""
+    for q in qs:
+        if isinstance(q.get("options"), dict):
+            q["options"] = {k: str(v) for k, v in q["options"].items()}
+    return qs
+
+
+def make_quiz(topic, grade, out, n=12, official=None, source=None):
+    """DEV from the planner (from the topic name, or from the card of an invented concept), TEST official or half."""
     path = out / "quiz.json"
     if path.exists():
-        return json.loads(path.read_text())
-    raw = llm.ask(llm.PLANNER, QUIZ.format(topic=topic, grade=grade, n=n), temperature=0.3, seed=7, note="quiz")
-    raw = [q for q in raw.get("questions") or []
+        record = json.loads(path.read_text())
+        text_options(record["dev"] + record["test"])
+        return record
+    card = f"\nThe topic is NEW; write every question from this definition only:\n{source}" if source else ""
+    raw = llm.ask(llm.PLANNER, QUIZ.format(topic=topic, grade=grade, n=n) + card, temperature=0.3, seed=7, note="quiz")
+    raw = text_options([q for q in raw.get("questions") or [] if isinstance(q, dict)])
+    raw = [q for q in raw
            if isinstance(q.get("options"), dict) and set(q["options"]) == set("ABCD") and q.get("answer") in "ABCD"]  # fmt: skip
     for i, q in enumerate(raw, 1):
         q["id"] = f"q{i}"
-    solved = llm.ask(llm.STUDENT, KNOW.format(questions=quiz_text(raw)))["answers"]
+    # a valid item is one the student answers right knowing the topic (for an invented concept: given its card)
+    given = f"Use this definition:\n{source}\n\n" if source else ""
+    solved = llm.ask(llm.STUDENT, given + KNOW.format(questions=quiz_text(raw)))["answers"]
     solved = {a.get("id"): a.get("choice") for a in solved}
     known = [q for q in raw if solved.get(q["id"]) == q["answer"]]
     dev_leaked = leaked(topic, grade, known)
@@ -133,14 +148,17 @@ def frames_dir(run_dir):
     return folder
 
 
-def material(run_dir, narration=False, only_first=False):
+SHARES = (0.4, 0.7, 0.95)  # where in each section the student's frames are taken
+
+
+def material(run_dir, narration=False, only_first=False, shares=SHARES):
     sections = json.loads((run_dir / "sections.json").read_text())
     if only_first:
         sections = sections[:1]
     folder = frames_dir(run_dir)
     images, labels, text = [], [], []
     for s in sections:
-        for share in (0.4, 0.7, 0.95):
+        for share in shares:
             t = s["start"] + share * (s["end"] - s["start"])
             images.append(grab(run_dir / "video.mp4", t, folder / f"{s['id']}_{int(share * 100)}.jpg"))
             labels.append(f"image {len(images)} at {stamp(t)}")
@@ -152,23 +170,43 @@ def material(run_dir, narration=False, only_first=False):
     return images, body
 
 
-def student(topic, grade, questions, images=(), body="", seed=1):
+def forced(prompt):
+    """A study variant, not Code2Video's protocol: the student may not abstain (NULL), so a floor of 0 means wrong."""
+    return (prompt.replace('declare "INSUFFICIENT EVIDENCE" (answer NULL)', "still choose the most plausible option "
+                           "given the frames and the question text; NULL is not allowed")
+            .replace("(A, B, C, D or NULL)", "(A, B, C or D; never NULL)").replace("A|B|C|D|NULL", "A|B|C|D"))  # fmt: skip
+
+
+def student(topic, grade, questions, images=(), body="", seed=1, force=False):
+    system, prompt = UNLEARN.format(topic=topic), ANSWER.format(material=body or "MATERIAL: none.", questions=quiz_text(questions))
+    if force:
+        system, prompt = forced(system), forced(prompt)
     reply = llm.ask(
         llm.STUDENT,
-        ANSWER.format(material=body or "MATERIAL: none.", questions=quiz_text(questions)),
+        prompt,
         images=images,
-        system=UNLEARN.format(topic=topic),
+        system=system,
         temperature=0.7,
         seed=seed,
         note="student",
     )
-    got = {a.get("id"): a for a in reply.get("answers") or [] if isinstance(a, dict)}
+    return grade_reply(questions, reply)
+
+
+def grade_reply(questions, reply):
+    """Match answers to questions by id; when no id matches and the counts agree, by order. The template's example id
+    is "q1", and the student copies it for TEST items named t1..t5: matched by id only, every answer was lost."""
+    answers = [a for a in reply.get("answers") or [] if isinstance(a, dict)]
+    got = {a.get("id"): a for a in answers}
+    by_order = not any(q["id"] in got for q in questions) and len(answers) == len(questions)
     rows = []
-    for q in questions:
-        a = got.get(q["id"]) or {}
-        choice = str(a.get("choice") or "NULL").strip().upper()[:4]
+    for i, q in enumerate(questions):
+        a = (answers[i] if by_order else got.get(q["id"])) or {}
+        m = re.match(r"\s*\(?([ABCD])\b", str(a.get("choice") or ""), re.IGNORECASE)
+        choice = m[1].upper() if m else "NULL"
         rows.append({"id": q["id"], "choice": choice, "right": choice == q["answer"], "time": a.get("time")})
-    return {"score": round(100 * sum(r["right"] for r in rows) / max(1, len(rows)), 1), "answers": rows}
+    return {"score": round(100 * sum(r["right"] for r in rows) / max(1, len(rows)), 1), "answers": rows,
+            "by_order": by_order}  # fmt: skip
 
 
 def seconds(value):
@@ -208,16 +246,16 @@ def _score(runs, keep):
     return round(100 * sum(per) / len(per), 1)
 
 
-def evaluate(run_dir, split="test", runs=3, narration=False, other=None):
-    """TQ on one split, mean over `runs` students; controls on run 1 only."""
+def evaluate(run_dir, split="test", runs=3, narration=False, other=None, shares=SHARES, force=False):
+    """TQ on one split, mean over `runs` students; controls on run 1 only. `shares` and `force` are study variants."""
     plan = json.loads((run_dir / "plan.json").read_text())
     quiz = json.loads((run_dir / "quiz.json").read_text())
     qs = quiz[split]
     topic, grade = plan["topic"], plan["grade"]
-    images, body = material(run_dir, narration)
+    images, body = material(run_dir, narration, shares=shares)
     # seeds other than the item filter's (1-3), so S1 is not near zero by construction
-    none = [student(topic, grade, qs, seed=10 + r) for r in range(1, runs + 1)]
-    full = [evidence(run_dir, qs, student(topic, grade, qs, images, body, seed=r)) for r in range(1, runs + 1)]
+    none = [student(topic, grade, qs, seed=10 + r, force=force) for r in range(1, runs + 1)]
+    full = [evidence(run_dir, qs, student(topic, grade, qs, images, body, seed=r, force=force)) for r in range(1, runs + 1)]
     every = {q["id"] for q in qs}
     clean = every - set(quiz.get(f"{split}_leaked") or [])
     out = {
@@ -233,9 +271,11 @@ def evaluate(run_dir, split="test", runs=3, narration=False, other=None):
     }
     out["teachquiz"] = round(out["full"] - out["none"], 1)
     out["teachquiz_clean"] = round(out["full_clean"] - out["none_clean"], 1) if clean else None
-    first_images, first_body = material(run_dir, narration, only_first=True)
-    out["control_first_section"] = student(topic, grade, qs, first_images, first_body)["score"]
+    out["abstained"] = round(100 * sum(a["choice"] not in ("A", "B", "C", "D") for r in full for a in r["answers"])
+                             / max(1, sum(len(r["answers"]) for r in full)), 1)  # fmt: skip
+    first_images, first_body = material(run_dir, narration, only_first=True, shares=shares)
+    out["control_first_section"] = student(topic, grade, qs, first_images, first_body, force=force)["score"]
     if other:
-        o_images, o_body = material(other, narration)
-        out["control_other_topic"] = student(topic, grade, qs, o_images, o_body)["score"]
+        o_images, o_body = material(other, narration, shares=shares)
+        out["control_other_topic"] = student(topic, grade, qs, o_images, o_body, force=force)["score"]
     return out

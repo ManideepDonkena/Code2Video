@@ -46,3 +46,16 @@ $PY run.py estimate runs/<slug> --topics 12            # its cost through the AP
 - `docs/evaluation_by_hand.md`: Code2Video's evaluation in a chat app, step by step, and API costs
 - `docs/models.md`: models in Code2Video, in SGA and here; OpenRouter ids and prices
 - `docs/results.md`: results so far, and what the first runs taught
+- `docs/open_problems.md`: what breaks, measured on the pilot, with the names of the same problems in other fields
+- `paper/`: the paper (`main.tex`) and the technical report (`report.tex`); every number comes from
+  `paper/make_tables.py`; `paper/build.sh` rebuilds both PDFs
+
+## Studies after the pilot
+
+| Script | What it does |
+|---|---|
+| `bench/metric_ladder.py <run>` | TeachQuiz improved one change at a time (M0-M8), each rung judged by the same four tests |
+| `bench/mmmc_prior.py` | what a student answers with no video (forced choice), on MMMC or NOVEL-12 |
+| `bench/novel/build.py` | NOVEL-12: 12 invented concepts, their cards, 96 TEST items with computed keys |
+| `bench/stages.py <run> --stage F0..F5` | the pipeline ablation: gate, pre-flight, spectrum-based localisation, leak gate, minimal edits |
+| `bench/queue_phase1.sh`, `bench/queue_phase2.sh` | the order the studies run in |

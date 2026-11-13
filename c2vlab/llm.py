@@ -117,6 +117,30 @@ def _openrouter(model, messages, images, temperature, seed, as_json, note, video
     return reply["choices"][0]["message"]["content"] or ""
 
 
+def ask_logprobs(model, prompt, images=(), system=None, max_tokens=64, seed=0, top=20, ctx=32768, tries=4):
+    """A local (Ollama) reply at temperature 0 with the top log-probabilities of every generated token."""
+    messages = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": prompt}]
+    if images:
+        messages[-1]["images"] = [base64.b64encode(Path(i).read_bytes()).decode() for i in images]
+    body = {"model": model, "stream": False, "think": False, "messages": messages, "logprobs": True,
+            "top_logprobs": top, "options": {"temperature": 0, "seed": seed, "num_ctx": ctx, "num_predict": max_tokens}}  # fmt: skip
+    last = None
+    for attempt in range(tries):
+        try:
+            req = urllib.request.Request(OLLAMA, json.dumps(body).encode(), {"Content-Type": "application/json"})
+            r = json.load(urllib.request.urlopen(req, timeout=1800))
+            used = r.get("prompt_eval_count") or 0
+            if used + max_tokens >= ctx:
+                raise RuntimeError(f"{model}: prompt of {used} tokens fills the context of {ctx}; it was truncated")
+            return {"text": r["message"]["content"], "logprobs": r.get("logprobs") or [], "prompt_tokens": used}
+        except RuntimeError:
+            raise
+        except Exception as exc:  # noqa: BLE001 - shared GPUs: ask again
+            last = exc
+        time.sleep(3 + attempt * 8)
+    raise RuntimeError(f"{model}: no usable reply ({last})")
+
+
 def ask(
     model,
     prompt,

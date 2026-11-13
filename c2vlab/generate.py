@@ -8,12 +8,13 @@ A run lives in one folder:
 
 from __future__ import annotations
 
+import difflib
 import json
 import re
 import subprocess
 import sys
 
-from . import llm
+from . import llm, preflight, temporal
 from .scene_graph import graph
 
 PYTHON = sys.executable
@@ -98,22 +99,70 @@ HINTS = [
 ]
 
 
+#: pipeline features switched on for this process (bench/stages.py sets them; empty = the pilot's pipeline)
+FEATURES: set[str] = set()
+
+#: hints added with the `preflight` feature (failure classes the pilot's table missed)
+MORE_HINTS = [
+    (r"could not broadcast|operands could not be broadcast", "Manim points are 3-D: write [x, y, 0], never (x, y)."),
+    (r"could not find .*(svg|png|jpg)|no such file here", "There are no files: draw it from Manim shapes instead."),
+    (r"does not accept the keyword", "Remove that keyword argument; set the property after creating the object."),
+]
+
+
 def hint(problem):
-    return next((h for pattern, h in HINTS if re.search(pattern, problem)), "")
+    table = HINTS + (MORE_HINTS if "preflight" in FEATURES else [])
+    return next((h for pattern, h in table if re.search(pattern, problem)), "")
 
 
 def slug(text):
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")[:48]
 
 
-def plan(topic, grade, n, out):
+#: an invented concept (bench/novel): no model knows it, so every step that writes about it is given its card
+SOURCE = """
+This topic is NEW: no textbook or model knows it. Use exactly this definition, its rules, names and symbols, and
+nothing that contradicts it:
+{source}"""
+
+
+FIELDS = ("title", "teaches", "visual", "narration")
+
+
+def fix_keys(section):
+    """The planner sometimes garbles a key ('narnarration'): give each missing field the closest spare key.
+    Returns whether every field is now present."""
+    for f in FIELDS:
+        spare = [k for k in section if k not in FIELDS and k != "id"]
+        if f not in section and (best := difflib.get_close_matches(f, spare, n=1, cutoff=0.6)):
+            section[f] = section.pop(best[0])
+    return all(f in section for f in FIELDS)
+
+
+def plan(topic, grade, n, out, source=None):
     path = out / "plan.json"
     if path.exists():
-        return json.loads(path.read_text())
-    p = llm.ask(llm.PLANNER, PLAN.format(topic=topic, grade=grade, n=n), temperature=0.3, seed=3)
+        p = json.loads(path.read_text())
+        before = json.dumps(p)
+        fixed = [fix_keys(s) for s in p["sections"]]  # every section, not only up to the first failure
+        if not all(fixed):
+            raise ValueError(f"{path}: a section lacks one of {FIELDS}")
+        if json.dumps(p) != before:
+            path.write_text(json.dumps(p, indent=1, ensure_ascii=False))
+        return p
+    prompt = PLAN.format(topic=topic, grade=grade, n=n) + (SOURCE.format(source=source) if source else "")
+    for seed in (3, 4, 5):
+        p = llm.ask(llm.PLANNER, prompt, temperature=0.3, seed=seed)
+        fixed = [fix_keys(s) for s in p.get("sections") or []]
+        if fixed and all(fixed):
+            break
+    else:
+        raise ValueError(f"{topic}: three plans, each with a section lacking one of {FIELDS}")
     for i, s in enumerate(p["sections"], 1):
         s["id"] = f"s{i}"
     p.update(topic=topic, grade=grade)
+    if source:
+        p["source"] = source
     out.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(p, indent=1, ensure_ascii=False))
     return p
@@ -128,7 +177,7 @@ def strip_fence(text):
     return (m.group(1) if m else text).strip() + "\n"
 
 
-def write_code(p, section, extra=""):
+def write_code(p, section, extra="", seed=0):
     text = llm.ask(
         llm.CODER,
         CODE.format(
@@ -138,10 +187,11 @@ def write_code(p, section, extra=""):
             teaches=section["teaches"],
             visual=section["visual"],
             narration=section["narration"],
-            extra=extra,
+            extra=extra + (SOURCE.format(source=p["source"]) if p.get("source") else ""),
             cls=cls_of(section),
         ),
         temperature=0.2,
+        seed=seed,
         as_json=False,
     )
     return strip_fence(text)
@@ -183,6 +233,8 @@ def patch_block(code, a, b, problem):
     new = str(reply.get("lines") or "").rstrip("\n").splitlines()
     if not new:
         return None
+    if "safe_patch" in FEATURES:  # a splice that does not parse would break the file: re-indent, else escalate
+        return preflight.safe_splice(code, a, b, new)
     return "\n".join(rows[: a - 1] + new + rows[b:]) + "\n"
 
 
@@ -197,16 +249,40 @@ def rewrite(code, cls, problem):
     return strip_fence(text)
 
 
-def build_section(p, section, out, log=print, extra=""):
+def build_section(p, section, out, log=print, extra="", seed=0):
     """Write, render, and on failure repair line block -> whole section (at most 4 tries). Returns mp4 or None."""
     folder = out / "sections"
     folder.mkdir(parents=True, exist_ok=True)
     path = folder / f"{section['id']}.py"
     cls = cls_of(section)
     if not path.exists() or extra:
-        path.write_text(write_code(p, section, extra))
+        path.write_text(write_code(p, section, extra, seed=seed))
     history = []
     for attempt in range(4):
+        if "preflight" in FEATURES:  # F2 also fixes timing faults (c2vlab/temporal.py) before every render
+            fixed, applied = temporal.fix(path.read_text())
+            if applied:
+                path.write_text(fixed)
+                log(f"[gen] {section['id']}: timing fixes {[a['kind'] for a in applied]}")
+        found = preflight.check(path.read_text()) if "preflight" in FEATURES else []
+        if found:  # caught without rendering: repair it as if the render had failed there
+            first = found[0]
+            problem = "\n".join(f"line {f['line']}: {f['message']}" for f in found[:6])
+            if hint(problem):
+                problem += "\nHINT: " + hint(problem)
+            line = first["line"]
+            scope, reach = (("line", 2), ("block", 6), ("section", 0), ("section", 0))[attempt] if line else ("section", 0)
+            if len(found) > 2 and scope != "section":
+                scope = "section"  # many problems: one rewrite is cheaper than many patches
+            history.append({"attempt": attempt, "ok": False, "line": line, "scope": scope, "preflight": True,
+                            "error": problem[-400:]})  # fmt: skip
+            log(f"[gen] {section['id']}: preflight {first['kind']} at line {line} ({first['message'][:70]}), repairing by {scope}")
+            code = path.read_text()
+            new = (rewrite(code, cls, problem) if scope == "section"
+                   else patch_block(code, line - reach, line + reach, problem))  # fmt: skip
+            if new:
+                path.write_text(new)
+            continue
         mp4, err = render(path, cls, out / "media")
         if mp4:
             history.append({"attempt": attempt, "ok": True})
@@ -229,6 +305,12 @@ def build_section(p, section, out, log=print, extra=""):
             new = patch_block(code, line - reach, line + reach, problem)
         if new:
             path.write_text(new)
+    if "preflight" in FEATURES and not preflight.check(path.read_text()):
+        mp4, _ = render(path, cls, out / "media")  # the last repair is rendered too (the pilot's loop dropped it)
+        history.append({"attempt": 4, "ok": bool(mp4)})
+        if mp4:
+            (folder / f"{section['id']}.repairs.json").write_text(json.dumps(history, indent=1))
+            return mp4
     (folder / f"{section['id']}.repairs.json").write_text(json.dumps(history, indent=1))
     return None
 

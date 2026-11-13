@@ -21,14 +21,15 @@ sys.path.insert(0, str(ROOT))
 
 from c2vlab import feedback, generate, manual, pipeline, teachquiz
 
-QUESTIONS = json.loads((ROOT / "bench" / "mmmc" / "questions.json").read_text())
 GRADE = "undergraduate students"
 
 
-def choose(n, seed, names):
+def choose(n, seed, names, questions):
     if names:
         return [t.strip() for t in names.split(";") if t.strip()]
-    return random.Random(seed).sample(sorted(QUESTIONS), n)
+    if n >= len(questions):
+        return list(questions)
+    return random.Random(seed).sample(sorted(questions), n)
 
 
 def main():
@@ -40,8 +41,12 @@ def main():
     ap.add_argument("--modes", default=",".join(feedback.MODES))
     ap.add_argument("--name", default="")
     ap.add_argument("--manual-export", action="store_true")
+    ap.add_argument("--questions", default=str(ROOT / "bench" / "mmmc" / "questions.json"), help="TEST per topic")
+    ap.add_argument("--cards", default="", help="invented concepts: the card every writing step is given")
     a = ap.parse_args()
-    topics = choose(a.n, a.seed, a.topics)
+    questions = json.loads(Path(a.questions).read_text())
+    cards = json.loads(Path(a.cards).read_text()) if a.cards else {}
+    topics = choose(a.n, a.seed, a.topics, questions)
     modes = tuple(m for m in a.modes.split(",") if m)
     name = a.name or f"mmmc-n{len(topics)}-seed{a.seed}"
     out = ROOT / "bench" / "results" / name
@@ -58,7 +63,7 @@ def main():
     def one(topic):
         began = time.time()
         log = lambda m: print(f"[{generate.slug(topic)[:24]}] {m}", flush=True)
-        row = pipeline.run_topic(topic, GRADE, dirs[topic], modes, QUESTIONS[topic], log=log)
+        row = pipeline.run_topic(topic, GRADE, dirs[topic], modes, questions[topic], log=log, source=cards.get(topic))
         row["seconds"] = round(time.time() - began)
         return row
 
@@ -84,7 +89,7 @@ def main():
         images, body = teachquiz.material(other)
         score = teachquiz.student(plan["topic"], plan["grade"], quiz["test"], images, body)["score"]
         for row in rows:
-            if row.get("topic") == t:
+            if row.get("topic") == t and "base" in row:  # a topic that failed after its base video has no row to fill
                 row["base"]["control_other_topic"] = score
     (out / "rows.json").write_text(json.dumps(rows, indent=1, ensure_ascii=False))
     print(f"[bench] {len(rows)} topics -> {out / 'rows.json'}; next: python bench/analyze.py {out}")

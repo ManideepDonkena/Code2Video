@@ -107,8 +107,9 @@ def run(path, cls, out):
         f = site()
         if f is not None:
             remember_names(f)
-        for a in args:
-            anim = prepare_animation(a)
+        anims = [prepare_animation(a) for a in args]
+        self.add_mobjects_from_animations(anims)  # as Manim's own play: a copy being transformed joins the scene first
+        for anim in anims:
             anim._setup_scene(self)
             anim.begin()
             anim.interpolate(1.0)
