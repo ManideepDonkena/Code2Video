@@ -84,7 +84,11 @@ attachments fell from \LSOursAttach{} to \LSClaudeAttach{}. Yet MVQS rose only f
 \LSClaudeMvqs{}. It can even fall when a fix is right. On one \emph{Glint numbers} section, a shift had left two
 highlight boxes over empty space, and Claude moved them back onto the digits they mark. MVQS fell from 88.4 to 67.0,
 because the boxes now touch the digits. Our layout repair had inserted \ShiftsIn{} \texttt{shift} calls; Claude removed \ShiftsRemoved{}, and
-\ShiftNotes{} of its notes name a shift as the cause of a fault. By the rule written before scoring, layout changes
+\ShiftNotes{} of its notes name a shift as the cause of a fault. Our attachment check does not find this for the
+attachments it can see. With all \ShiftsIn{} shifts removed from the base code, the base videos still have
+\LSOursAttach{} broken attachments, as many as with them (\texttt{bench/shift\_attach.py}). These come from the
+coder's own placement. The check skips boxes and labels anchored to a text glyph, such as the \emph{Glint} boxes, so
+faults of that kind are not counted either way. By the rule written before scoring, layout changes
 learning if Claude-fixed beats ours by at least 5 points of M9 on average and on at least 7 of 10 concepts. The
 difference is \LSDiff{} points with \LSWins{} of \LSN{}, so the rule is \LSGate{}. On noise alone, the rule
 passes in \NMRuleFPR\% of random swaps. This is a weak null result. With 10 concepts of 8 questions each, the study
