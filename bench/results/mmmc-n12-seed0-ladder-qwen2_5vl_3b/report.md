@@ -1,21 +1,21 @@
 # Metric ladder: mmmc-n12-seed0
 
-12 topics, 48 distinct videos.
+12 topics, 48 distinct videos. Defined, distinct values, reliability and separation: base videos (one per topic); in brackets, over all videos.
 
 | Rung | Change | Defined | Distinct values | Own − other topic (base) | Reliability | learner−base ties |
 |---|---|---|---|---|---|---|
-| M0 | TeachQuiz, as in the pilot | 48/48 | 8 | n/a | n/a | 7 |
-| M1 | + answers matched by order | 0/48 | 0 | n/a | n/a | None |
-| M2 | + forced choice | 48/48 | 6 | +0.100 [+0.000, +0.250] 3/9/0, p 0.25 | 0.651 (option order 0 vs 1) | 9 |
-| M3 | + normalised gain (NVG) | 24/48 | 4 | +0.167 [+0.000, +0.333] 2/4/0, p 0.5 | 0.725 (option order 0 vs 1) | 4 |
-| M4 | + dense silent video | 0/48 | 0 | n/a | n/a | None |
-| M5 | + motion control (D-VGAIN) | 0/48 | 0 | n/a | n/a | None |
-| M6 | + continuous scoring | 0/48 | 0 | n/a | n/a | None |
-| M7 | + option rotation | 0/48 | 0 | n/a | n/a | None |
-| M8 | + prior filter (unknown items only) | 0/48 | 0 | n/a | n/a | None |
-| M9 | M7 on 3 frames per section (no dense video) | 36/48 | 31 | +0.379 [-0.008, +0.963] 6/1/2, p 0.1484 | n/a | 1 |
-| R7 | raw: dense video P(right) minus no-video P(right) | 0/48 | 0 | n/a | n/a | None |
-| R9 | raw: 3 frames/section P(right) minus no-video P(right) | 48/48 | 41 | +0.064 [+0.008, +0.156] 9/1/2, p 0.0322 | 0.7 (option order 0 vs 1) | 1 |
+| M0 | TeachQuiz, as in the pilot | 12/12 [48/48] | 5 [8] | n/a | n/a | 7 |
+| M1 | + answers matched by order | 0/12 [0/48] | 0 [0] | n/a | n/a | None |
+| M2 | + forced choice | 12/12 [48/48] | 4 [6] | +0.100 [+0.000, +0.250] 3/9/0, p 0.25 | 0.57 [0.651] (option order 0 vs 1) | 9 |
+| M3 | + normalised gain (NVG) | 6/12 [24/48] | 3 [4] | +0.167 [+0.000, +0.333] 2/4/0, p 0.5 | 0.822 [0.725] (option order 0 vs 1) | 4 |
+| M4 | + dense silent video | 0/12 [0/48] | 0 [0] | n/a | n/a | None |
+| M5 | + motion control (D-VGAIN) | 0/12 [0/48] | 0 [0] | n/a | n/a | None |
+| M6 | + continuous scoring | 0/12 [0/48] | 0 [0] | n/a | n/a | None |
+| M7 | + option rotation | 0/12 [0/48] | 0 [0] | n/a | n/a | None |
+| M8 | + prior filter (unknown items only) | 0/12 [0/48] | 0 [0] | n/a | n/a | None |
+| M9 | M7 on 3 frames per section (no dense video) | 9/12 [36/48] | 9 [31] | +0.379 [-0.008, +0.963] 6/1/2, p 0.1484 | n/a | 1 |
+| R7 | raw: dense video P(right) minus no-video P(right) | 0/12 [0/48] | 0 [0] | n/a | n/a | None |
+| R9 | raw: 3 frames/section P(right) minus no-video P(right) | 12/12 [48/48] | 12 [41] | +0.064 [+0.008, +0.156] 9/1/2, p 0.0322 | 0.315 [0.7] (option order 0 vs 1) | 1 |
 
 ## Paired condition differences per rung
 
@@ -58,11 +58,18 @@ mean [bootstrap 95% CI] wins/ties/losses, Wilcoxon p
   1
  ],
  "s_visual_mean": null,
+ "s_visual_mean_all": null,
  "s_static_mean": null,
- "s_frames_mean": 0.779,
+ "s_static_mean_all": null,
+ "s_frames_mean": 0.817,
+ "s_frames_mean_all": 0.779,
  "s_visual_p_mean": null,
- "s_frames_p_mean": 0.77,
+ "s_visual_p_mean_all": null,
+ "s_frames_p_mean": 0.795,
+ "s_frames_p_mean_all": 0.77,
  "s_static_p_mean": null,
- "tq_abstained_mean": null
+ "s_static_p_mean_all": null,
+ "tq_abstained_mean": null,
+ "tq_abstained_mean_all": null
 }
 ```

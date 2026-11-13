@@ -199,33 +199,40 @@ def spearman(a, b):
     return round(float(spearmanr([p[0] for p in pairs], [p[1] for p in pairs]).statistic), 3)
 
 
+def reliability(m, vids):
+    """Agreement of two measurements of the same videos, for one rung."""
+    seeded = [v for v in vids if len(v["tq2_seeds"]) > 1]  # a video whose TeachQuiz failed has no seeds
+    if m == "M1" and seeded:
+        return spearman([v["tq2_seeds"][0] for v in seeded], [stats.mean(v["tq2_seeds"][1:]) for v in seeded]), \
+            "seed 1 vs seeds 2-3"  # fmt: skip
+    if m in ("M2", "M3", "M4", "M5", "M6"):
+        return spearman([v["own"][m] for v in vids], [v["rot1"][m] for v in vids]), "option order 0 vs 1"
+    if m in ("R7", "R9"):
+        return spearman([v["split"][m][0] for v in vids], [v["split"][m][1] for v in vids]), "option order 0 vs 1"
+    return None, "n/a"
+
+
 def analyse(rows):
+    """Whether a rung measures teaching (scored, distinct values, agreement, separation, the prior) is judged on the
+    base videos: one per topic. A topic's repairs are near-copies of its base video, so pooling them would count each
+    topic up to four times. The pooled values are kept as *_all, for reference. The repair columns pair by topic."""
     vids = [r[c] for r in rows for c in CONDITIONS if c in r and not r[c].get("same_as_base")]
     base = [r["base"] for r in rows if "base" in r]
     rep = {"topics": len(rows), "videos": len(vids), "rungs": {}}
     for m in RUNGS:
-        scores = [v["own"][m] for v in vids]
-        defined = [x for x in scores if x is not None]
-        seeded = [v for v in vids if len(v["tq2_seeds"]) > 1]  # a video whose TeachQuiz failed has no seeds
-        if m == "M1" and seeded:
-            rel = spearman([v["tq2_seeds"][0] for v in seeded], [stats.mean(v["tq2_seeds"][1:]) for v in seeded])
-            rel_kind = "seed 1 vs seeds 2-3"
-        elif m in ("M2", "M3", "M4", "M5", "M6"):
-            rel = spearman(scores, [v["rot1"][m] for v in vids])
-            rel_kind = "option order 0 vs 1"
-        elif m in ("R7", "R9"):
-            rel = spearman([v["split"][m][0] for v in vids], [v["split"][m][1] for v in vids])
-            rel_kind = "option order 0 vs 1"
-        else:
-            rel, rel_kind = None, "n/a"
+        defined = [x for x in (v["own"][m] for v in base) if x is not None]
+        defined_all = [x for x in (v["own"][m] for v in vids) if x is not None]
+        rel, rel_kind = reliability(m, base)
         sep = paired([b["own"][m] for b in base], [(b.get("other") or {}).get(m) for b in base])
         both = [r for r in rows if "learner" in r and "base" in r]  # pair by topic; paired() drops undefined pairs
         lb = paired([r["learner"]["own"][m] for r in both], [r["base"]["own"][m] for r in both])
         rep["rungs"][m] = {
-            "name": NAMES[m], "defined": f"{len(defined)}/{len(scores)}",
+            "name": NAMES[m], "defined": f"{len(defined)}/{len(base)}",
             "mean": round(stats.mean(defined), 3) if defined else None,
             "distinct_values": len({round(x, 4) for x in defined}),
             "separation_own_minus_other": sep, "reliability": rel, "reliability_kind": rel_kind,
+            "defined_all": f"{len(defined_all)}/{len(vids)}", "distinct_values_all": len({round(x, 4) for x in defined_all}),
+            "reliability_all": reliability(m, vids)[0],
             "learner_base_ties": None if not lb else lb["ties"],
             "conditions": {f"{a} - {b}": paired([r[a]["own"][m] for r in rows if a in r and b in r],
                                                 [r[b]["own"][m] for r in rows if a in r and b in r]) for a, b in PAIRS},
@@ -236,14 +243,12 @@ def analyse(rows):
         "s_blind_p_mean": avg(b["s_blind_p"] for b in base),
         "topics_blind_all_right": sum(b["s_blind"] >= 1 for b in base),
         "unknown_items_per_topic": [b["unknown_items"] for b in base],
-        "s_visual_mean": avg(v["s_visual"] for v in vids),
-        "s_static_mean": avg(v["s_static"] for v in vids),
-        "s_frames_mean": avg(v["s_frames"] for v in vids),
-        "s_visual_p_mean": avg(v["s_visual_p"] for v in vids),
-        "s_frames_p_mean": avg(v["s_frames_p"] for v in vids),
-        "s_static_p_mean": avg(v["s_static_p"] for v in vids),
-        "tq_abstained_mean": avg(v["abstained"] for v in vids),
-    }  # fmt: skip
+    }
+    for k in ("s_visual", "s_static", "s_frames", "s_visual_p", "s_frames_p", "s_static_p"):
+        rep["prior"][f"{k}_mean"] = avg(v[k] for v in base)
+        rep["prior"][f"{k}_mean_all"] = avg(v[k] for v in vids)
+    rep["prior"]["tq_abstained_mean"] = avg(v["abstained"] for v in base)
+    rep["prior"]["tq_abstained_mean_all"] = avg(v["abstained"] for v in vids)
     return rep
 
 
@@ -256,13 +261,15 @@ def fmt(p):
 
 
 def markdown(rep, name):
-    out = [f"# Metric ladder: {name}", "", f"{rep['topics']} topics, {rep['videos']} distinct videos.", "",
+    out = [f"# Metric ladder: {name}", "", (f"{rep['topics']} topics, {rep['videos']} distinct videos. Defined, distinct "
+           "values, reliability and separation: base videos (one per topic); in brackets, over all videos."), "",
            "| Rung | Change | Defined | Distinct values | Own − other topic (base) | Reliability | learner−base ties |",
            "|---|---|---|---|---|---|---|"]  # fmt: skip
     for m, r in rep["rungs"].items():
-        rel = "n/a" if r["reliability"] is None else f"{r['reliability']} ({r['reliability_kind']})"
-        out.append(f"| {m} | {r['name']} | {r['defined']} | {r['distinct_values']} | "
-                   f"{fmt(r['separation_own_minus_other'])} | {rel} | {r['learner_base_ties']} |")  # fmt: skip
+        rel = "n/a" if r["reliability"] is None else f"{r['reliability']} [{r['reliability_all']}] ({r['reliability_kind']})"
+        out.append(f"| {m} | {r['name']} | {r['defined']} [{r['defined_all']}] | {r['distinct_values']} "
+                   f"[{r['distinct_values_all']}] | {fmt(r['separation_own_minus_other'])} | {rel} | "
+                   f"{r['learner_base_ties']} |")  # fmt: skip
     out += ["", "## Paired condition differences per rung", "", "mean [bootstrap 95% CI] wins/ties/losses, Wilcoxon p",
             "", "| Rung | learner − base | learner − generic | learner − learner_all | generic − base |",
             "|---|---|---|---|---|"]  # fmt: skip

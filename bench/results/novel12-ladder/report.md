@@ -1,21 +1,21 @@
 # Metric ladder: novel12
 
-10 topics, 40 distinct videos.
+10 topics, 40 distinct videos. Defined, distinct values, reliability and separation: base videos (one per topic); in brackets, over all videos.
 
 | Rung | Change | Defined | Distinct values | Own − other topic (base) | Reliability | learner−base ties |
 |---|---|---|---|---|---|---|
-| M0 | TeachQuiz, as in the pilot | 40/40 | 17 | +0.454 [+0.312, +0.604] 10/0/0, p 0.002 | n/a | 2 |
-| M1 | + answers matched by order | 40/40 | 17 | +0.483 [+0.346, +0.625] 10/0/0, p 0.002 | 0.887 (seed 1 vs seeds 2-3) | 0 |
-| M2 | + forced choice | 40/40 | 8 | +0.425 [+0.300, +0.562] 10/0/0, p 0.002 | 0.512 (option order 0 vs 1) | 4 |
-| M3 | + normalised gain (NVG) | 40/40 | 12 | +0.745 [+0.497, +1.012] 10/0/0, p 0.002 | 0.642 (option order 0 vs 1) | 4 |
-| M4 | + dense silent video | 40/40 | 12 | +0.307 [+0.092, +0.515] 7/2/1, p 0.0234 | 0.058 (option order 0 vs 1) | 3 |
-| M5 | + motion control (D-VGAIN) | 40/40 | 20 | +0.325 [+0.073, +0.567] 8/0/2, p 0.0391 | 0.02 (option order 0 vs 1) | 2 |
-| M6 | + continuous scoring | 40/40 | 40 | +0.237 [+0.063, +0.412] 9/0/1, p 0.0195 | 0.038 (option order 0 vs 1) | 0 |
-| M7 | + option rotation | 40/40 | 40 | +0.258 [+0.121, +0.399] 9/0/1, p 0.0059 | n/a | 0 |
-| M8 | + prior filter (unknown items only) | 40/40 | 40 | +0.261 [+0.140, +0.400] 9/0/1, p 0.0039 | n/a | 0 |
-| M9 | M7 on 3 frames per section (no dense video) | 40/40 | 40 | +0.644 [+0.496, +0.796] 10/0/0, p 0.002 | n/a | 0 |
-| R7 | raw: dense video P(right) minus no-video P(right) | 40/40 | 40 | +0.117 [+0.061, +0.170] 9/0/1, p 0.0059 | -0.114 (option order 0 vs 1) | 0 |
-| R9 | raw: 3 frames/section P(right) minus no-video P(right) | 40/40 | 40 | +0.363 [+0.285, +0.442] 10/0/0, p 0.002 | 0.585 (option order 0 vs 1) | 0 |
+| M0 | TeachQuiz, as in the pilot | 10/10 [40/40] | 9 [17] | +0.454 [+0.312, +0.604] 10/0/0, p 0.002 | n/a | 2 |
+| M1 | + answers matched by order | 10/10 [40/40] | 9 [17] | +0.483 [+0.346, +0.625] 10/0/0, p 0.002 | 0.671 [0.887] (seed 1 vs seeds 2-3) | 0 |
+| M2 | + forced choice | 10/10 [40/40] | 5 [8] | +0.425 [+0.300, +0.562] 10/0/0, p 0.002 | 0.214 [0.512] (option order 0 vs 1) | 4 |
+| M3 | + normalised gain (NVG) | 10/10 [40/40] | 9 [12] | +0.745 [+0.497, +1.012] 10/0/0, p 0.002 | 0.428 [0.642] (option order 0 vs 1) | 4 |
+| M4 | + dense silent video | 10/10 [40/40] | 5 [12] | +0.307 [+0.092, +0.515] 7/2/1, p 0.0234 | -0.077 [0.058] (option order 0 vs 1) | 3 |
+| M5 | + motion control (D-VGAIN) | 10/10 [40/40] | 7 [20] | +0.325 [+0.073, +0.567] 8/0/2, p 0.0391 | 0.072 [0.02] (option order 0 vs 1) | 2 |
+| M6 | + continuous scoring | 10/10 [40/40] | 10 [40] | +0.237 [+0.063, +0.412] 9/0/1, p 0.0195 | 0.176 [0.038] (option order 0 vs 1) | 0 |
+| M7 | + option rotation | 10/10 [40/40] | 10 [40] | +0.258 [+0.121, +0.399] 9/0/1, p 0.0059 | n/a | 0 |
+| M8 | + prior filter (unknown items only) | 10/10 [40/40] | 10 [40] | +0.261 [+0.140, +0.400] 9/0/1, p 0.0039 | n/a | 0 |
+| M9 | M7 on 3 frames per section (no dense video) | 10/10 [40/40] | 10 [40] | +0.644 [+0.496, +0.796] 10/0/0, p 0.002 | n/a | 0 |
+| R7 | raw: dense video P(right) minus no-video P(right) | 10/10 [40/40] | 10 [40] | +0.117 [+0.061, +0.170] 9/0/1, p 0.0059 | -0.321 [-0.114] (option order 0 vs 1) | 0 |
+| R9 | raw: 3 frames/section P(right) minus no-video P(right) | 10/10 [40/40] | 10 [40] | +0.363 [+0.285, +0.442] 10/0/0, p 0.002 | 0.297 [0.585] (option order 0 vs 1) | 0 |
 
 ## Paired condition differences per rung
 
@@ -55,12 +55,19 @@ mean [bootstrap 95% CI] wins/ties/losses, Wilcoxon p
   6,
   5
  ],
- "s_visual_mean": 0.528,
- "s_static_mean": 0.494,
- "s_frames_mean": 0.647,
- "s_visual_p_mean": 0.504,
- "s_frames_p_mean": 0.672,
- "s_static_p_mean": 0.509,
- "tq_abstained_mean": 49.585
+ "s_visual_mean": 0.537,
+ "s_visual_mean_all": 0.528,
+ "s_static_mean": 0.463,
+ "s_static_mean_all": 0.494,
+ "s_frames_mean": 0.637,
+ "s_frames_mean_all": 0.647,
+ "s_visual_p_mean": 0.498,
+ "s_visual_p_mean_all": 0.504,
+ "s_frames_p_mean": 0.675,
+ "s_frames_p_mean_all": 0.672,
+ "s_static_p_mean": 0.472,
+ "s_static_p_mean_all": 0.509,
+ "tq_abstained_mean": 41.68,
+ "tq_abstained_mean_all": 49.585
 }
 ```

@@ -4,12 +4,15 @@
  "rungs": {
   "M0": {
    "name": "TeachQuiz, as in the pilot",
-   "defined": "48/48",
-   "mean": 0.135,
-   "distinct_values": 8,
+   "defined": "12/12",
+   "mean": 0.106,
+   "distinct_values": 5,
    "separation_own_minus_other": null,
    "reliability": null,
    "reliability_kind": "n/a",
+   "defined_all": "48/48",
+   "distinct_values_all": 8,
+   "reliability_all": null,
    "learner_base_ties": 7,
    "conditions": {
     "learner - base": {
@@ -64,12 +67,15 @@
   },
   "M1": {
    "name": "+ answers matched by order",
-   "defined": "0/48",
+   "defined": "0/12",
    "mean": null,
    "distinct_values": 0,
    "separation_own_minus_other": null,
    "reliability": null,
    "reliability_kind": "n/a",
+   "defined_all": "0/48",
+   "distinct_values_all": 0,
+   "reliability_all": null,
    "learner_base_ties": null,
    "conditions": {
     "learner - base": null,
@@ -80,9 +86,9 @@
   },
   "M2": {
    "name": "+ forced choice",
-   "defined": "48/48",
-   "mean": -0.087,
-   "distinct_values": 6,
+   "defined": "12/12",
+   "mean": -0.05,
+   "distinct_values": 4,
    "separation_own_minus_other": {
     "n": 12,
     "mean_diff": 0.1,
@@ -95,8 +101,11 @@
     "losses": 0,
     "wilcoxon_p": 0.25
    },
-   "reliability": 0.651,
+   "reliability": 0.57,
    "reliability_kind": "option order 0 vs 1",
+   "defined_all": "48/48",
+   "distinct_values_all": 6,
+   "reliability_all": 0.651,
    "learner_base_ties": 9,
    "conditions": {
     "learner - base": {
@@ -151,9 +160,9 @@
   },
   "M3": {
    "name": "+ normalised gain (NVG)",
-   "defined": "24/48",
-   "mean": -0.375,
-   "distinct_values": 4,
+   "defined": "6/12",
+   "mean": -0.5,
+   "distinct_values": 3,
    "separation_own_minus_other": {
     "n": 6,
     "mean_diff": 0.1667,
@@ -166,8 +175,11 @@
     "losses": 0,
     "wilcoxon_p": 0.5
    },
-   "reliability": 0.725,
+   "reliability": 0.822,
    "reliability_kind": "option order 0 vs 1",
+   "defined_all": "24/48",
+   "distinct_values_all": 4,
+   "reliability_all": 0.725,
    "learner_base_ties": 4,
    "conditions": {
     "learner - base": {
@@ -222,12 +234,15 @@
   },
   "M4": {
    "name": "+ dense silent video",
-   "defined": "0/48",
+   "defined": "0/12",
    "mean": null,
    "distinct_values": 0,
    "separation_own_minus_other": null,
    "reliability": null,
    "reliability_kind": "option order 0 vs 1",
+   "defined_all": "0/48",
+   "distinct_values_all": 0,
+   "reliability_all": null,
    "learner_base_ties": null,
    "conditions": {
     "learner - base": null,
@@ -238,12 +253,15 @@
   },
   "M5": {
    "name": "+ motion control (D-VGAIN)",
-   "defined": "0/48",
+   "defined": "0/12",
    "mean": null,
    "distinct_values": 0,
    "separation_own_minus_other": null,
    "reliability": null,
    "reliability_kind": "option order 0 vs 1",
+   "defined_all": "0/48",
+   "distinct_values_all": 0,
+   "reliability_all": null,
    "learner_base_ties": null,
    "conditions": {
     "learner - base": null,
@@ -254,12 +272,15 @@
   },
   "M6": {
    "name": "+ continuous scoring",
-   "defined": "0/48",
+   "defined": "0/12",
    "mean": null,
    "distinct_values": 0,
    "separation_own_minus_other": null,
    "reliability": null,
    "reliability_kind": "option order 0 vs 1",
+   "defined_all": "0/48",
+   "distinct_values_all": 0,
+   "reliability_all": null,
    "learner_base_ties": null,
    "conditions": {
     "learner - base": null,
@@ -270,12 +291,15 @@
   },
   "M7": {
    "name": "+ option rotation",
-   "defined": "0/48",
+   "defined": "0/12",
    "mean": null,
    "distinct_values": 0,
    "separation_own_minus_other": null,
    "reliability": null,
    "reliability_kind": "n/a",
+   "defined_all": "0/48",
+   "distinct_values_all": 0,
+   "reliability_all": null,
    "learner_base_ties": null,
    "conditions": {
     "learner - base": null,
@@ -286,12 +310,15 @@
   },
   "M8": {
    "name": "+ prior filter (unknown items only)",
-   "defined": "0/48",
+   "defined": "0/12",
    "mean": null,
    "distinct_values": 0,
    "separation_own_minus_other": null,
    "reliability": null,
    "reliability_kind": "n/a",
+   "defined_all": "0/48",
+   "distinct_values_all": 0,
+   "reliability_all": null,
    "learner_base_ties": null,
    "conditions": {
     "learner - base": null,
@@ -302,9 +329,9 @@
   },
   "M9": {
    "name": "M7 on 3 frames per section (no dense video)",
-   "defined": "36/48",
-   "mean": -0.322,
-   "distinct_values": 31,
+   "defined": "9/12",
+   "mean": -0.131,
+   "distinct_values": 9,
    "separation_own_minus_other": {
     "n": 9,
     "mean_diff": 0.3792,
@@ -319,6 +346,9 @@
    },
    "reliability": null,
    "reliability_kind": "n/a",
+   "defined_all": "36/48",
+   "distinct_values_all": 31,
+   "reliability_all": null,
    "learner_base_ties": 1,
    "conditions": {
     "learner - base": {
@@ -373,12 +403,15 @@
   },
   "R7": {
    "name": "raw: dense video P(right) minus no-video P(right)",
-   "defined": "0/48",
+   "defined": "0/12",
    "mean": null,
    "distinct_values": 0,
    "separation_own_minus_other": null,
    "reliability": null,
    "reliability_kind": "option order 0 vs 1",
+   "defined_all": "0/48",
+   "distinct_values_all": 0,
+   "reliability_all": null,
    "learner_base_ties": null,
    "conditions": {
     "learner - base": null,
@@ -389,9 +422,9 @@
   },
   "R9": {
    "name": "raw: 3 frames/section P(right) minus no-video P(right)",
-   "defined": "48/48",
-   "mean": -0.047,
-   "distinct_values": 41,
+   "defined": "12/12",
+   "mean": -0.022,
+   "distinct_values": 12,
    "separation_own_minus_other": {
     "n": 12,
     "mean_diff": 0.0637,
@@ -404,8 +437,11 @@
     "losses": 2,
     "wilcoxon_p": 0.0322
    },
-   "reliability": 0.7,
+   "reliability": 0.315,
    "reliability_kind": "option order 0 vs 1",
+   "defined_all": "48/48",
+   "distinct_values_all": 41,
+   "reliability_all": 0.7,
    "learner_base_ties": 1,
    "conditions": {
     "learner - base": {
@@ -478,11 +514,18 @@
    1
   ],
   "s_visual_mean": null,
+  "s_visual_mean_all": null,
   "s_static_mean": null,
-  "s_frames_mean": 0.779,
+  "s_static_mean_all": null,
+  "s_frames_mean": 0.817,
+  "s_frames_mean_all": 0.779,
   "s_visual_p_mean": null,
-  "s_frames_p_mean": 0.77,
+  "s_visual_p_mean_all": null,
+  "s_frames_p_mean": 0.795,
+  "s_frames_p_mean_all": 0.77,
   "s_static_p_mean": null,
-  "tq_abstained_mean": null
+  "s_static_p_mean_all": null,
+  "tq_abstained_mean": null,
+  "tq_abstained_mean_all": null
  }
 }
