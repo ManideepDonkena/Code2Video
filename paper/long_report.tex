@@ -683,7 +683,11 @@ section. We wrote these rules before seeing the NOVEL-12 results so that the res
   \item \textbf{Frames, not video.} Our local student sees up to 4 frames a second, without sound. Code2Video's own
   setup (Gemini watching the actual video file) is implemented and exported for grading by hand, but not run, because
   it needs a paid key.
-  \item \textbf{One student.} Results are for \texttt{gemma4:26b}; the prior was also checked with a 7B model.
+  \item \textbf{Few students.} Results are for \texttt{gemma4:26b}; the prior was also checked with a 7B model. On
+  NOVEL-12 we also asked Claude Haiku 5.5 and Sonnet 5.5. They agree with \texttt{gemma4:26b} on the three findings we
+  tested: the videos teach, the student learns the video's own topic, and the Claude fixes give no gain beyond noise.
+  But Claude also wrote the questions and made the layout fixes. It gives no confidence values, so its answers are
+  scored only right or wrong. Open students of other families are untested.
   \item \textbf{Invented concepts are small.} They test whether a video passes on a definition and its consequences,
   not deep understanding. TEST was written by one model and has not been reviewed by teachers.
   \item \textbf{The evidence judge is not checked against people.} About 100 of its decisions should be labelled by
