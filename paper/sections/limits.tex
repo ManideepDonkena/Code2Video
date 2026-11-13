@@ -37,6 +37,25 @@
   paired design; NOVEL-12 controls the prior instead.
 \end{itemize}
 
+\section{Future work}
+
+\begin{itemize}
+  \item \textbf{A gate that sees what a viewer sees.} The repair gate checks only the layout score, and it let through
+  revisions that added conflicts and broken attachments. A gate that also counts these faults is built (crowding,
+  conflicts, attachments) but not yet evaluated.
+  \item \textbf{A larger study.} With 10 concepts of 8 questions, only effects of about 24 points or more are
+  detectable. More concepts, and a gate that keeps more revisions, would let smaller effects of layout and repair show.
+  \item \textbf{Stronger coders and a fixed layout.} A study with Claude models as planner and coder, and with
+  Code2Video's anchor-grid layout, was running at submission. It asks whether better code, rather than repair,
+  is what makes videos teach more.
+  \item \textbf{Students that watch video.} Code2Video's protocol (a model reading the mp4 with audio) is implemented
+  but not run; open students of other families are untested.
+  \item \textbf{A layout score that measures reading.} MVQS measures box separation. A score built on attachments, on
+  what is on screen when, and on crowded text would track what a viewer can read.
+  \item \textbf{Cheaper scoring.} The dense video is about two thirds of the student's work. Scoring on 3 frames per
+  section only (M9) is implemented as an option, for studies that do not need M7.
+\end{itemize}
+
 \section{Conclusion}
 
 TeachQuiz, as published and as we first ran it, could not have detected teaching: a grading bug dropped answers,
