@@ -43,6 +43,7 @@ at fault, not only the method. It failed in three ways that add up:
   \item An admission check for videos and two model-free checks: one for when objects are on screen, one for what
   they are attached to. With them we show that the layout score misses faults a viewer sees (\S\ref{sec:quality}).
   \item A pipeline ablation that adds five repair features one at a time: an enforced gate, code checks before
-  rendering, finding the weak section like a debugger, a leak guard, and minimal edits. It is built and its rules are
-  fixed in advance; its evaluation is future work (\S\ref{sec:ablation}).
+  rendering, finding the weak section like a debugger, a leak guard, and minimal edits. Its rules are fixed in
+  advance. The first stage, the pilot's loop, gives no gain beyond noise; the other stages are still running
+  (\S\ref{sec:ablation}).
 \end{itemize}

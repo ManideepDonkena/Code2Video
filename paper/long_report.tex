@@ -30,8 +30,8 @@ mistake threw away answers, the student refused instead of forgetting, and it al
 \textbf{The layout score} measures the distance between boxes: it went up when a label was pushed off its circle (a worse
 layout scored better), and barely moved when \ClaudeFaults{} visible faults were fixed. We built a measure that reads what the student already knows, a
 benchmark of invented concepts that no model has seen, an admission check for videos, and two model-free checks for when
-objects are on screen and what they are attached to. The repair features themselves are built and their rules fixed in advance;
-their evaluation is the next step.
+objects are on screen and what they are attached to. The repair features are built and their rules fixed in advance.
+The pilot's repair loop (F0) gave no gain beyond noise; the stages that add features are still running.
 \end{inshort}
 
 \paperfig{fig_overview.png}{F1}{\textbf{Overview.} Top: TeachQuiz asks the student to forget the topic; instead it refuses, it already knows
@@ -408,7 +408,7 @@ videos.
 \paragraph{A smaller student.} If the student knows less, does the measure come alive on MMMC? A 3B model
 (\texttt{qwen2.5vl:3b}) still answers \mmmcpriorQwenSmallAcc\% of all MMMC questions with no video. On the 12 pilot
 topics its confidence in the right answer with no video is \LadSmallSBlind{}, so the gain on 3 frames per section (M9)
-now scores \LadSmallDefinedNine{} videos (Table~\ref{tab:ladder_small}). Our analysis yields two insights.
+now scores \LadSmallDefinedNine{} base videos (Table~\ref{tab:ladder_small}). Our analysis yields two insights.
 (i) \textbf{The measure sees the video.} A topic's own video beats another topic's video by \LadSmallSepNine{} points
 (raw confidence: \LadSmallSepRawNine{}).
 (ii) \textbf{It still cannot see the repair.} The learner repair scores \LadSmallLBNine{} points against the base video
@@ -472,11 +472,11 @@ chance.}
 \input{tables/novel_items}
 
 \paragraph{The ladder on the admitted NOVEL-12 videos.} Table~\ref{tab:ladder_novel} repeats the ladder on the
-\LadNovelTopics{} concepts whose videos passed admission (next section), on their base videos. The repairs are not
-measured here; that is Step~3. Four things stand out.
+\LadNovelTopics{} concepts whose videos passed admission (next section). Its first three columns use each concept's
+base video only; the repair columns belong to Step~3. Four things stand out.
 
 \textbf{Where the student has room to learn, every version gives a score.} Without the video, its confidence on the
-right answer is \LadNovelSBlind{}. Every version from M1 on scores all \LadNovelVideos{} videos. On MMMC, the gain
+right answer is \LadNovelSBlind{}. Every version scores all \LadNovelTopics{} base videos. On MMMC, the gain
 versions scored none.
 
 \textbf{A topic's own video beats another topic's video by a wide margin.} With the gain on 3 frames per section (M9),
@@ -592,8 +592,15 @@ and the layout before the base video is rendered. The learner-feedback loop then
 quiz, finds the weak section like a debugger, makes a small edit there, and keeps the revision only if it passes the
 gate. The final quiz (TEST) is never seen by any step.}{pipelinefull}
 
-\textbf{Status: built, with rules fixed in advance; not yet evaluated in this report.} The runs need about 14 hours of
-generation on the shared machine and continue after this report; the decision rules below are fixed. With a measure
+\textbf{Status: F0 is scored; F1 to F5 are built, with rules fixed in advance, and still running.} The runs need about
+14 hours of generation on the shared machine.
+
+\textbf{The pilot's loop (F0) did not clearly help.} Its learner repair scores \NMRepair{} points of M9 above the base
+video, ahead on \NMRepairPos{} of \NMRepairN{} concepts. It scores \NMRepairGeneric{} points above the generic repair of
+the same size. Neither difference is beyond noise. With 10 concepts, the study can only detect a difference of about
+\NMRepairMDE{} points, so a small benefit of the repair remains possible.
+
+With a measure
 that works and topics the student cannot know, we test improvements to the repair loop. Each stage
 adds one feature to the one before; the first video of every topic stays the same, and all
 three conditions use the same machinery inside a stage, so comparisons stay fair. Each feature answers a problem from the
@@ -648,7 +655,7 @@ it is edited first.}{localise}
   (\LadMMMCLBOne{} points, \LadMMMCTiesOne{} of \LadMMMCTopics{} topics tied); with forced choice (M2) all
   \LadMMMCTiesTwo{} topics are tied, because the student is already right on everything. Even the raw confidence is at
   the prior ceiling: \LadMMMCSBlind{} with no video, \LadMMMCSVisual{} with the dense video. A 3B student leaves some room
-  (the gain scores \LadSmallDefinedNine{} videos), but still shows no benefit of the repair (\LadSmallLBNine{} points
+  (the gain scores \LadSmallDefinedNine{} base videos), but still shows no benefit of the repair (\LadSmallLBNine{} points
   against the base video).
   \item \textbf{Invented concepts leave room to learn, and the videos use it.} \novelpriorGemmaAcc\% without the video against
   \novelcardGemmaAcc\% with the definition. The first measured videos raise the probability on the right answer on
@@ -667,8 +674,9 @@ it is edited first.}{localise}
   (Table~\ref{tab:layout_study}). One concept carries the mean; without it, the difference is \LSDiffWithoutTop{}
   points. The study can detect only effects of about \NMLayoutMDE{} points or more, so smaller effects remain
   possible.
-  \item \textbf{Which pipeline features help} is not answered yet: F0--F5 are built and their rules fixed in advance, and their runs
-  continue after this report.
+  \item \textbf{Which pipeline features help} is only partly answered. The pilot's loop (F0) gave no gain beyond noise:
+  \NMRepair{} points of M9 over the base video, ahead on \NMRepairPos{} of \NMRepairN{} concepts. F1 to F5 are built,
+  with rules fixed in advance, and their runs continue after this report.
 \end{enumerate}
 
 \paragraph{Rules fixed before the results.} A measure is usable if it scores most videos, a topic's own video
@@ -697,15 +705,15 @@ section. We wrote these rules before seeing the NOVEL-12 results so that the res
   \item \textbf{The local coder.} After one retry, \AdmTotal{} minus \AdmComplete{} videos were still incomplete and
   only \AdmClean{} were clean. Stronger code models are the obvious next step; the Claude-fixed versions show how much a
   strong model changes.
-  \item \textbf{The repair is not yet evaluated on NOVEL-12.} F0--F5 are built and documented, with rules fixed in advance; their
-  runs (about 14 hours) continue after this report.
+  \item \textbf{The repair is only partly evaluated on NOVEL-12.} The pilot's loop (F0) is scored, and its gain is within
+  noise. F1 to F5 are built and documented, with rules fixed in advance; their runs continue after this report.
   \item \textbf{The checks have limits.} The attachment check skips labels anchored to a text glyph; the timing check
   covers two kinds of fault. A strong model found many more kinds.
 \end{itemize}
 
 \paragraph{Future work.}
 \begin{enumerate}
-  \item Run F0--F5 on the admitted NOVEL-12 concepts with the rules already fixed.
+  \item Finish F1 to F5 on the admitted NOVEL-12 concepts with the rules already fixed.
   \item Make the layout repair attachment-safe: move a label together with its anchor, or change its
   \texttt{next\_to} direction, instead of shifting it alone.
   \item If the layout rule passes, compare layout fixers on the 40 base sections one choice at a time: the method,
