@@ -25,18 +25,19 @@ found}
 \maketitle
 \begin{center}\small Videos, code, data and reproduction package: \url{https://github.com/ManideepDonkena/c2v-showcase}\end{center}
 
-\begin{inshort}
-Computers can now write short animated maths lessons by themselves. We wanted to make such a lesson \emph{better} by
-watching where a simulated student fails to learn and fixing only that part of the video. Our first test showed
-nothing, and finding out why became the main result. Two measures that the field relies on measure something real,
-but not what they are used for. \textbf{TeachQuiz}, Code2Video's quiz score, measures whether the student will answer at all: a grading
-mistake threw away answers, the student refused instead of forgetting, and it already knew almost every answer.
-\textbf{The layout score} measures the distance between boxes: it went up when a label was pushed off its circle (a worse
-layout scored better), and barely moved when \ClaudeFaults{} visible faults were fixed. We built a measure that reads what the student already knows, a
-benchmark of invented concepts that no model has seen, an admission check for videos, and two model-free checks for when
-objects are on screen and what they are attached to. The repair features are built and their rules fixed in advance.
-On these concepts the repair loop gave no gain beyond noise at any of its six stages.
-\end{inshort}
+% The top "In short" summary is commented out for now (uncomment lines below to restore).
+% \begin{inshort}
+% Computers can now write short animated maths lessons by themselves. We wanted to make such a lesson \emph{better} by
+% watching where a simulated student fails to learn and fixing only that part of the video. Our first test showed
+% nothing, and finding out why became the main result. Two measures that the field relies on measure something real,
+% but not what they are used for. \textbf{TeachQuiz}, Code2Video's quiz score, measures whether the student will answer at all: a grading
+% mistake threw away answers, the student refused instead of forgetting, and it already knew almost every answer.
+% \textbf{The layout score} measures the distance between boxes: it went up when a label was pushed off its circle (a worse
+% layout scored better), and barely moved when \ClaudeFaults{} visible faults were fixed. We built a measure that reads what the student already knows, a
+% benchmark of invented concepts that no model has seen, an admission check for videos, and two model-free checks for when
+% objects are on screen and what they are attached to. The repair features are built and their rules fixed in advance.
+% On these concepts the repair loop gave no gain beyond noise at any of its six stages.
+% \end{inshort}
 
 \paperfig{fig_overview.png}{F1}{\textbf{Overview.} Top: TeachQuiz asks the student to forget the topic; instead it refuses, it already knows
 MMMC, and the grader lost answers. Our measurement makes the student choose, measures what it knew, and uses invented
