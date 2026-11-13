@@ -281,8 +281,10 @@ def round_(run_dir, mode, stage, log=print):
         else:
             before = teachquiz.evaluate(run_dir, "dev", runs=2)["teachquiz"]
             after = teachquiz.evaluate(out_dir, "dev", runs=2)["teachquiz"]
-        report.update(dev_before=before, dev_after=after, mvqs_before=m0, mvqs_after=m1,
-                      kept=after >= before and (m0 is None or m1 is None or m1 > m0 - 5))  # fmt: skip
+        f0, f1 = feedback.layout_faults(run_dir, out_dir, changed)  # no more layout faults than before the rewrite
+        report.update(dev_before=before, dev_after=after, mvqs_before=m0, mvqs_after=m1, faults_before=f0,
+                      faults_after=f1, kept=after >= before and (m0 is None or m1 is None or m1 > m0 - 5)
+                      and (f0 is None or f1 <= f0))  # fmt: skip
     else:
         report["kept"] = False
     report["served"] = "revision" if (changed and (report["kept"] or "gate" not in feats)) else "base"

@@ -1,7 +1,8 @@
 """Admission check: a base video enters a study only if it is complete and clean.
 
     1. every planned section renders (a section that still fails after its repairs is no longer silently dropped);
-    2. every section's layout passes SGA: MVQS >= MIN_MVQS and no conflict a viewer sees at rest;
+    2. every section's layout passes SGA: MVQS >= MIN_MVQS and no conflict a viewer sees at rest, and (while
+       layout.CROWDING is on) no crowding fault: two texts nearer than 0.15 units, or a text wider than the frame;
     3. a person approves its contact sheet (bench/admit.py writes one per video), because MVQS reads object positions
        from the code and cannot see some faults on screen (text typeset as maths that loses its spaces, leftover
        glyphs of a transform, captions pushed off the edge).
@@ -28,6 +29,8 @@ RULES = """LAYOUT RULES (an earlier version of this section failed a layout chec
   and remove (FadeOut) old objects before adding new ones in the same place.
 - Use Text(...) for words and sentences; use MathTex only for formulas (MathTex drops the spaces between words).
 - At most about six objects on screen at once; scale groups down rather than letting them overlap.
+- No line of text wider than 12 units: break a long sentence into lines with \n. Keep at least 0.25 units between
+  any two texts.
 - The title stays at the top edge; nothing else goes within 0.8 units of it."""
 DOWNSTREAM = ("video.mp4", "sections.json", "clips.txt", "frames", "eval_dev.json", "eval_test.json",
               "eval_test.tq2.json", "diagnosis.json", "row.json", "qmatrix.json", "learner", "generic", "learner_all",
@@ -43,13 +46,22 @@ def section_status(out, sid):
     score = (json.loads(lp.read_text()).get("score") or {}) if lp.exists() else {}
     states = (json.loads(gp.read_text()).get("states") or []) if gp.exists() else []
     conflicts = len(mvqs.persistent_conflicts(states)) if states else None
+    crowding = _crowding(states)
     m = score.get("mvqs")
-    ok = bool(rendered and m is not None and m >= MIN_MVQS and conflicts == 0)
-    return {"id": sid, "rendered": rendered, "mvqs": m, "conflicts": conflicts, "ok": ok}
+    ok = bool(rendered and m is not None and m >= MIN_MVQS and conflicts == 0 and crowding == 0)
+    return {"id": sid, "rendered": rendered, "mvqs": m, "conflicts": conflicts, "crowding": crowding, "ok": ok}
+
+
+def _crowding(states):
+    """Crowding faults that are not already lasting conflicts; 0 when the check is off, None with no graph."""
+    if not layout.CROWDING:
+        return 0
+    return len(layout.faults(states)) - len(mvqs.persistent_conflicts(states)) if states else None
 
 
 def _rank(st):
-    return (st["rendered"], st["ok"], -(st["conflicts"] if st["conflicts"] is not None else 99), st["mvqs"] or 0)
+    faults = 99 if st["conflicts"] is None else st["conflicts"] + (st.get("crowding") or 0)
+    return (st["rendered"], st["ok"], -faults, st["mvqs"] or 0)
 
 
 def _files(out, sid):
@@ -98,9 +110,11 @@ def admit(topic, out, grade, source=None, log=print):
                 if mp4:
                     layout.repair(sid, out, rounds=5, log=log)
                 st = {**section_status_files(out, sid), "rendered": bool(mp4)}
-                st["ok"] = bool(mp4 and st["mvqs"] is not None and st["mvqs"] >= MIN_MVQS and st["conflicts"] == 0)
+                st["ok"] = bool(mp4 and st["mvqs"] is not None and st["mvqs"] >= MIN_MVQS and st["conflicts"] == 0
+                                and st["crowding"] == 0)  # fmt: skip
                 tries.append(st)
-                log(f"[admit] {sid} try {k}: rendered {st['rendered']}, MVQS {st['mvqs']}, conflicts {st['conflicts']}")
+                log(f"[admit] {sid} try {k}: rendered {st['rendered']}, MVQS {st['mvqs']}, conflicts {st['conflicts']}, "
+                    f"crowding {st['crowding']}")  # fmt: skip
                 _stash(out, sid, attic / f"{sid}_try{k}")
                 if _rank(st) > _rank(best):
                     best, best_dir = st, attic / f"{sid}_try{k}"
@@ -135,4 +149,5 @@ def section_status_files(out, sid):
         "id": sid,
         "mvqs": score.get("mvqs"),
         "conflicts": len(mvqs.persistent_conflicts(states)) if states else None,
+        "crowding": _crowding(states),
     }
