@@ -17,3 +17,6 @@ paper/*.bbl
 paper/*.blg
 paper/*.out
 paper/*.toc
+
+# copy of the paper taken by bench/queue_phase3.sh before it rewrites the tables
+before_phase3/

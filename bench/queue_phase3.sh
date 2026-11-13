@@ -3,18 +3,18 @@
 # the ladder on them, the pipeline stages F0..F5, then the paper's tables. Every step is cached and can be restarted.
 PY=/home/mani/manim/lessonforge/.venv/bin/python
 cd "$(dirname "$0")/.."
-# Freeze the noon paper before anything here rewrites paper/tables: PDFs, sources, generated tables and figures, and
-# the result folders this queue overwrites. Rebuild it with pdflatex inside noon_submission/paper (not build.sh,
+# Freeze the paper as it was before phase 3 rewrites paper/tables: PDFs, sources, generated tables and figures, and
+# the result folders this queue overwrites. Rebuild it with pdflatex inside before_phase3/paper (not build.sh,
 # which regenerates the tables from the current results). Done once; a restart keeps the first snapshot.
-if [ ! -d noon_submission ]; then
-  mkdir -p noon_submission/results
+if [ ! -d before_phase3 ]; then
+  mkdir -p before_phase3/results
   rsync -a --exclude dist --exclude __pycache__ --exclude '*.aux' --exclude '*.log' --exclude '*.out' \
-        --exclude '*.toc' --exclude '*.blg' paper/ noon_submission/paper/
-  cp paper/main.pdf paper/report.pdf paper/long_report.pdf noon_submission/
+        --exclude '*.toc' --exclude '*.blg' paper/ before_phase3/paper/
+  cp paper/main.pdf paper/report.pdf paper/long_report.pdf before_phase3/
   for r in novel12 novel12-ladder layout-study; do
-    [ -d bench/results/$r ] && cp -r bench/results/$r noon_submission/results/
+    [ -d bench/results/$r ] && cp -r bench/results/$r before_phase3/results/
   done
-  echo "$(date) froze the noon paper in noon_submission/" >> bench/phase3.log
+  echo "$(date) froze the paper in before_phase3/" >> bench/phase3.log
 fi
 $PY bench/run_bench.py --name novel12 --n 10 --workers 3 --questions bench/novel/questions_admitted.json \
     --cards bench/novel/cards.json > bench/novel12_admitted.log 2>&1 || { echo "F0 failed" >> bench/phase3.log; exit 1; }
