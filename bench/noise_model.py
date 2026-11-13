@@ -323,7 +323,69 @@ def comparisons():
     C.append(("P4", "secondary", "MMMC pilot, gemma: learner − base (raw P(right), R9)",
               build(mm, {"blind": "dv_blind_test.json", "x": "learner/dv_frames_test.json", "y": "dv_frames_test.json"}),
               st_raw, [("x", "y")]))  # fmt: skip
+    # frame size or frame count (bench/frames512.py): the same 3 frames per section at 512 px
+    C.append(("N5", "secondary", "NOVEL-12: 3 frames at 768 px − the same frames at 512 px (M9)",
+              build(nv, {"blind": "dv_blind_test.json", "x": "dv_frames_test.json", "y": "dv_f512_frames_test.json"}),
+              st_dgain, [("x", "y")]))  # fmt: skip
+    C.append(("N6", "secondary", "NOVEL-12: 3 frames at 512 px − the dense video at 512 px (M9 − NVG dense)",
+              build(nv, {"blind": "dv_blind_test.json", "x": "dv_f512_frames_test.json", "y": "dv_visual_test.json"}),
+              st_dgain, [("x", "y")]))  # fmt: skip
+    # Claude as the student (bench/claude_student.py): right/wrong scores over 4 option orders
+    for cid, model in (("H", "claude_haiku_5_5_"), ("S", "claude_sonnet_5_5_")):
+        name = "Haiku 5.5" if cid == "H" else "Sonnet 5.5"
+        C.append((f"{cid}1", "secondary", f"{name} student: the base video teaches (M9 > 0, binary)",
+                  build(nv, {"blind": f"dv_{model}blind_test.json", "x": f"dv_{model}frames_test.json"}),
+                  st_gain, [("x", "blind")], st_gain_test))  # fmt: skip
+        C.append((f"{cid}2", "secondary", f"{name} student: own video − another topic's video (M9)",
+                  build(nv, {"blind": f"dv_{model}blind_test.json", "x": f"dv_{model}frames_test.json",
+                             "y": f"dv_{model}other_frames_test.json"}), st_dgain, [("x", "y")]))  # fmt: skip
+        C.append((f"{cid}3", "secondary", f"{name} student: Claude-fixed − ours (M9)",
+                  build(nv, {"blind": f"dv_{model}blind_test.json", "x": f"claude_fixed/dv_{model}frames_test.json",
+                             "y": f"dv_{model}frames_test.json"}), st_dgain, [("x", "y")]))  # fmt: skip
     return C, nv
+
+
+def students(nv):
+    """Accuracy (share right, all option orders) per student and material, as means over concepts."""
+    tags = {"gemma": ("", (0, 1)), "haiku": ("claude_haiku_5_5_", (0, 1, 2, 3)),
+            "sonnet": ("claude_sonnet_5_5_", (0, 1, 2, 3))}  # fmt: skip
+    out = {}
+    for name, (tag, rots) in tags.items():
+        row = {}
+        for key, sub, kind in (("blind", "", "blind"), ("frames", "", "frames"), ("other", "", "other_frames"),
+                               ("fixed", "claude_fixed/", "frames")):  # fmt: skip
+            vals = [dvgain.score(json.loads(p.read_text()), False, rots)
+                    for p in (run / sub / f"dv_{tag}{kind}_test.json" for run in nv.values()) if p.exists()]  # fmt: skip
+            row[key] = float(np.mean(vals)) if vals else None
+        out[name] = row
+    return out
+
+
+def claude_repeat(nv):
+    """Claude's own repeat noise: the frames pass asked twice (rep1), per model."""
+    out = {}
+    for model in ("claude_haiku_5_5_", "claude_sonnet_5_5_"):
+        answers = changed = 0
+        deltas, blinds = [], []
+        for run in nv.values():
+            a_path, b_path = run / f"dv_{model}frames_test.json", run / f"dv_{model}rep1_frames_test.json"
+            if not (a_path.exists() and b_path.exists()):
+                continue
+            a, b = json.loads(a_path.read_text()), json.loads(b_path.read_text())
+            for ra, rb in zip(a["rotations"], b["rotations"]):
+                for x, y in zip(ra["items"], rb["items"]):
+                    answers += 1
+                    changed += x["choice"] != y["choice"]
+            la, lb = load(a_path), load(b_path)
+            deltas += [lb[i] - la[i] for i in la if i in lb]
+            bl = load(run / f"dv_{model}blind_test.json")
+            if bl:
+                blinds.append(np.mean(list(bl.values())))
+        if answers:
+            f1, f10 = noise_floor(deltas, blinds) if deltas and blinds else (None, None)
+            out[model.rstrip("_")] = {"answers": answers, "changed": changed, "floor_one_topic_M9": f1,
+                                      "floor_mean_of_topics_M9": f10}  # fmt: skip
+    return out
 
 
 def verdict(p_meas, p_holm, p_gen, lo, hi):
@@ -384,7 +446,8 @@ def main():
     rep = {"repeat_noise": {"pairs": len(pairs), "questions": len(deltas), "moved_over_0.01": moved,
                             "max_abs": max((abs(x) for x in deltas), default=None),
                             "floor_one_topic_M9": floor1, "floor_mean_of_topics_M9": floor10,
-                            "sources": sorted({s for _, s, _, _ in pairs})}, "comparisons": rows}  # fmt: skip
+                            "sources": sorted({s for _, s, _, _ in pairs})}, "comparisons": rows,
+           "claude_repeat": claude_repeat(nv), "students": students(nv)}  # fmt: skip
     (OUT / "report.json").write_text(json.dumps(rep, indent=1, ensure_ascii=False))
     (OUT / "report.md").write_text(markdown(rep))
     print(markdown(rep))
@@ -422,6 +485,10 @@ def markdown(rep):
                     f"it fires on noise alone in {100 * r['rule_false_positive_rate']:.1f}% of randomisations."
                 ),
             ]
+    for m, c in (rep.get("claude_repeat") or {}).items():
+        out += ["", (f"Repeat noise, {m}: {c['changed']} of {c['answers']} answers changed when the frames pass was "
+                f"asked again; 95% of M9 differences within ±{f(c['floor_one_topic_M9'])[1:]} on one topic and "
+                f"±{f(c['floor_mean_of_topics_M9'])[1:]} on the mean.")]  # fmt: skip
     out += ["", "## Per topic (value, item-level p, SD from resampling the questions)", ""]
     for r in rep["comparisons"]:
         if not r["n"]:

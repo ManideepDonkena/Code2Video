@@ -22,8 +22,20 @@ Repeat noise alone puts 95% of version differences within ±7.2 M9 points on one
 | P2 | MMMC pilot, 3B student: own − other topic (raw P(right), R9) | 12 | +6.4 | [-0.0, +16.8] | 12.5 | 0.0094 | n/a | 0.0283 | 9/12 | beyond noise for these videos only (not over topics / not after correction) |
 | P3 | MMMC pilot, gemma: own − other topic (raw P(right), R9; M9 undefined at the ceiling) | 12 | +13.0 | [+3.5, +25.0] | 15.6 | 0.0001 | n/a | 0.000488 | 12/12 | real, and holds over topics |
 | P4 | MMMC pilot, gemma: learner − base (raw P(right), R9) | 12 | +0.1 | [-0.1, +0.4] | 0.3 | 0.4143 | n/a | 0.41 | 6/12 | within noise |
+| N5 | NOVEL-12: 3 frames at 768 px − the same frames at 512 px (M9) | 10 | +18.8 | [-3.6, +48.5] | 37.2 | 0.0079 | n/a | 0.0332 | 6/10 | beyond noise for these videos only (not over topics / not after correction) |
+| N6 | NOVEL-12: 3 frames at 512 px − the dense video at 512 px (M9 − NVG dense) | 10 | +9.6 | [-27.3, +32.8] | 42.6 | 0.2210 | n/a | 0.377 | 6/10 | within noise |
+| H1 | Haiku 5.5 student: the base video teaches (M9 > 0, binary) | 10 | +89.2 | [+61.3, +100.0] | 30.8 | 0.0001 | n/a | 0.00391 | 9/10 | real, and holds over topics |
+| H2 | Haiku 5.5 student: own video − another topic's video (M9) | 10 | +150.6 | [+105.8, +236.7] | 95.7 | 0.0001 | n/a | 0.00195 | 10/10 | real, and holds over topics |
+| H3 | Haiku 5.5 student: Claude-fixed − ours (M9) | 10 | -1.5 | [-17.5, +15.7] | 22.3 | 0.7768 | n/a | 0.875 | 2/10 | within noise |
+| S1 | Sonnet 5.5 student: the base video teaches (M9 > 0, binary) | 10 | +45.9 | [+5.5, +72.4] | 47.7 | 0.0008 | n/a | 0.0117 | 8/10 | real, and holds over topics |
+| S2 | Sonnet 5.5 student: own video − another topic's video (M9) | 10 | +90.8 | [+51.1, +151.1] | 70.6 | 0.0001 | n/a | 0.00195 | 10/10 | real, and holds over topics |
+| S3 | Sonnet 5.5 student: Claude-fixed − ours (M9) | 10 | -16.3 | [-58.5, +6.9] | 49.3 | 0.0796 | n/a | 0.539 | 4/10 | within noise |
 
 Preregistered layout rule (mean >= +5 and >= 70% of topics ahead): fires now = False; it fires on noise alone in 8.2% of randomisations.
+
+Repeat noise, claude_haiku_5_5: 8 of 320 answers changed when the frames pass was asked again; 95% of M9 differences within ±22.2 on one topic and ±6.5 on the mean.
+
+Repeat noise, claude_sonnet_5_5: 10 of 320 answers changed when the frames pass was asked again; 95% of M9 differences within ±25.0 on one topic and ±7.6 on the mean.
 
 ## Per topic (value, item-level p, SD from resampling the questions)
 
@@ -177,3 +189,107 @@ Preregistered layout rule (mean >= +5 and >= 70% of topics ahead): fires now = F
 - Higher order derivatives: -0.0 (p 1, SD 0.0)
 - Sum of normal distributions, Gaussian + : +0.0 (p 0.504, SD 0.0)
 - The determinant: -0.1 (p 0.258, SD 0.1)
+
+**N5** NOVEL-12: 3 frames at 768 px − the same frames at 512 px (M9)
+
+- Tovan sums: +20.1 (p 0.0324, SD 9.3)
+- Krell steps on a grid: -8.3 (p 0.499, SD 7.7)
+- Vorn sequences: -1.7 (p 1, SD 55.6)
+- Glint numbers: +65.1 (p 0.0463, SD 28.7)
+- Mirthful triangles: +25.2 (p 0.0167, SD 12.4)
+- Sorrel counts of lattice rectangles: +51.4 (p 0.114, SD 64.6)
+- Quill distance: -5.2 (p 0.911, SD 17.6)
+- Dapple numbers: -5.2 (p 0.785, SD 15.3)
+- Orbit words: +21.0 (p 0.334, SD 19.8)
+- Vells of 2×2 grids: +25.8 (p 0.123, SD 18.6)
+
+**N6** NOVEL-12: 3 frames at 512 px − the dense video at 512 px (M9 − NVG dense)
+
+- Tovan sums: +44.8 (p 0.0157, SD 20.1)
+- Krell steps on a grid: +16.0 (p 0.573, SD 28.7)
+- Vorn sequences: -5.3 (p 0.505, SD 9.3)
+- Glint numbers: -1.7 (p 0.875, SD 18.5)
+- Mirthful triangles: -0.6 (p 1, SD 35.6)
+- Sorrel counts of lattice rectangles: -63.4 (p 0.0448, SD 70.2)
+- Quill distance: +20.5 (p 0.467, SD 27.1)
+- Dapple numbers: +42.9 (p 0.103, SD 23.3)
+- Orbit words: +21.4 (p 0.344, SD 20.1)
+- Vells of 2×2 grids: +21.2 (p 0.31, SD 17.2)
+
+**H1** Haiku 5.5 student: the base video teaches (M9 > 0, binary)
+
+- Tovan sums: +100.0 (p 0.0157, SD 0.0)
+- Krell steps on a grid: +100.0 (p 0.0608, SD 0.0)
+- Vorn sequences: +100.0 (p 0.51, SD 0.0)
+- Glint numbers: +91.7 (p 0.0151, SD 8.5)
+- Mirthful triangles: +100.0 (p 0.0154, SD 0.0)
+- Sorrel counts of lattice rectangles: +0.0 (p 1, SD 40.9)
+- Quill distance: +100.0 (p 0.0325, SD 0.0)
+- Dapple numbers: +100.0 (p 0.0076, SD 0.0)
+- Orbit words: +100.0 (p 0.122, SD 0.0)
+- Vells of 2×2 grids: +100.0 (p 0.0327, SD 0.0)
+
+**H2** Haiku 5.5 student: own video − another topic's video (M9)
+
+- Tovan sums: +133.3 (p 0.123, SD 39.9)
+- Krell steps on a grid: +150.0 (p 0.0155, SD 89.7)
+- Vorn sequences: +280.0 (p 0.0331, SD 169.4)
+- Glint numbers: +83.3 (p 0.0142, SD 13.8)
+- Mirthful triangles: +100.0 (p 0.0295, SD 11.7)
+- Sorrel counts of lattice rectangles: +300.0 (p 0.0166, SD 89.7)
+- Quill distance: +95.7 (p 0.0159, SD 9.8)
+- Dapple numbers: +112.5 (p 0.0063, SD 9.1)
+- Orbit words: +145.5 (p 0.0311, SD 102.2)
+- Vells of 2×2 grids: +105.9 (p 0.008, SD 20.3)
+
+**H3** Haiku 5.5 student: Claude-fixed − ours (M9)
+
+- Tovan sums: +0.0 (p 1, SD 0.0)
+- Krell steps on a grid: +0.0 (p 1, SD 0.0)
+- Vorn sequences: +0.0 (p 1, SD 0.0)
+- Glint numbers: +4.2 (p 1, SD 4.2)
+- Mirthful triangles: +0.0 (p 1, SD 0.0)
+- Sorrel counts of lattice rectangles: +25.0 (p 1, SD 50.3)
+- Quill distance: +0.0 (p 1, SD 0.0)
+- Dapple numbers: -16.7 (p 0.12, SD 6.4)
+- Orbit words: -27.3 (p 0.241, SD 35.5)
+- Vells of 2×2 grids: +0.0 (p 1, SD 0.0)
+
+**S1** Sonnet 5.5 student: the base video teaches (M9 > 0, binary)
+
+- Tovan sums: +12.5 (p 1, SD 52.0)
+- Krell steps on a grid: -33.3 (p 1, SD 59.5)
+- Vorn sequences: +90.9 (p 0.249, SD 15.5)
+- Glint numbers: +54.5 (p 0.559, SD 76.2)
+- Mirthful triangles: +89.5 (p 0.0293, SD 5.9)
+- Sorrel counts of lattice rectangles: +0.0 (p 1, SD 28.6)
+- Quill distance: +62.5 (p 0.0651, SD 19.0)
+- Dapple numbers: +78.9 (p 0.0149, SD 13.9)
+- Orbit words: +50.0 (p 0.374, SD 29.0)
+- Vells of 2×2 grids: +53.8 (p 0.251, SD 23.7)
+
+**S2** Sonnet 5.5 student: own video − another topic's video (M9)
+
+- Tovan sums: +75.0 (p 0.251, SD 30.6)
+- Krell steps on a grid: +200.0 (p 0.309, SD 163.6)
+- Vorn sequences: +81.8 (p 0.124, SD 20.6)
+- Glint numbers: +63.6 (p 0.537, SD 78.4)
+- Mirthful triangles: +89.5 (p 0.0327, SD 16.3)
+- Sorrel counts of lattice rectangles: +100.0 (p 0.127, SD 90.7)
+- Quill distance: +62.5 (p 0.0587, SD 19.8)
+- Dapple numbers: +57.9 (p 0.0925, SD 22.3)
+- Orbit words: +85.7 (p 0.124, SD 55.6)
+- Vells of 2×2 grids: +92.3 (p 0.0296, SD 53.0)
+
+**S3** Sonnet 5.5 student: Claude-fixed − ours (M9)
+
+- Tovan sums: +12.5 (p 1, SD 12.7)
+- Krell steps on a grid: -166.7 (p 0.129, SD 70.7)
+- Vorn sequences: -9.1 (p 1, SD 16.6)
+- Glint numbers: +0.0 (p 1, SD 0.0)
+- Mirthful triangles: +10.5 (p 0.504, SD 5.9)
+- Sorrel counts of lattice rectangles: +14.3 (p 1, SD 10.8)
+- Quill distance: +4.2 (p 1, SD 4.3)
+- Dapple numbers: -5.3 (p 1, SD 8.7)
+- Orbit words: +0.0 (p 1, SD 0.0)
+- Vells of 2×2 grids: -23.1 (p 0.497, SD 20.3)

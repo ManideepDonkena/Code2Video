@@ -547,7 +547,16 @@ def noise_model(macros):
     rn = rep["repeat_noise"]
     macros.update(NMRepeatMoved=rn["moved_over_0.01"], NMRepeatN=rn["questions"],
                   NMFloorOne=pts(rn["floor_one_topic_M9"], False), NMFloorAll=pts(rn["floor_mean_of_topics_M9"], False))  # fmt: skip
-    keys = {"N1": "Gain", "N2": "Spec", "N3": "Dense", "N4": "FramesDense", "L1": "Layout", "P1": "Small"}
+    keys = {"N1": "Gain", "N2": "Spec", "N3": "Dense", "N4": "FramesDense", "L1": "Layout", "P1": "Small",
+            "N5": "Size", "N6": "Count", "H1": "HGain", "H2": "HSpec", "H3": "HLayout", "S1": "SGain", "S2": "SSpec",
+            "S3": "SLayout"}  # fmt: skip
+    for name, row in (rep.get("students") or {}).items():
+        for k, v in row.items():
+            if v is not None:
+                macros[f"Acc{name.capitalize()}{k.capitalize()}"] = f"{100 * v:.1f}"
+    for m, c in (rep.get("claude_repeat") or {}).items():
+        key = "H" if "haiku" in m else "S"
+        macros[f"NM{key}RepChanged"], macros[f"NM{key}RepN"] = c["changed"], c["answers"]
     for c in rep["comparisons"]:
         k = keys.get(c["id"])
         if k is None or not c.get("n"):

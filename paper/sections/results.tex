@@ -46,12 +46,33 @@ right answer is \LadNovelSFrames{} with 3 frames per section and \LadNovelSVisua
 the dense video (M7) scores \LadNovelDefinedSeven{} videos with \LadNovelSepSeven{} points of separation. M9 is
 \NMFramesDense{} points above the dense video's gain, on \NMFramesDensePos{} of \NMFramesDenseN{} concepts. The
 difference is beyond noise and holds across concepts, but only just: its interval barely excludes zero. Two things
-change together here: the 3 frames are larger (768 pixels wide, against 512) and far fewer. So we cannot yet say
-which of the two matters.
+change together here: the 3 frames are larger (768 pixels wide, against 512) and far fewer. To separate them, we
+shrank the same 3 frames to 512 pixels. The larger frames score \NMSize{} points of M9 above the smaller ones. That
+difference is beyond noise on these videos, but it is not consistent across concepts (\NMSizePos{} of \NMSizeN{}). The remaining gap between the small
+frames and the dense video, \NMCount{} points, is within noise. So frame size explains most of the advantage; we find
+no clear effect of the number of frames.
 
 A single concept's score is fragile. It rests on 8 questions, and a concept the student half knows leaves little room
 to learn. On \emph{Sorrel counts} (confidence 66.8 with no video), one changed answer in one option order moves M9 by
 about 19 points. The only negative gain in (i) is this concept's, and it is within noise.
+
+\paragraph{Other students.} We asked the same NOVEL-12 questions on the same frames of Claude Haiku 5.5 and Claude
+Sonnet 5.5. Claude returns no log-probabilities, so each answer is scored right or wrong, over 4 option orders
+instead of 2. Three insights follow.
+(i) \textbf{Claude knows more without the video.} With no video, Haiku answers \AccHaikuBlind\% right and Sonnet
+\AccSonnetBlind\%, against \AccGemmaBlind\% for \texttt{gemma4:26b}. Part of this may be wording: Claude wrote the
+questions. M9 discounts what a student knows beforehand, so the gain stays comparable.
+(ii) \textbf{The videos teach Claude too, and what it learns is the topic of the video.} With the frames, Haiku
+answers \AccHaikuFrames\% right and Sonnet \AccSonnetFrames\%. M9 is \NMHGain{} points for Haiku (positive on
+\NMHGainPos{} of \NMHGainN{} concepts) and \NMSGain{} for Sonnet (\NMSGainPos{} of \NMSGainN{}). Both are beyond
+noise. A topic's own video beats another topic's video on \NMHSpecPos{} of \NMHSpecN{} concepts for Haiku and
+\NMSSpecPos{} of \NMSSpecN{} for Sonnet.
+(iii) \textbf{No student learns more from the Claude-fixed videos.} Claude-fixed minus ours is \NMHLayout{} points
+for Haiku and \NMSLayout{} for Sonnet, both within noise. The stronger readers confirm the layout result, although
+these fixes were also made by Claude.
+Claude is also not fully repeatable: asked the same frames pass twice, Haiku changed \NMHRepChanged{} of
+\NMHRepN{} answers and Sonnet \NMSRepChanged{}. We do not compare the two Claude students with each other. At the
+low effort we used, Sonnet wrote almost no reasoning (about 70 output tokens a call, against 400 for Haiku).
 
 \paragraph{Video quality} (Tables~\ref{tab:quality} and~\ref{tab:layout_study}). \AdmIncompleteBefore{} of
 \AdmTotal{} NOVEL-12 base videos had silently dropped a section that failed to render. After one fresh attempt,
