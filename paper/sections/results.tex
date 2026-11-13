@@ -107,6 +107,9 @@ falls by 26 points. No single concept's change in M9 is beyond noise (Section~\r
 \label{fig:layout_examples}
 \end{figure*}
 
-\paragraph{Pipeline ablation.} The stages F0--F5
-(\S\ref{sec:ablation}) are built and their decision rules fixed; their runs, about 14 hours on the shared machine,
-continue after this draft.
+\paragraph{Pipeline ablation.} The stages F0--F5 (\S\ref{sec:ablation}) are built and their decision rules fixed.
+The first stage, F0, is the pilot's loop on the admitted NOVEL-12 videos. Its learner repair scores \NMRepair{} points
+of M9 above the base video, ahead on \NMRepairPos{} of \NMRepairN{} concepts. It scores \NMRepairGeneric{} points above
+the generic repair of the same size. Neither difference is beyond noise. With 10 concepts, the study can only detect a
+difference of about \NMRepairMDE{} points, so a small benefit of the repair remains possible. The later stages are
+still running.

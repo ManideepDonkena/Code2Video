@@ -222,11 +222,13 @@ def ladder(name, label, caption, macros, key, folder=None, only_defined=False):
               "\\hd{Own $-$\\\\other ($\\uparrow$)} & \\hd{Agree-\\\\ment ($\\uparrow$)}\\\\\\midrule\n" + "\n".join(rows)
               + "\n\\bottomrule\\end{tabular}\n\\end{table}\n")  # fmt: skip
     else:
-        write(label, f"\\begin{{table*}}[t]\\centering\\footnotesize\n\\caption{{{caption} {r['topics']} topics, {r['videos']} "
-              "videos. Each row adds one change to the row above; points on a 0--100 scale. Scored: videos that get a "
-              "score (-- : the student already knew everything). Own $-$ other: a topic's video minus another topic's video "
-              "on the same quiz. Agreement: rank correlation of two measurements of the same videos. Learner $-$ \\ldots: "
-              f"mean change over topics. Ties: topics where learner and base score the same.}}\\label{{tab:{label}}}\n"
+        write(label, f"\\begin{{table*}}[t]\\centering\\footnotesize\n\\caption{{{caption} {r['topics']} topics, "
+              f"{r['videos']} videos. Each row adds one change to the row above; points on a 0--100 scale. The first three "
+              "columns use each topic's base video only, since its repairs are near-copies of it. Scored: base videos that "
+              "get a score (-- : the student already knew everything). Own $-$ other: a topic's video minus another topic's "
+              "video on the same quiz. Agreement: rank correlation of two measurements of the same base videos. Learner "
+              "$-$ \\ldots: mean change over topics, the versions paired by topic. Ties: topics where learner and base score "
+              f"the same.}}\\label{{tab:{label}}}\n"
               "\\setlength{\\tabcolsep}{4pt}\\begin{tabular}{@{}llrrrrrrr@{}}\\toprule & & \\multicolumn{3}{c}{Does it measure teaching?} & "
               "\\multicolumn{4}{c}{Does the learner repair help?}\\\\\n\\cmidrule(lr){3-5}\\cmidrule(lr){6-9}\n"
               "& Measure & Scored & \\hd{Own $-$\\\\other ($\\uparrow$)} & \\hd{Agree-\\\\ment ($\\uparrow$)} & \\hd{Learner\\\\$-$ base} & "
@@ -549,7 +551,7 @@ def noise_model(macros):
                   NMFloorOne=pts(rn["floor_one_topic_M9"], False), NMFloorAll=pts(rn["floor_mean_of_topics_M9"], False))  # fmt: skip
     keys = {"N1": "Gain", "N2": "Spec", "N3": "Dense", "N4": "FramesDense", "L1": "Layout", "P1": "Small",
             "N5": "Size", "N6": "Count", "H1": "HGain", "H2": "HSpec", "H3": "HLayout", "S1": "SGain", "S2": "SSpec",
-            "S3": "SLayout"}  # fmt: skip
+            "S3": "SLayout", "N7": "Repair", "N8": "RepairGeneric"}  # fmt: skip
     for name, row in (rep.get("students") or {}).items():
         for k, v in row.items():
             if v is not None:

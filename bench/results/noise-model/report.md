@@ -30,6 +30,8 @@ Repeat noise alone puts 95% of version differences within ±7.2 M9 points on one
 | S1 | Sonnet 5.5 student: the base video teaches (M9 > 0, binary) | 10 | +45.9 | [+5.5, +72.4] | 47.7 | 0.0008 | n/a | 0.0117 | 8/10 | real, and holds over topics |
 | S2 | Sonnet 5.5 student: own video − another topic's video (M9) | 10 | +90.8 | [+51.1, +151.1] | 70.6 | 0.0001 | n/a | 0.00195 | 10/10 | real, and holds over topics |
 | S3 | Sonnet 5.5 student: Claude-fixed − ours (M9) | 10 | -16.3 | [-58.5, +6.9] | 49.3 | 0.0796 | n/a | 0.539 | 4/10 | within noise |
+| N7 | NOVEL-12, stage F0: learner repair − base (M9) | 10 | +6.1 | [-12.9, +28.1] | 29.5 | 0.3560 | n/a | 0.453 | 6/10 | within noise |
+| N8 | NOVEL-12, stage F0: learner repair − generic repair (M9) | 10 | +6.1 | [-14.1, +27.2] | 29.9 | 0.3918 | n/a | 0.449 | 6/10 | within noise |
 
 Preregistered layout rule (mean >= +5 and >= 70% of topics ahead): fires now = False; it fires on noise alone in 8.2% of randomisations.
 
@@ -293,3 +295,29 @@ Repeat noise, claude_sonnet_5_5: 10 of 320 answers changed when the frames pass 
 - Dapple numbers: -5.3 (p 1, SD 8.7)
 - Orbit words: +0.0 (p 1, SD 0.0)
 - Vells of 2×2 grids: -23.1 (p 0.497, SD 20.3)
+
+**N7** NOVEL-12, stage F0: learner repair − base (M9)
+
+- Tovan sums: +10.9 (p 0.137, SD 10.0)
+- Krell steps on a grid: +38.5 (p 0.101, SD 17.4)
+- Vorn sequences: +19.1 (p 0.742, SD 41.5)
+- Glint numbers: -7.7 (p 0.111, SD 8.5)
+- Mirthful triangles: +10.1 (p 0.815, SD 37.7)
+- Sorrel counts of lattice rectangles: +44.7 (p 0.106, SD 19.9)
+- Quill distance: -14.0 (p 0.306, SD 10.2)
+- Dapple numbers: -37.6 (p 0.218, SD 21.6)
+- Orbit words: +8.7 (p 0.759, SD 19.1)
+- Vells of 2×2 grids: -11.8 (p 0.186, SD 10.2)
+
+**N8** NOVEL-12, stage F0: learner repair − generic repair (M9)
+
+- Tovan sums: -0.0 (p 0.873, SD 0.0)
+- Krell steps on a grid: +35.6 (p 0.0892, SD 17.2)
+- Vorn sequences: -3.0 (p 1, SD 25.1)
+- Glint numbers: +15.5 (p 0.881, SD 36.8)
+- Mirthful triangles: +35.3 (p 0.415, SD 42.0)
+- Sorrel counts of lattice rectangles: +26.0 (p 0.244, SD 17.5)
+- Quill distance: -22.3 (p 0.394, SD 17.0)
+- Dapple numbers: -39.3 (p 0.186, SD 22.4)
+- Orbit words: +10.2 (p 0.757, SD 20.1)
+- Vells of 2×2 grids: +2.7 (p 1, SD 8.7)

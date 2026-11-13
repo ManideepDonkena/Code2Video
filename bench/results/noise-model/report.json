@@ -1567,6 +1567,164 @@
     }
    ],
    "verdict": "within noise"
+  },
+  {
+   "id": "N7",
+   "family": "secondary",
+   "question": "NOVEL-12, stage F0: learner repair − base (M9)",
+   "n": 10,
+   "mean": 0.06074599218222406,
+   "ci": [
+    -0.1294802017708281,
+    0.280833829500201
+   ],
+   "se": 0.10552451885441806,
+   "mde": 0.29546865279237056,
+   "p_measurement": 0.35596440355964404,
+   "p_topics": 0.453125,
+   "positive": 6,
+   "per_topic": [
+    {
+     "topic": "Tovan sums",
+     "value": 0.10864852221038623,
+     "p": 0.1367863213678632,
+     "sd_items": 0.10010482151525364
+    },
+    {
+     "topic": "Krell steps on a grid",
+     "value": 0.3847914999999999,
+     "p": 0.10058994100589941,
+     "sd_items": 0.1742223369358237
+    },
+    {
+     "topic": "Vorn sequences",
+     "value": 0.19135482011542926,
+     "p": 0.7416258374162584,
+     "sd_items": 0.4147577828214766
+    },
+    {
+     "topic": "Glint numbers",
+     "value": -0.07713737508268403,
+     "p": 0.1110888911108889,
+     "sd_items": 0.08547305673637476
+    },
+    {
+     "topic": "Mirthful triangles",
+     "value": 0.10095347978388397,
+     "p": 0.8153184681531847,
+     "sd_items": 0.37712330857792065
+    },
+    {
+     "topic": "Sorrel counts of lattice rectangles",
+     "value": 0.44705507512808,
+     "p": 0.1060893910608939,
+     "sd_items": 0.19862510954543303
+    },
+    {
+     "topic": "Quill distance",
+     "value": -0.14030748438591098,
+     "p": 0.30596940305969406,
+     "sd_items": 0.1022720906382536
+    },
+    {
+     "topic": "Dapple numbers",
+     "value": -0.3762446461331922,
+     "p": 0.21797820217978203,
+     "sd_items": 0.2156563095661556
+    },
+    {
+     "topic": "Orbit words",
+     "value": 0.08666244045457427,
+     "p": 0.7587241275872413,
+     "sd_items": 0.1910236699016358
+    },
+    {
+     "topic": "Vells of 2×2 grids",
+     "value": -0.11831641026832584,
+     "p": 0.18648135186481352,
+     "sd_items": 0.1022857393605122
+    }
+   ],
+   "verdict": "within noise"
+  },
+  {
+   "id": "N8",
+   "family": "secondary",
+   "question": "NOVEL-12, stage F0: learner repair − generic repair (M9)",
+   "n": 10,
+   "mean": 0.06078401313296942,
+   "ci": [
+    -0.1406505110949278,
+    0.272276847637405
+   ],
+   "se": 0.106856420693829,
+   "mde": 0.2991979779427212,
+   "p_measurement": 0.39176082391760825,
+   "p_topics": 0.44921875,
+   "positive": 6,
+   "per_topic": [
+    {
+     "topic": "Tovan sums",
+     "value": -0.0001542950475720284,
+     "p": 0.8726127387261274,
+     "sd_items": 0.0002084757025388517
+    },
+    {
+     "topic": "Krell steps on a grid",
+     "value": 0.35645374999999996,
+     "p": 0.08919108089191082,
+     "sd_items": 0.17184427917602665
+    },
+    {
+     "topic": "Vorn sequences",
+     "value": -0.030007995137798504,
+     "p": 1.0,
+     "sd_items": 0.2513389405163358
+    },
+    {
+     "topic": "Glint numbers",
+     "value": 0.15548455780328163,
+     "p": 0.8807119288071192,
+     "sd_items": 0.3681251080188775
+    },
+    {
+     "topic": "Mirthful triangles",
+     "value": 0.3526569715168809,
+     "p": 0.41535846415358463,
+     "sd_items": 0.42003098760971525
+    },
+    {
+     "topic": "Sorrel counts of lattice rectangles",
+     "value": 0.260479725709903,
+     "p": 0.2440755924407559,
+     "sd_items": 0.17460766257134855
+    },
+    {
+     "topic": "Quill distance",
+     "value": -0.22275206328883998,
+     "p": 0.3942605739426057,
+     "sd_items": 0.17023539837710872
+    },
+    {
+     "topic": "Dapple numbers",
+     "value": -0.3930825089131307,
+     "p": 0.18618138186181382,
+     "sd_items": 0.22396107059817436
+    },
+    {
+     "topic": "Orbit words",
+     "value": 0.10207745255185374,
+     "p": 0.7569243075692431,
+     "sd_items": 0.2012130292034345
+    },
+    {
+     "topic": "Vells of 2×2 grids",
+     "value": 0.026684536135116066,
+     "p": 1.0,
+     "sd_items": 0.08735542178878083
+    }
+   ],
+   "verdict": "within noise"
   }
  ],
  "claude_repeat": {
@@ -1574,13 +1732,13 @@
    "answers": 320,
    "changed": 8,
    "floor_one_topic_M9": 0.2222222222222222,
-   "floor_mean_of_topics_M9": 0.065
+   "floor_mean_of_topics_M9": 0.06454545454545454
   },
   "claude_sonnet_5_5": {
    "answers": 320,
    "changed": 10,
    "floor_one_topic_M9": 0.25,
-   "floor_mean_of_topics_M9": 0.07605186480186477
+   "floor_mean_of_topics_M9": 0.07584864696706801
   }
  },
  "students": {

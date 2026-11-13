@@ -342,6 +342,14 @@ def comparisons():
         C.append((f"{cid}3", "secondary", f"{name} student: Claude-fixed − ours (M9)",
                   build(nv, {"blind": f"dv_{model}blind_test.json", "x": f"claude_fixed/dv_{model}frames_test.json",
                              "y": f"dv_{model}frames_test.json"}), st_dgain, [("x", "y")]))  # fmt: skip
+    # the repair on NOVEL-12 (stage F0, the pilot loop's revisions). Appended last, so the random draws of the
+    # comparisons above stay the same.
+    C.append(("N7", "secondary", "NOVEL-12, stage F0: learner repair − base (M9)",
+              build(nv, {"blind": "dv_blind_test.json", "x": "learner/dv_frames_test.json", "y": "dv_frames_test.json"}),
+              st_dgain, [("x", "y")]))  # fmt: skip
+    C.append(("N8", "secondary", "NOVEL-12, stage F0: learner repair − generic repair (M9)",
+              build(nv, {"blind": "dv_blind_test.json", "x": "learner/dv_frames_test.json",
+                         "y": "generic/dv_frames_test.json"}), st_dgain, [("x", "y")]))  # fmt: skip
     return C, nv
 
 
