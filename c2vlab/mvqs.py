@@ -140,6 +140,38 @@ def mvqs(states):
     }
 
 
+CLEAR = 0.15  # two texts closer than this read as one run of glyphs (next_to's default buff is 0.25)
+
+
+def crowding(states, clear=CLEAR):
+    """Text faults the overlap test passes: two texts nearer than `clear` (touching boxes do not intersect, and an
+    overlap under 10% is not a lasting conflict), and a text wider than the frame (moving it cannot bring it inside).
+    Once each by object. Reported only: it is not part of MVQS and no gate reads it.
+
+    On the 40 NOVEL-12 base sections (2026-11-13) it flags 10 sections that have no lasting conflict; Claude's fixer,
+    which saw frames, fixed an overlap, crowding, off-screen or unreadable-text fault in 9 of them."""
+    seen, out = set(), []
+
+    def gap(a, b):
+        dx = max(0.0, max(a[0], b[0]) - min(a[2], b[2]))
+        dy = max(0.0, max(a[1], b[1]) - min(a[3], b[3]))
+        return math.hypot(dx, dy)
+
+    for s in states:
+        texts = [o for o in s["objects"] if o["kind"] == "Text" and area(o["box"]) > 1e-6]
+        for i, a in enumerate(texts):
+            if a["box"][2] - a["box"][0] > W and ("wide", a.get("name"), a.get("line")) not in seen:
+                seen.add(("wide", a.get("name"), a.get("line")))
+                out.append({"fault": "wider than the frame", "obj": a, "after_line": s["after_line"]})
+            for b in texts[i + 1 :]:
+                key = ("near", a.get("name"), a.get("line"), b.get("name"), b.get("line"))
+                if key not in seen and gap(a["box"], b["box"]) < clear:
+                    seen.add(key)
+                    out.append({"fault": "texts too close", "obj": a, "other": b,
+                                "gap": round(gap(a["box"], b["box"]), 3), "after_line": s["after_line"]})  # fmt: skip
+    return out
+
+
 def persistent_conflicts(states):
     """Conflicts that a viewer sees at rest (medium or high, or outside the frame), once each by object pair."""
     seen, out = set(), []

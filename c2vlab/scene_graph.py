@@ -64,6 +64,9 @@ def run(path, cls, out):
     from manim.animation.animation import prepare_animation
 
     created, names, states = {}, {}, []
+    # `created` and `names` are keyed by id(). Python gives a freed object's id to a later one, which then inherited
+    # the dead object's line or name (the same code gave 7, 10 and 11 conflicts). Every object recorded is kept alive.
+    alive = {}
     target = str(path)
 
     def site():
@@ -80,6 +83,7 @@ def run(path, cls, out):
         original_init(self, *a, **k)
         f = site()
         if f is not None:
+            alive[id(self)] = self
             created.setdefault(id(self), f.f_lineno)
 
     manim.Mobject.__init__ = init
@@ -89,6 +93,7 @@ def run(path, cls, out):
             if isinstance(val, manim.Mobject):
                 names[id(val)] = var
                 for m in val.get_family():
+                    alive[id(m)] = m
                     names.setdefault(id(m), var)
 
     def record(scene, line):
