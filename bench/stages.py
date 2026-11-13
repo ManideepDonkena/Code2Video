@@ -115,12 +115,15 @@ def report(results):
             for mode in MODES}  # fmt: skip
         rep[stage] = r
     (out / "report.json").write_text(json.dumps(rep, indent=1))
-    lines = [f"# Pipeline ablation: {results.name}", "", "Metric: M7 (D-VGAIN, continuous, two option orders).", "",
-             "| Stage | Features | learner − base | learner − generic | learner − learner_all | generic − base |",
-             "|---|---|---|---|---|---|"]  # fmt: skip
-    for stage, r in rep.items():
-        feats = ", ".join(sorted(stages.FEATURES[stage])) or "pilot loop"
-        lines.append(f"| {stage} | {feats} | " + " | ".join(fmt(p) for p in r["m7"].values()) + " |")
+    lines = [f"# Pipeline ablation: {results.name}"]
+    for metric, name in (("m9", "M9 (gain on 3 frames per section, continuous, two option orders)"),
+                         ("m7", "M7 (D-VGAIN on the dense video, continuous, two option orders)")):  # fmt: skip
+        lines += ["", f"Metric: {name}.", "",
+                  "| Stage | Features | learner − base | learner − generic | learner − learner_all | generic − base |",
+                  "|---|---|---|---|---|---|"]  # fmt: skip
+        for stage, r in rep.items():
+            feats = ", ".join(sorted(stages.FEATURES[stage])) or "pilot loop"
+            lines.append(f"| {stage} | {feats} | " + " | ".join(fmt(p) for p in r[metric].values()) + " |")
     head = ("| Stage | sections asked (learner) | rewritten and rendered | served revisions (of topics) | mean edit size"
             " | MVQS learner | sections learner |")
     lines += ["", head, "|---|---|---|---|---|---|---|"]
