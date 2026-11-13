@@ -30,7 +30,7 @@ def esc(s):
 
 
 def pending(caption, label, what):
-    return (f"\\begin{{table}}[t]\\centering\\caption{{{caption}}}\\label{{{label}}}\n"
+    return (f"\\begin{{table}}[!htbp]\\centering\\caption{{{caption}}}\\label{{{label}}}\n"
             f"\\fbox{{\\parbox{{0.9\\linewidth}}{{\\centering\\small\\textit{{Pending: {esc(what)}.}}}}}}\n\\end{{table}}\n")  # fmt: skip
 
 
@@ -104,7 +104,7 @@ def pilot(macros):
         m = a["means"][c]
         d = "" if c == "base" else delta((m["teachquiz"] - base["teachquiz"]) / 100, "up")
         rows.append(f"{NAMES[c]} & {m['teachquiz']:.1f}{d} & {m['evidence']:.1f} & {m['mvqs']:.1f} & {m['sections_rendered']:.2f} \\\\")
-    write("pilot", "\\begin{table}[t]\\centering\\small\n\\caption{Pilot on 12 MMMC topics, scored with TeachQuiz as in "
+    write("pilot", "\\begin{table}[!htbp]\\centering\\small\n\\caption{Pilot on 12 MMMC topics, scored with TeachQuiz as in "
           "Code2Video (local student, 3 frames per section, graded as in the pilot, before the fix of Break 1; the regraded score is version M1 of the ladder). TeachQuiz: quiz score with the video "
           "minus without it. Evidence: answers a judge could find in the frames. Layout: SGA's MVQS. Small numbers: "
           "change against the base video.}\\label{tab:pilot}\n"
@@ -176,7 +176,7 @@ def priors(macros):
         body += group(7, "MMMC (real topics from 3Blue1Brown)") + "\n".join(groups["mmmc"]) + "\n"
     if groups["novel"]:
         body += group(7, "NOVEL-12 (invented concepts)") + "\n".join(groups["novel"]) + "\n"
-    write("priors", "\\begin{table*}[t]\\centering\\small\n\\caption{What the student already knows. Code2Video's unlearning "
+    write("priors", "\\begin{table*}[!tbp]\\centering\\small\n\\caption{What the student already knows. Code2Video's unlearning "
           "prompt, but the student must choose A--D (no NULL). Accuracy: share of questions right. Confidence: mean "
           "probability the student puts on the right answer. Fully known: topics where every question is right with no "
           "video. Chance is 25.}\\label{tab:priors}\n\\begin{tabular}{llrrrrr}\\toprule Material & Student & Topics & "
@@ -214,7 +214,7 @@ def ladder(name, label, caption, macros, key, folder=None, only_defined=False):
     if not has_cond:  # base videos only: no repair columns
         rows = [re.sub(r"( & [^&]*){4}( \\\\)$", r"\2", row) if not row.startswith("\\midrule") else
                 row.replace("multicolumn{9}", "multicolumn{5}") for row in rows]  # fmt: skip
-        write(label, f"\\begin{{table}}[t]\\centering\\footnotesize\n\\caption{{{caption} {r['topics']} topics, base videos "
+        write(label, f"\\begin{{table}}[!htbp]\\centering\\footnotesize\n\\caption{{{caption} {r['topics']} topics, base videos "
               "only (the repairs are future work). Each row adds one change to the row above; points on a 0--100 scale. "
               "Scored: videos that get a score. Own $-$ other: a topic's video minus another topic's video on the same "
               f"quiz. Agreement: rank correlation of two measurements of the same videos.}}\\label{{tab:{label}}}\n"
@@ -222,7 +222,7 @@ def ladder(name, label, caption, macros, key, folder=None, only_defined=False):
               "\\hd{Own $-$\\\\other ($\\uparrow$)} & \\hd{Agree-\\\\ment ($\\uparrow$)}\\\\\\midrule\n" + "\n".join(rows)
               + "\n\\bottomrule\\end{tabular}\n\\end{table}\n")  # fmt: skip
     else:
-        write(label, f"\\begin{{table*}}[t]\\centering\\footnotesize\n\\caption{{{caption} {r['topics']} topics, "
+        write(label, f"\\begin{{table*}}[!tbp]\\centering\\footnotesize\n\\caption{{{caption} {r['topics']} topics, "
               f"{r['videos']} videos. Each row adds one change to the row above; points on a 0--100 scale. The first three "
               "columns use each topic's base video only, since its repairs are near-copies of it. Scored: base videos that "
               "get a score (-- : the student already knew everything). Own $-$ other: a topic's video minus another topic's "
@@ -277,7 +277,7 @@ def stages(macros):
         rows.append(f"{STAGE_NAMES.get(s, s)} & {pts(m['base'], False)} & {pts(m['generic'], False)} & "
                     f"{pts(m['learner_all'], False)} & {pts(m['learner'], False)} & {pts(lg9)}{d} & {pts(lg7)} & "
                     f"{'--' if mv is None else f'{mv:.1f}'} & {p['sections_changed']} & {p['served_revision']}/{x['topics']} \\\\")  # fmt: skip
-    write("stages", "\\begin{table*}[t]\\centering\\small\n\\caption{Effect of each pipeline feature on NOVEL-12. Features "
+    write("stages", "\\begin{table*}[!tbp]\\centering\\small\n\\caption{Effect of each pipeline feature on NOVEL-12. Features "
           "are added one at a time; the base video is the same in every row. Gain: share of what the student did not know "
           "that it learned from 3 frames per section (version M9), in points. Learner $-$ generic: the learner repair against "
           "an equally large repair without the student's signal, scored on 3 frames (M9) and on the dense video (M7); "
@@ -332,7 +332,7 @@ def failures(macros):
     macros["SyntaxAfterPatch"] = cls["  of which right after a patch"]
     quad = "\\quad "
     rows = [f"{quad if k.startswith(' ') else ''}{esc(k.strip())} & {v} \\\\" for k, v in cls.most_common()]
-    write("failures", "\\begin{table}[t]\\centering\\small\n\\caption{Failed render attempts in the pilot (12 MMMC topics, "
+    write("failures", "\\begin{table}[!htbp]\\centering\\small\n\\caption{Failed render attempts in the pilot (12 MMMC topics, "
           f"base and revised videos), by class. Pre-flight raises an alarm on {flagged} of {n_ok} sections that "
           "rendered.}\\label{tab:failures}\n\\begin{tabular}{lr}\\toprule Class & Attempts\\\\\\midrule\n"
           + "\n".join(rows) + "\n\\bottomrule\\end{tabular}\n\\end{table}\n")  # fmt: skip
@@ -398,7 +398,7 @@ def novel_first_look():
         return
     avg = [st.mean(v) if (v := [c[i] for c in cols if c[i] is not None]) else None for i in range(8)]
     rows.append("\\midrule\nMean & " + " & ".join(f"\\textbf{{{pts(v, i >= 4)}}}" for i, v in enumerate(avg)) + " \\\\")
-    write("novel_first", "\\begin{table*}[t]\\centering\\footnotesize\\setlength{\\tabcolsep}{4pt}\n\\caption{NOVEL-12 base "
+    write("novel_first", "\\begin{table*}[!tbp]\\centering\\footnotesize\\setlength{\\tabcolsep}{4pt}\n\\caption{NOVEL-12 base "
           "videos (the pipeline's first attempt, before any repair). Confidence: mean probability on the right answer over "
           "8 TEST questions and two option orders, in \\%; chance is 25. TeachQuiz: Code2Video's measure on the same "
           "video. Gain: share of what the student did not know that the video taught (100 = all of it), from 3 frames per "
@@ -427,7 +427,7 @@ def novel_items(topic="Tovan sums"):
                 / len(p[k]["rotations"]) for k in kinds]  # fmt: skip
         rows.append(f"{esc(q['question'])} & {esc(q['options'][q['answer']])} & " + " & ".join(f"{100 * v:.0f}" for v in vals)
                     + " \\\\")  # fmt: skip
-    write("novel_items", f"\\begin{{table*}}[t]\\centering\\footnotesize\n\\caption{{{esc(topic)}, question by question: the "
+    write("novel_items", f"\\begin{{table*}}[!tbp]\\centering\\footnotesize\n\\caption{{{esc(topic)}, question by question: the "
           "student's confidence in the right answer (\\%, mean of two option orders) under each material. The video is the "
           "pipeline's first attempt, before any repair.}\\label{tab:novel_items}\n"
           "\\begin{tabular}{p{6.4cm}p{2.4cm}rrrr}\\toprule Question & Answer & No video & 3 frames & Start/end & "
@@ -479,7 +479,7 @@ def models():
     body = ""
     for title, rows in groups:
         body += group(3, title) + "\n".join(f"{a} & {b} & {c} \\\\" for a, b, c in rows) + "\n"
-    write("models", "\\begin{table*}[t]\\centering\\footnotesize\n\\caption{Which model does each part. Every model runs "
+    write("models", "\\begin{table*}[!tbp]\\centering\\footnotesize\n\\caption{Which model does each part. Every model runs "
           "locally through Ollama, except the authors of the final quizzes. The student and the judge come from different "
           "families; the NOVEL-12 final quiz is written by a family the pipeline never uses.}\\label{tab:models}\n"
           "\\begin{tabular}{@{}lp{9.2cm}l@{}}\\toprule Part & What it does & Model\\\\\n" + body
@@ -532,7 +532,7 @@ def quality(macros):
         after = sum(s["rendered"] for s in a["after"].values())
         rows.append(f"{esc(t)} & {before}/4 & {regen} & {after}/4 & {'yes' if a['clean'] else 'no'} & "
                     f"{'in study' if a['complete'] else 'excluded'} \\\\")  # fmt: skip
-    write("quality", "\\begin{table*}[t]\\centering\\small\n\\caption{Admission of the NOVEL-12 base videos. Before: sections "
+    write("quality", "\\begin{table*}[!tbp]\\centering\\small\n\\caption{Admission of the NOVEL-12 base videos. Before: sections "
           "the pipeline rendered (a failing section used to be dropped silently). Retried: sections written again once, "
           "with the code check and layout rules. Clean: every section has layout (MVQS) at least 70 and no lasting "
           "conflict. A video enters the studies only if complete and approved by a person.}\\label{tab:quality}\n"
@@ -615,7 +615,7 @@ def layout_study(macros):
         rest = [d for t, d in named if t != top[0]]
         macros.update(LSTopTopic=esc(top[0]), LSTopDiff=pts(top[1]), LSDiffWithoutTop=pts(stt.mean(rest)) if rest else "--",
                       LSLosses=sum(d < 0 for _, d in named))  # fmt: skip
-    write("layout_study", "\\begin{table*}[t]\\centering\\small\n\\caption{Layout side study on the 10 admitted NOVEL-12 "
+    write("layout_study", "\\begin{table*}[!tbp]\\centering\\small\n\\caption{Layout side study on the 10 admitted NOVEL-12 "
           "videos, three versions of each. Layout: mean MVQS over sections. Conflicts: lasting overlaps or off-screen "
           "objects (SGA). Timing: leftovers and merged words (our timing check). Attachments: labels, arrows or boxes "
           "detached from, or nearer another shape than, the object the code attached them to (our attachment check). "
