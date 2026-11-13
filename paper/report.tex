@@ -1,6 +1,8 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
 \input{preamble}
+\IfFileExists{repair_layout_numbers.tex}{\input{repair_layout_numbers}}{}% layout of the kept repairs (bench/repair_layout.py)
+\providecommand{\RLWorse}{\pend}\providecommand{\RLRevisions}{\pend}\providecommand{\RLConflictsBase}{\pend}\providecommand{\RLConflictsLearner}{\pend}\providecommand{\RLAttachBase}{\pend}\providecommand{\RLAttachLearner}{\pend}
 \usepackage[section]{placeins}% every table prints before the next section starts
 
 \title{Measuring and Repairing Teaching in Code-Generated Videos:\\Technical Report}

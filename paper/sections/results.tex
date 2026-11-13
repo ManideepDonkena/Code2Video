@@ -131,7 +131,11 @@ six concepts to change in the same direction, and the gate let at most five chan
 comparisons, none passes the question-swap test either. F3's difference comes from a single concept.
 Two features do what they were built for. Checking the code before rendering (F2) raised the rewritten sections that
 rendered from 25 to 28 of 32. Small edits (F5) change about 23\% of a section's lines, against about 70\% for the
-rewrites of F2--F4. No stage made the layout worse. So on NOVEL-12, with this student, the repair loop gives no gain
+rewrites of F2--F4. The edits did not keep the layout clean, though. The gate lets a revision lower the layout
+score by up to 5 points and checks nothing else about the layout. In \RLWorse{} of the \RLRevisions{} revisions the F5 gate kept, the
+edit added lasting conflicts or broken attachments. Over these \RLRevisions{}, lasting conflicts rose from
+\RLConflictsBase{} to \RLConflictsLearner{} and broken attachments from \RLAttachBase{} to \RLAttachLearner{}
+(\texttt{bench/repair\_layout.py}). So on NOVEL-12, with this student, the repair loop gives no gain
 beyond noise at any stage. With ten concepts and most revisions refused, small benefits could not have been detected.
 
 \input{tables/stages}
