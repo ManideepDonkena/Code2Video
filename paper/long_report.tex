@@ -568,6 +568,22 @@ point; M9 did not change.
 
 \input{tables/layout_study}
 
+Figure~\ref{fig:layout_examples} shows three real frames the student saw, before and after Claude's fixes.
+
+\begin{figure}[t]\centering
+\includegraphics[width=\textwidth]{figures/layout_examples.pdf}
+\caption{\textbf{The layout gets better; the score does not follow.} Three frames the student saw, from our admitted
+video (left) and the Claude-fixed video (right). Under each frame: that section's layout score (MVQS), lasting
+conflicts and broken attachments, then M9 for the whole concept (all four sections; \texttt{gemma4:26b}). Top: the
+number line ran off screen and only 0 and 10 were visible. The fix shows 10 to 90, MVQS rises by 12 points, and M9
+barely moves. Middle: a shift had left the highlight boxes over empty space beside the digits. The fix puts them on
+the digits, which MVQS counts as two conflicts, so MVQS falls by 21 points although the frame is clearer. Bottom: labels
+piled on a tiny triangle at the edge, and two captions collided. The fix separates them; MVQS rises a little, and M9
+falls by 26 points. No single concept's change in M9 is beyond noise, and the study can only detect effects of about
+\NMLayoutMDE{} points or more.}
+\label{fig:layout_examples}
+\end{figure}
+
 \subsection{Step 3: improving the pipeline, one feature at a time (F0--F5)}
 
 \paperfig{fig_pipeline.png}{F2}{\textbf{Illustration of the pipeline.} Given a topic (and, for an invented concept, its definition card),
