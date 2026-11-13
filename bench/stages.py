@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import concurrent.futures as cf
 import json
+import os
 import statistics as stats
 import sys
 from pathlib import Path
@@ -26,12 +27,20 @@ from analyze import paired
 from c2vlab import dvgain, feedback, generate, stages
 
 MODES = feedback.MODES
+DENSE = os.getenv("C2V_DENSE", "1") != "0"  # 0: score on M9 only; must be the same for every version compared
 PAIRS = (("learner", "base"), ("learner", "generic"), ("learner", "learner_all"), ("generic", "base"))
 
 
 def score(video_dir, topic_dir):
-    """The ladder's metrics for one video (M5 discrete, M7 continuous rotated) and raw S_visual."""
+    """The ladder's metrics for one video (M5 discrete, M7 continuous rotated) and raw S_visual. With C2V_DENSE=0 only
+    M9 (3 frames per section): the dense video and start/end frames are not asked, and M7, M5 and their raw scores are
+    None. The dense video is about two thirds of the student's work."""
     blind = dvgain.probes(topic_dir, topic_dir, "blind")
+    if not DENSE:
+        sf, sb = dvgain.score(dvgain.probes(video_dir, topic_dir, "frames"), True, (0, 1)), dvgain.score(blind, True, (0, 1))
+        return {"m7": None, "m9": dvgain.nvg(sf, sb), "s_frames_p": sf, "nvg": None, "s_visual_p": None, "s_static_p": None,
+                "s_blind_p": sb, "m5": None, "sections": len(json.loads((video_dir / "sections.json").read_text())),
+                "mvqs": feedback.section_mvqs(video_dir)}  # fmt: skip
     p = {k: dvgain.probes(video_dir, topic_dir, k) for k in ("frames", "static", "visual")}
     both = (0, 1)
     sv, ss, sb = (dvgain.score(p["visual"], True, both), dvgain.score(p["static"], True, both),

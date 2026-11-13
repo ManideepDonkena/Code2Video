@@ -13,8 +13,9 @@ import json
 import re
 import subprocess
 import sys
+import time
 
-from . import llm, preflight, temporal
+from . import llm, preflight, temporal, timing
 from .scene_graph import graph
 
 PYTHON = sys.executable
@@ -199,6 +200,7 @@ def write_code(p, section, extra="", seed=0):
 
 def render(code_path, cls, media):
     """Render one section at low quality. Returns (mp4 path or None, error text)."""
+    began = time.time()
     try:
         r = subprocess.run(
             [PYTHON, "-m", "manim", "-ql", "--media_dir", str(media), "--disable_caching", str(code_path), cls],
@@ -208,9 +210,12 @@ def render(code_path, cls, media):
             check=False,
         )
     except subprocess.TimeoutExpired:
+        timing.log("render", code_path, cls, time.time() - began, False)
         return None, "render timed out after 600 s (an endless loop or a very long animation)"
     mp4 = media / "videos" / code_path.stem / "480p15" / f"{cls}.mp4"
-    if r.returncode == 0 and mp4.exists():
+    ok = r.returncode == 0 and mp4.exists()
+    timing.log("render", code_path, cls, time.time() - began, ok)
+    if ok:
         return mp4, ""
     return None, (r.stderr or r.stdout)[-3000:]
 

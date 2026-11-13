@@ -16,6 +16,7 @@ from __future__ import annotations
 import importlib.util
 import json
 import sys
+import time
 import traceback
 from pathlib import Path
 
@@ -143,8 +144,11 @@ def graph(path, cls, out):
     """Run in a subprocess (Manim is patched in place) and return the recorded graph."""
     import subprocess
 
+    from . import timing
+
     out = Path(out)
     out.unlink(missing_ok=True)  # never read the graph of an earlier version of the code
+    began = time.time()
     try:
         r = subprocess.run(
             [sys.executable, "-m", "c2vlab.scene_graph", str(path), cls, str(out)],
@@ -158,9 +162,11 @@ def graph(path, cls, out):
     except subprocess.TimeoutExpired:
         stderr = "timed out after 180 s"
     try:
-        return json.loads(out.read_text())
+        g = json.loads(out.read_text())
     except (OSError, ValueError):
-        return {"states": [], "error": {"type": "Crash", "message": stderr[-500:], "line": None}}
+        g = {"states": [], "error": {"type": "Crash", "message": stderr[-500:], "line": None}}
+    timing.log("scene_graph", path, cls, time.time() - began, not g.get("error"))
+    return g
 
 
 if __name__ == "__main__":
