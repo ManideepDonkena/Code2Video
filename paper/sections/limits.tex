@@ -26,10 +26,13 @@
   gain on 3 frames (M9) but not on the dense video (M7).
   \item \textbf{The model-free checks are narrow.} The timing check covers two kinds of fault; the attachment check
   skips labels anchored to a text glyph.
-  % Hand-typed from bench/layout_study.log, layout_study_rerun.log, layout_study_attach.log (sum of 'conflicts').
-  \item \textbf{The conflict count is not fully repeatable.} Re-rendering the same code three times gave the same
-  MVQS each time, but our videos' lasting conflicts summed to 29, 29 and 31 (Claude-fixed: 4 each time). Differences
-  of one or two conflicts, such as ours against the automatic fix, are within this noise; the fall to 4 is not.
+  % Hand-typed from bench/layout_study.log, layout_study_rerun.log, layout_study_attach.log (sum of 'conflicts'), and
+  % from bench/results/layout-study/rows.json of 22:33 (fixed tracker, commit 6a50457), summed over the 10 admitted concepts.
+  \item \textbf{The conflict counts were measured with a tracker bug.} The tracker sometimes gave a deleted object's
+  code line to a new one, so the same code gave 29, 29 and 31 lasting conflicts on three runs. With the bug fixed,
+  the counts repeat exactly. Our videos then have 27 lasting conflicts, as do our videos with timing fixes, against 4
+  for the Claude-fixed versions. The tables keep the earlier counts. MVQS, the attachment counts and every
+  conclusion are unchanged.
   \item \textbf{Counterfactual relabelling was not applied to MMMC.} It would rewrite TEST per video and break the
   paired design; NOVEL-12 controls the prior instead.
 \end{itemize}
