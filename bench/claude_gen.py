@@ -110,9 +110,10 @@ def run(family, topics, workers, repair):
         llm.PLANNER = llm.CODER = f"claude:{model}"  # the student and the judge stay local
     os.environ["C2V_STUDY"] = f"claude-gen-{family}"
     generate.FEATURES = {"preflight", "safe_patch"}  # the best configuration, from the first render
-    from c2vlab import layout
+    from c2vlab import layout, scene_graph
 
-    layout.CROWDING = False  # the rules every family of this study started under (and the local baseline's)
+    # the tracker and repair rule every family of this study started under (and the local baseline's)
+    layout.CROWDING, layout.SAFE, scene_graph.V2 = False, False, False
     if family.endswith("-anchor"):
         generate.FEATURES.add("anchor")
     cards = json.loads((ROOT / "bench" / "novel" / "cards.json").read_text())
@@ -241,7 +242,8 @@ def report():
     lines.append("| Total USD | " + " | ".join(str(rep[f].get("total_usd", "--")) for f in rep) + " |")
     (OUT / "report.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines))
-    tex(rep, keys)
+    if os.getenv("C2V_WRITE_PAPER") == "1":  # the paper is frozen; its tables are only rewritten on request
+        tex(rep, keys)
 
 
 def tex(rep, keys):

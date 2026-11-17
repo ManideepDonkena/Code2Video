@@ -1,0 +1,71 @@
+{
+ "quiz": "413aba581122gemma4:26b",
+ "judge": "gemma4:26b",
+ "frames": 12,
+ "items": [
+  {
+   "id": "t1",
+   "shown": true,
+   "said": true,
+   "frame": 2,
+   "quote": "vell = a × d - b - c",
+   "answered": true
+  },
+  {
+   "id": "t2",
+   "shown": true,
+   "said": true,
+   "frame": 2,
+   "quote": "vell = a × d - b - c",
+   "answered": true
+  },
+  {
+   "id": "t3",
+   "shown": true,
+   "said": true,
+   "frame": 2,
+   "quote": "vell = a × d - b - c",
+   "answered": true
+  },
+  {
+   "id": "t4",
+   "shown": true,
+   "said": true,
+   "frame": 2,
+   "quote": "vell = a × d - b - c",
+   "answered": true
+  },
+  {
+   "id": "t5",
+   "shown": true,
+   "said": true,
+   "frame": 10,
+   "quote": "Rule 1: only the diagonal is multiplied",
+   "answered": true
+  },
+  {
+   "id": "t6",
+   "shown": true,
+   "said": true,
+   "frame": 12,
+   "quote": "Swap b and c: the vell stays the same.",
+   "answered": true
+  },
+  {
+   "id": "t7",
+   "shown": true,
+   "said": true,
+   "frame": 2,
+   "quote": "vell = a × d - b - c",
+   "answered": true
+  },
+  {
+   "id": "t8",
+   "shown": true,
+   "said": true,
+   "frame": 2,
+   "quote": "vell = a × d - b - c",
+   "answered": true
+  }
+ ]
+}

@@ -1,0 +1,74 @@
+{
+ "quiz": "23f6e0d2ecf2|12|01",
+ "frames": 12,
+ "rotations": [
+  {
+   "rotation": 0,
+   "items": [
+    {
+     "id": "d1",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d2",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d3",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d4",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    }
+   ],
+   "missing": 4
+  },
+  {
+   "rotation": 1,
+   "items": [
+    {
+     "id": "d1",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d2",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d3",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d4",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    }
+   ],
+   "missing": 4
+  }
+ ]
+}

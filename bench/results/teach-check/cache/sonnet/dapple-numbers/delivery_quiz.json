@@ -1,0 +1,227 @@
+{
+ "topic": "Dapple numbers",
+ "written": 16,
+ "well_formed": 16,
+ "on_screen": 15,
+ "solved": 15,
+ "kept": 10,
+ "writer": "qwen3.6:latest",
+ "solver": "gemma4:26b",
+ "questions": [
+  {
+   "section": "s1",
+   "question": "Which two numbers does the worked example in section s1 combine?",
+   "options": {
+    "A": "3 and 6",
+    "B": "2 and 5",
+    "C": "5 and 2",
+    "D": "4 and 4"
+   },
+   "answer": "C",
+   "shown": "5 > 2",
+   "id": "d1"
+  },
+  {
+   "section": "s1",
+   "question": "Which verdict word is written in green next to the checkmark for the first example?",
+   "options": {
+    "A": "good",
+    "B": "valid",
+    "C": "DAPPLE",
+    "D": "correct"
+   },
+   "answer": "C",
+   "shown": "DAPPLE",
+   "id": "d2"
+  },
+  {
+   "section": "s1",
+   "question": "Which comparison expression is displayed for the number 25?",
+   "options": {
+    "A": "2 >= 5?",
+    "B": "2 = 5?",
+    "C": "2 < 5?",
+    "D": "2 > 5?"
+   },
+   "answer": "D",
+   "shown": "2 > 5?",
+   "id": "d3"
+  },
+  {
+   "section": "s1",
+   "question": "Which label is written above the orange box in the first example?",
+   "options": {
+    "A": "units",
+    "B": "ones",
+    "C": "last",
+    "D": "right"
+   },
+   "answer": "A",
+   "shown": "units",
+   "id": "d4"
+  },
+  {
+   "section": "s2",
+   "question": "Which number is shown as the tens digit for 7 in section s2?",
+   "options": {
+    "A": "0",
+    "B": "7",
+    "C": "none",
+    "D": "1"
+   },
+   "answer": "A",
+   "shown": "tens digit = 0",
+   "id": "d5"
+  },
+  {
+   "section": "s2",
+   "question": "Which comparison is shown below the number 7?",
+   "options": {
+    "A": "0 > 7 ?",
+    "B": "0 = 7 ?",
+    "C": "7 > 0 ?",
+    "D": "7 < 0 ?"
+   },
+   "answer": "A",
+   "shown": "0 > 7 ?",
+   "id": "d6"
+  },
+  {
+   "section": "s2",
+   "question": "Which verdict phrase is written below the crossed-out digits 0-9?",
+   "options": {
+    "A": "no dapple",
+    "B": "all invalid",
+    "C": "zero dapple",
+    "D": "none dapple"
+   },
+   "answer": "D",
+   "shown": "none dapple",
+   "id": "d7"
+  },
+  {
+   "section": "s3",
+   "question": "Which color is used for the text of the keywords in section s3?",
+   "options": {
+    "A": "GREEN",
+    "B": "YELLOW",
+    "C": "WHITE",
+    "D": "BLUE"
+   },
+   "answer": "B",
+   "shown": "units digit 0, tens digit 1 to 9",
+   "id": "d11"
+  },
+  {
+   "section": "s4",
+   "question": "Which comparison is shown below the reversed number 37?",
+   "options": {
+    "A": "3 > 7?",
+    "B": "3 < 7?",
+    "C": "7 > 3?",
+    "D": "3 = 7?"
+   },
+   "answer": "A",
+   "shown": "3 > 7?",
+   "id": "d14"
+  },
+  {
+   "section": "s4",
+   "question": "Which verdict text is shown below the comparison for 37?",
+   "options": {
+    "A": "not dapple",
+    "B": "no",
+    "C": "invalid",
+    "D": "false"
+   },
+   "answer": "A",
+   "shown": "not dapple",
+   "id": "d15"
+  }
+ ],
+ "dropped": [
+  {
+   "section": "s2",
+   "question": "Which rule formula is displayed at the bottom of section s2?",
+   "options": {
+    "A": "T > U",
+    "B": "\\text{tens} > \\text{units}",
+    "C": "tens > units",
+    "D": "\\text{first} > \\text{last}"
+   },
+   "answer": "B",
+   "shown": "\\text{tens} > \\text{units}",
+   "id": "d8",
+   "why": "answered without the video (P 0.85)"
+  },
+  {
+   "section": "s3",
+   "question": "Which keyword phrase is shown below the title in section s3?",
+   "options": {
+    "A": "multiple of 10",
+    "B": "units digit 0, tens digit 1 to 9",
+    "C": "ends in 0, starts 1-9",
+    "D": "tens > 0"
+   },
+   "answer": "B",
+   "shown": "units digit 0, tens digit 1 to 9",
+   "id": "d9",
+   "why": "answered without the video (P 0.66)"
+  },
+  {
+   "section": "s3",
+   "question": "Which caption lists the dapple numbers in section s3?",
+   "options": {
+    "A": "multiples of 10 are dapple",
+    "B": "10-90 are dapple",
+    "C": "10, 20, ..., 90 are all dapple",
+    "D": "10, 20, 30, 40, 50, 60, 70, 80, 90"
+   },
+   "answer": "C",
+   "shown": "Rule 1: 10, 20, ..., 90 are all dapple",
+   "id": "d10",
+   "why": "answered without the video (P 0.52)"
+  },
+  {
+   "section": "s4",
+   "question": "Which comparison is shown below the number 73 in section s4?",
+   "options": {
+    "A": "7 > 3",
+    "B": "73 > 0",
+    "C": "7 = 3",
+    "D": "3 < 7"
+   },
+   "answer": "A",
+   "shown": "7 > 3",
+   "id": "d12",
+   "why": "answered without the video (P 0.95)"
+  },
+  {
+   "section": "s4",
+   "question": "Which verdict symbol is shown next to the comparison for 73?",
+   "options": {
+    "A": "yes",
+    "B": "✓",
+    "C": "true",
+    "D": "✔"
+   },
+   "answer": "B",
+   "shown": "✓",
+   "id": "d13",
+   "why": "answered without the video (P 0.79)"
+  },
+  {
+   "section": "s3",
+   "question": "Which comparison text is shown above the card for 20?",
+   "options": {
+    "A": "2 > 0",
+    "B": "2 = 0",
+    "C": "20 > 0",
+    "D": "0 < 2"
+   },
+   "answer": "A",
+   "shown": "2 > 0",
+   "why": "shown text is not in the code"
+  }
+ ]
+}

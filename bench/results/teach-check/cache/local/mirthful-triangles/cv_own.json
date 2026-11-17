@@ -1,0 +1,71 @@
+{
+ "quiz": "6e3372953182gemma4:26b",
+ "judge": "gemma4:26b",
+ "frames": 12,
+ "items": [
+  {
+   "id": "t1",
+   "shown": false,
+   "said": false,
+   "frame": 3,
+   "quote": "Example: sides 3, 4, 5",
+   "answered": true
+  },
+  {
+   "id": "t2",
+   "shown": true,
+   "said": true,
+   "frame": 12,
+   "quote": "But for 3, 4, 5 twice the longest is 10 which exceeds nine so it is not mirthful",
+   "answered": true
+  },
+  {
+   "id": "t3",
+   "shown": true,
+   "said": true,
+   "frame": 8,
+   "quote": "Every equilateral triangle is mirthful",
+   "answered": true
+  },
+  {
+   "id": "t4",
+   "shown": true,
+   "said": true,
+   "frame": 10,
+   "quote": "Scaling preserves mirth",
+   "answered": true
+  },
+  {
+   "id": "t5",
+   "shown": false,
+   "said": false,
+   "frame": 10,
+   "quote": "Scaling preserves mirth",
+   "answered": true
+  },
+  {
+   "id": "t6",
+   "shown": false,
+   "said": false,
+   "frame": 3,
+   "quote": "Example: sides 3, 4, 5",
+   "answered": true
+  },
+  {
+   "id": "t7",
+   "shown": false,
+   "said": false,
+   "frame": 3,
+   "quote": "Example: sides 3, 4, 5",
+   "answered": true
+  },
+  {
+   "id": "t8",
+   "shown": false,
+   "said": false,
+   "frame": 8,
+   "quote": "2 x 5 <= 3 x 5",
+   "answered": true
+  }
+ ]
+}

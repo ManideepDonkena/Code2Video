@@ -39,6 +39,7 @@ CLAUDE_LEDGER = Path(os.getenv("C2V_CLAUDE_LEDGER", ROOT / "runs" / "ledger_clau
 CLAUDE_CAP_USD = float(os.getenv("C2V_CLAUDE_CAP_USD", "30.00"))
 CONTEXT = threading.local()  # CONTEXT.tag names the unit of work (e.g. one topic) in the Claude ledger
 CLAUDE_EFFORT = os.getenv("C2V_CLAUDE_EFFORT", "medium")
+CLAUDE_MAX_TOKENS = int(os.getenv("C2V_CLAUDE_MAX_TOKENS", "16000"))  # output limit of one request (thinking included)
 CLAUDE_ENV = Path(os.getenv("C2V_CLAUDE_ENV", "/home/mani/manim/lessonforge/.env"))
 # USD per million tokens (input, output), Anthropic first-party prices
 CLAUDE_PRICE = {"claude-haiku-5-5": (0.10, 0.50), "claude-sonnet-5-5": (2.0, 10.0), "claude-sonnet-5": (2.0, 10.0),
@@ -172,25 +173,33 @@ def _claude(model, messages, images, note):
             if line.startswith("ANTHROPIC_API_KEY="):
                 env["ANTHROPIC_API_KEY"] = line.split("=", 1)[1].strip().strip('"').strip("'")
     system = "\n\n".join(m["content"] for m in messages if m["role"] == "system") or "You are a careful assistant."
-    req = {"system": system, "text": messages[-1]["content"], "images": [str(i) for i in images],
-           "model": model, "effort": CLAUDE_EFFORT, "max_tokens": 16000}  # fmt: skip
-    began = time.time()
-    r = subprocess.run([str(ROOT / ".venv-claude" / "bin" / "python"), str(ROOT / "bench" / "claude_call.py")],
-                       input=json.dumps(req), capture_output=True, text=True, env=env, timeout=1200, check=False)  # fmt: skip
-    if r.returncode:
-        raise RuntimeError(f"claude_call failed: {r.stderr[-400:]}")
-    out = json.loads(r.stdout)
-    served = out["model"]
-    pin, pout = CLAUDE_PRICE.get(served, CLAUDE_PRICE.get(model, (4.0, 20.0)))
-    tin, tout = out["usage"]["input_tokens"], out["usage"]["output_tokens"]
-    CLAUDE_LEDGER.parent.mkdir(parents=True, exist_ok=True)
-    with CLAUDE_LEDGER.open("a") as f:
-        f.write(json.dumps({"t": round(began), "model": model, "served": served, "note": note,
-                            "study": os.getenv("C2V_STUDY", ""), "tag": getattr(CONTEXT, "tag", ""), "in": tin, "out": tout,
-                            "usd": round((tin * pin + tout * pout) / 1e6, 6), "s": round(time.time() - began, 1),
-                            "stop": out["stop_reason"]}) + "\n")  # fmt: skip
+    # An answer that stops at the output limit is cut off mid-code (thinking counts toward the limit). It used to be
+    # returned as if whole: on 2026-11-14 six such answers were taken for code, and one ended as a scene on another
+    # subject. It is asked once more with twice the room; still cut off, there is no answer.
+    for limit in (CLAUDE_MAX_TOKENS, 2 * CLAUDE_MAX_TOKENS):
+        req = {"system": system, "text": messages[-1]["content"], "images": [str(i) for i in images],
+               "model": model, "effort": CLAUDE_EFFORT, "max_tokens": limit}  # fmt: skip
+        began = time.time()
+        r = subprocess.run([str(ROOT / ".venv-claude" / "bin" / "python"), str(ROOT / "bench" / "claude_call.py")],
+                           input=json.dumps(req), capture_output=True, text=True, env=env, timeout=1200, check=False)  # fmt: skip
+        if r.returncode:
+            raise RuntimeError(f"claude_call failed: {r.stderr[-400:]}")
+        out = json.loads(r.stdout)
+        served = out["model"]
+        pin, pout = CLAUDE_PRICE.get(served, CLAUDE_PRICE.get(model, (4.0, 20.0)))
+        tin, tout = out["usage"]["input_tokens"], out["usage"]["output_tokens"]
+        CLAUDE_LEDGER.parent.mkdir(parents=True, exist_ok=True)
+        with CLAUDE_LEDGER.open("a") as f:
+            f.write(json.dumps({"t": round(began), "model": model, "served": served, "note": note,
+                                "study": os.getenv("C2V_STUDY", ""), "tag": getattr(CONTEXT, "tag", ""), "in": tin, "out": tout,
+                                "usd": round((tin * pin + tout * pout) / 1e6, 6), "s": round(time.time() - began, 1),
+                                "stop": out["stop_reason"]}) + "\n")  # fmt: skip
+        if out["stop_reason"] != "max_tokens":
+            break
     if out["stop_reason"] == "refusal":
         raise RuntimeError(f"{model}: refused")
+    if out["stop_reason"] == "max_tokens":
+        raise RuntimeError(f"{model}: the answer was cut off at {limit} output tokens")
     return out["text"] or ""
 
 

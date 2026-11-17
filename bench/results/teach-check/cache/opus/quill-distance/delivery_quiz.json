@@ -1,0 +1,224 @@
+{
+ "topic": "Quill distance",
+ "written": 16,
+ "well_formed": 16,
+ "on_screen": 13,
+ "solved": 13,
+ "kept": 11,
+ "writer": "qwen3.6:latest",
+ "solver": "gemma4:26b",
+ "questions": [
+  {
+   "section": "s1",
+   "question": "Which text label appears next to the orange vertical arrow in section s1?",
+   "options": {
+    "A": "+2",
+    "B": "+4",
+    "C": "+1",
+    "D": "+3"
+   },
+   "answer": "A",
+   "shown": "+2",
+   "id": "d1"
+  },
+  {
+   "section": "s1",
+   "question": "Which part of the formula is colored ORANGE in section s1?",
+   "options": {
+    "A": "+",
+    "B": "\\text{quill distance} = ",
+    "C": "2\\times",
+    "D": "|x_1 - x_2|"
+   },
+   "answer": "C",
+   "shown": "2\\times",
+   "id": "d3"
+  },
+  {
+   "section": "s2",
+   "question": "What text label is shown for the horizontal part in section s2?",
+   "options": {
+    "A": "horizontal: 2",
+    "B": "horizontal: 3",
+    "C": "horizontal: 4",
+    "D": "horizontal: 5"
+   },
+   "answer": "B",
+   "shown": "horizontal: 3",
+   "id": "d4"
+  },
+  {
+   "section": "s2",
+   "question": "What is the final answer boxed in yellow at the end of section s2?",
+   "options": {
+    "A": "6",
+    "B": "8",
+    "C": "7",
+    "D": "5"
+   },
+   "answer": "C",
+   "shown": "7",
+   "id": "d5"
+  },
+  {
+   "section": "s3",
+   "question": "What calculation is displayed in the MathTex box in section s3?",
+   "options": {
+    "A": "3 + 2\\times 2 = 7",
+    "B": "2 + 2\\times 3 = 8",
+    "C": "1 + 2\\times 4 = 9",
+    "D": "2\\times 2 + 3 = 7"
+   },
+   "answer": "D",
+   "shown": "2\\times 2 + 3 = 7",
+   "id": "d6"
+  },
+  {
+   "section": "s3",
+   "question": "What text is written on the left pan of the balance scale in section s3?",
+   "options": {
+    "A": "horizontal",
+    "B": "up",
+    "C": "sideways",
+    "D": "vertical"
+   },
+   "answer": "C",
+   "shown": "sideways",
+   "id": "d7"
+  },
+  {
+   "section": "s3",
+   "question": "What cost is displayed next to the sideways movement in section s3?",
+   "options": {
+    "A": "cost 3",
+    "B": "cost 1",
+    "C": "cost 2",
+    "D": "cost 4"
+   },
+   "answer": "B",
+   "shown": "cost 1",
+   "id": "d8"
+  },
+  {
+   "section": "s3",
+   "question": "What text is written on the right pan of the balance scale in section s3?",
+   "options": {
+    "A": "up",
+    "B": "down",
+    "C": "left",
+    "D": "sideways"
+   },
+   "answer": "A",
+   "shown": "up",
+   "id": "d9"
+  },
+  {
+   "section": "s4",
+   "question": "What is the coordinate label for point P in section s4?",
+   "options": {
+    "A": "P = (3, 0)",
+    "B": "P = (2, 1)",
+    "C": "P = (0, 3)",
+    "D": "P = (1, 2)"
+   },
+   "answer": "B",
+   "shown": "P = (2, 1)",
+   "id": "d10"
+  },
+  {
+   "section": "s4",
+   "question": "What calculation is shown next to the right horizontal arrow in section s4?",
+   "options": {
+    "A": "3 + 0 = 3",
+    "B": "1 + 1 = 2",
+    "C": "4 - 2 = 2",
+    "D": "2 + 0 = 2"
+   },
+   "answer": "D",
+   "shown": "2 + 0 = 2",
+   "id": "d11"
+  },
+  {
+   "section": "s4",
+   "question": "What calculation is shown next to the up vertical arrow in section s4?",
+   "options": {
+    "A": "2 + 2\\times 2 = 6",
+    "B": "0 + 1\\times 2 = 2",
+    "C": "1 + 2\\times 0 = 1",
+    "D": "0 + 2\\times 1 = 2"
+   },
+   "answer": "D",
+   "shown": "0 + 2\\times 1 = 2",
+   "id": "d12"
+  }
+ ],
+ "dropped": [
+  {
+   "section": "s1",
+   "question": "Which phrase is written in the key words list in section s1?",
+   "options": {
+    "A": "diagonal steps cost half",
+    "B": "vertical steps weigh more",
+    "C": "horizontal steps weigh more",
+    "D": "vertical steps are free"
+   },
+   "answer": "B",
+   "shown": "vertical steps weigh more",
+   "id": "d2",
+   "why": "answered without the video (P 0.79)"
+  },
+  {
+   "section": "s4",
+   "question": "What text is written in the final caption at the bottom of section s4?",
+   "options": {
+    "A": "distance 2: 2 sideways or 1 up/down",
+    "B": "distance 2: diamond outline",
+    "C": "distance 2: 4 points total",
+    "D": "distance 2: square shape"
+   },
+   "answer": "A",
+   "shown": "distance 2: 2 sideways or 1 up/down",
+   "id": "d13",
+   "why": "answered without the video (P 1.00)"
+  },
+  {
+   "section": "s1",
+   "question": "Which number is missing from the x-axis labels in section s1?",
+   "options": {
+    "A": "0",
+    "B": "-1",
+    "C": "3",
+    "D": "6"
+   },
+   "answer": "C",
+   "shown": "3",
+   "why": "shown text is not in the code"
+  },
+  {
+   "section": "s2",
+   "question": "What is the first number displayed in the counter during the horizontal walk in section s2?",
+   "options": {
+    "A": "1",
+    "B": "4",
+    "C": "3",
+    "D": "0"
+   },
+   "answer": "A",
+   "shown": "1",
+   "why": "shown text is not in the code"
+  },
+  {
+   "section": "s2",
+   "question": "What intermediate total is shown when the quill moves up the first vertical unit in section s2?",
+   "options": {
+    "A": "6",
+    "B": "5",
+    "C": "3",
+    "D": "4"
+   },
+   "answer": "B",
+   "shown": "5",
+   "why": "shown text is not in the code"
+  }
+ ]
+}

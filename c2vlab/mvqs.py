@@ -7,6 +7,17 @@ MVQS = 0.5 S_sp + 0.2 S_ly + 0.3 S_ed (SGA's weights; inner weights in SGA's lis
 Where SGA gives no formula we chose: severity by coverage ratio (>0.30 high = 1, >0.10 medium = 0.5, else 0.2);
 a text wholly inside a shape is a label in its box, not a conflict; separation = nearest-neighbour centroid distance
 of texts over 10% of the diagonal, capped at 1.
+
+Three cases are judged by more than boxes when the graph has the fields (scene_graph V2, 2026-11-14):
+  highlight   an unfilled outline drawn after a text with its centre inside the text's box (a circle round the
+              answer in a formula) is not a conflict. The repair used to move such a ring off its word.
+  line        a straight line or arrow conflicts with a text only where the segment itself runs through the text's
+              box (more than LINE_IN units). A diagonal arrow's box covers two empty corners, and a text in one of
+              them was moved for no reason; a text wholly inside that box was excused even with the line through it.
+              Two uses of a line on a text are meant and are not conflicts: the text sits on a filled plate that
+              hides the line behind it (a "x" placed on an arrow), and a plain line drawn later through the middle
+              of the text (crossing a term out).
+  part        two pieces of one axis or labelled brace never conflict with each other (Manim places them).
 """
 
 from __future__ import annotations
@@ -15,6 +26,7 @@ import math
 
 W, H = 14.222, 8.0
 GAP = 0.15
+LINE_IN = 0.1  # a line conflicts with a text when more than this length of it lies inside the text's box
 
 
 def area(b):
@@ -46,6 +58,59 @@ def separation_vector(move, stay):
     return [round(options[0][0], 2), round(options[0][1], 2)]
 
 
+def inside_length(seg, b):
+    """Length of the segment [x0, y0, x1, y1] that lies inside box b (Liang-Barsky clipping)."""
+    x0, y0, x1, y1 = seg
+    dx, dy = x1 - x0, y1 - y0
+    t0, t1 = 0.0, 1.0
+    for p, q in ((-dx, x0 - b[0]), (dx, b[2] - x0), (-dy, y0 - b[1]), (dy, b[3] - y0)):
+        if p == 0:
+            if q < 0:
+                return 0.0
+        elif p < 0:
+            t0 = max(t0, q / p)
+        else:
+            t1 = min(t1, q / p)
+    return max(0.0, t1 - t0) * math.hypot(dx, dy)
+
+
+def off_line(box, seg):
+    """Smallest shift that takes the box clear of the line through seg, at right angles to the line."""
+    x0, y0, x1, y1 = seg
+    length = math.hypot(x1 - x0, y1 - y0) or 1.0
+    nx, ny = -(y1 - y0) / length, (x1 - x0) / length
+    d = ((box[0] + box[2]) / 2 - x0) * nx + ((box[1] + box[3]) / 2 - y0) * ny  # centre's signed distance from the line
+    need = abs(nx) * (box[2] - box[0]) / 2 + abs(ny) * (box[3] - box[1]) / 2 + GAP - abs(d)
+    side = 1.0 if d >= 0 else -1.0
+    return [round(side * need * nx, 2), round(side * need * ny, 2)]
+
+
+def meant(line, text, objs, run):
+    """A line through a text that the scene intends: the text has a filled plate under it, or the line is a plain
+    stroke drawn after the text, through its middle and across most of it (a term crossed out). `run` is the length
+    of the line inside the text's box; a line that only clips a label on its way elsewhere is not excused."""
+    t = text["box"]
+    if any(o is not text and o["kind"] != "Text" and (o.get("fill") or 0) >= 0.5 and inter(o["box"], t) >= 0.9 * area(t)
+           for o in objs):  # fmt: skip
+        return True
+    x0, y0, x1, y1 = line["seg"]
+    mid = t[0] <= (x0 + x1) / 2 <= t[2] and t[1] <= (y0 + y1) / 2 <= t[3]
+    across = run >= 0.6 * (t[2] - t[0])
+    return (
+        line["type"] in ("Line", "DashedLine") and mid and across and (line.get("line") or 0) >= (text.get("line") or 0)
+    )
+
+
+def highlight(shape, text):
+    """An unfilled outline drawn after the text with its centre inside the text's box: a ring or box that marks
+    (part of) the text. A shape that merely collides with a text has its centre outside the text's thin box.
+    Needs the fill field; without it nothing is excused."""
+    if shape.get("fill") is None or shape["fill"] > 0.05 or (shape.get("line") or 0) < (text.get("line") or 0):
+        return False
+    s, t = shape["box"], text["box"]
+    return t[0] <= (s[0] + s[2]) / 2 <= t[2] and t[1] <= (s[1] + s[3]) / 2 <= t[3]
+
+
 def conflicts(objects):
     """Text-involving overlaps in one resting state, with severity and a fix vector for the text."""
     found = []
@@ -54,18 +119,32 @@ def conflicts(objects):
         for b in objs[i + 1 :]:
             if "Text" not in (a["kind"], b["kind"]):
                 continue
+            if a.get("part") is not None and a.get("part") == b.get("part"):
+                continue  # two pieces of one axis or labelled brace
             x = inter(a["box"], b["box"])
             if x <= 0:
                 continue
             text, other = (a, b) if a["kind"] == "Text" else (b, a)
-            if other["kind"] != "Text" and x / area(text["box"]) > 0.98:
-                continue  # a label wholly inside its shape
             ratio = max(x / area(a["box"]), x / area(b["box"]))
             sev = 1.0 if ratio > 0.30 else 0.5 if ratio > 0.10 else 0.2
+            if other["kind"] != "Text" and other.get("seg"):  # a straight line: where it runs, not its box
+                t = text["box"]
+                run = inside_length(other["seg"], [t[0] + 0.03, t[1] + 0.03, t[2] - 0.03, t[3] - 0.03])
+                if run <= LINE_IN or meant(other, text, objs, run):
+                    continue
+                ratio = min(1.0, run / max(t[2] - t[0], 1e-6))
+                sev = 1.0 if ratio > 0.30 else 0.5
+            elif other["kind"] != "Text" and x / area(text["box"]) > 0.98:
+                continue  # a label wholly inside its shape
+            elif other["kind"] != "Text" and highlight(other, text):
+                continue  # a ring or box drawn round (part of) the text to mark it
             # move the later-created object (what was placed onto something already there)
             mover, stay = (a, b) if (a.get("line") or 0) >= (b.get("line") or 0) else (b, a)
-            found.append({"severity": sev, "ratio": round(ratio, 3), "move": mover, "stay": stay,
-                          "vector": separation_vector(mover["box"], stay["box"])})  # fmt: skip
+            vector = separation_vector(mover["box"], stay["box"])
+            if other["kind"] != "Text" and other.get("seg"):  # step off the line, not out of its whole box
+                v = off_line(text["box"], other["seg"])
+                vector = v if mover is text else [-v[0], -v[1]]
+            found.append({"severity": sev, "ratio": round(ratio, 3), "move": mover, "stay": stay, "vector": vector})
     for o in objs:
         b = o["box"]
         if b[0] < -W / 2 - 0.01 or b[2] > W / 2 + 0.01 or b[1] < -H / 2 - 0.01 or b[3] > H / 2 + 0.01:

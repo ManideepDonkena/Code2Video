@@ -1,0 +1,28 @@
+{
+ "note": "The 10 plain-prompt and 10 blueprint-prompt videos of the first run, measured again on 2026-11-14 with layout_study.layout_of, CROWDING off.",
+ "old_tracker": {
+  "plain": {
+   "conflicts": 13,
+   "broken_attachments": 9
+  },
+  "blueprint": {
+   "conflicts": 8,
+   "broken_attachments": 2
+  },
+  "faults_fell": 8,
+  "faults_rose": 2,
+  "videos_matching_recorded_counts": "20/20"
+ },
+ "v2_tracker": {
+  "plain": {
+   "conflicts": 17,
+   "broken_attachments": 9
+  },
+  "blueprint": {
+   "conflicts": 13,
+   "broken_attachments": 2
+  },
+  "faults_fell": 7,
+  "faults_rose": 3
+ }
+}

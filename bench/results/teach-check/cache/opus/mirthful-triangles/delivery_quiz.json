@@ -1,0 +1,217 @@
+{
+ "topic": "Mirthful triangles",
+ "written": 16,
+ "well_formed": 15,
+ "on_screen": 13,
+ "solved": 11,
+ "kept": 5,
+ "writer": "qwen3.6:latest",
+ "solver": "gemma4:26b",
+ "questions": [
+  {
+   "section": "s2",
+   "question": "What inequality is displayed in the readout when the slider value s equals 5?",
+   "options": {
+    "A": "10 > 9",
+    "B": "10 ≤ 15",
+    "C": "5 ≤ 7.5",
+    "D": "20 ≤ 30"
+   },
+   "answer": "D",
+   "shown": "2s \\le 3s",
+   "id": "d5"
+  },
+  {
+   "section": "s2",
+   "question": "What phrase is written in yellow text to explain why the rule holds?",
+   "options": {
+    "A": "true for any s > 0",
+    "B": "valid for all triangles",
+    "C": "independent of size",
+    "D": "holds for equilateral only"
+   },
+   "answer": "A",
+   "shown": "true for any } s > 0",
+   "id": "d6"
+  },
+  {
+   "section": "s3",
+   "question": "What variable is highlighted in yellow and then crossed out to show cancellation in the general statement?",
+   "options": {
+    "A": "k",
+    "B": "n",
+    "C": "m",
+    "D": "x"
+   },
+   "answer": "A",
+   "shown": "k",
+   "id": "d9"
+  },
+  {
+   "section": "s4",
+   "question": "What value does the slider for the middle side 'm' start at in Case 1?",
+   "options": {
+    "A": "4.0",
+    "B": "5.0",
+    "C": "3.0",
+    "D": "6.0"
+   },
+   "answer": "A",
+   "shown": "4",
+   "id": "d11"
+  },
+  {
+   "section": "s4",
+   "question": "What text appears in the badge for Case 1?",
+   "options": {
+    "A": "Valid",
+    "B": "Invalid",
+    "C": "Mirthful",
+    "D": "Not mirthful"
+   },
+   "answer": "C",
+   "shown": "Mirthful",
+   "id": "d12"
+  }
+ ],
+ "dropped": [
+  {
+   "section": "s1",
+   "question": "Which two numbers does the worked example in section s1 combine to show that 12 ≤ 12?",
+   "options": {
+    "A": "4 and 6",
+    "B": "2 and 6",
+    "C": "3 and 4",
+    "D": "5 and 6"
+   },
+   "answer": "A",
+   "shown": "6",
+   "id": "d1",
+   "why": "answered without the video (P 0.55)"
+  },
+  {
+   "section": "s1",
+   "question": "What value is shown on the right side of the bar chart for the '1.5 × shortest' metric in the left triangle?",
+   "options": {
+    "A": "7.5",
+    "B": "6",
+    "C": "4",
+    "D": "9"
+   },
+   "answer": "B",
+   "shown": "6",
+   "id": "d3",
+   "why": "answered without the video (P 0.77)"
+  },
+  {
+   "section": "s2",
+   "question": "What is the final caption text shown at the bottom of section s2?",
+   "options": {
+    "A": "All equilateral triangles are green",
+    "B": "Rule 1: every equilateral triangle is mirthful",
+    "C": "Scaling does not affect mirthfulness",
+    "D": "Equilateral triangles are always valid"
+   },
+   "answer": "B",
+   "shown": "every equilateral",
+   "id": "d7",
+   "why": "answered without the video (P 0.62)"
+  },
+  {
+   "section": "s3",
+   "question": "What multiplier is shown on the arrow connecting the small triangle (4,5,6) to the large triangle (8,10,12)?",
+   "options": {
+    "A": "\\times 4",
+    "B": "\\times 3",
+    "C": "\\times 1.5",
+    "D": "\\times 2"
+   },
+   "answer": "D",
+   "shown": "\\times 2",
+   "id": "d8",
+   "why": "answered without the video (P 1.00)"
+  },
+  {
+   "section": "s3",
+   "question": "What is the final caption text at the bottom of section s3?",
+   "options": {
+    "A": "Mirthfulness is invariant under scaling",
+    "B": "Rule 2: scaling preserves mirthfulness — shape, not size",
+    "C": "Scaling changes nothing about mirth",
+    "D": "Size does not matter for triangles"
+   },
+   "answer": "B",
+   "shown": "Rule 2: scaling preserves mirthfulness — shape, not size",
+   "id": "d10",
+   "why": "answered without the video (P 1.00)"
+  },
+  {
+   "section": "s4",
+   "question": "What is the final closing caption text in section s4?",
+   "options": {
+    "A": "Middle sides do not affect the verdict",
+    "B": "Rule 3: only the longest and shortest sides matter",
+    "C": "Only extremes determine mirthfulness",
+    "D": "The middle side is irrelevant"
+   },
+   "answer": "B",
+   "shown": "Rule 3: only the longest and shortest sides matter",
+   "id": "d13",
+   "why": "answered without the video (P 0.80)"
+  },
+  {
+   "section": "s1",
+   "question": "What label is placed next to the side of length 5 in the right-hand triangle example?",
+   "options": {
+    "A": "middle",
+    "B": "shortest",
+    "C": "longest",
+    "D": "hypotenuse"
+   },
+   "answer": "B",
+   "shown": "5",
+   "id": "d2",
+   "why": "solver chose C"
+  },
+  {
+   "section": "s1",
+   "question": "What text appears in the badge for the triangle with sides 3, 4, and 5?",
+   "options": {
+    "A": "MIRTHFUL",
+    "B": "RIGHT TRIANGLE",
+    "C": "NOT MIRTHFUL",
+    "D": "VALID"
+   },
+   "answer": "C",
+   "shown": "NOT MIRTHFUL",
+   "id": "d4",
+   "why": "solver chose N"
+  },
+  {
+   "section": "s3",
+   "question": "What is the result of the calculation shown for the large triangle (8,10,12)?",
+   "options": {
+    "A": "24 \\le 24",
+    "B": "12 \\le 12",
+    "C": "16 \\le 24",
+    "D": "30 > 27"
+   },
+   "answer": "A",
+   "shown": "2\\times12=24\\le 3\times8=24",
+   "why": "shown text is not in the code"
+  },
+  {
+   "section": "s4",
+   "question": "What is the readout inequality shown for Case 1 (sides 4, m, 6)?",
+   "options": {
+    "A": "12 \\le 9",
+    "B": "2\\times 5 = 10 > 3\times 3 = 9",
+    "C": "2\\times m \\le 3\times 4",
+    "D": "2\\times 6 = 12 \\le 3\times 4 = 12"
+   },
+   "answer": "D",
+   "shown": "2\\times 6 = 12 \\le 3\times 4 = 12",
+   "why": "shown text is not in the code"
+  }
+ ]
+}

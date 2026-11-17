@@ -116,6 +116,62 @@ class {cls}(TeachingScene):
 formulas; no 3D, no files, no other imports. Give every object you show a variable name.
 Return only the Python code."""
 
+# Blueprint layout (the "typesetter" rules, 2026-11-14): the coder declares bands of the screen first, places every
+# top-level object at explicit coordinates, builds rows as groups, keeps one object per band, and keeps text short.
+# Used when "blueprint" is in FEATURES (bench/blueprint_study.py). `fit` is added to the file by ensure_fit, so the
+# model never has to copy it.
+FIT = """def fit(m, x=6.8, y=3.8):
+    # keeps m inside the usable area: shrinks it if it is larger, then moves it back in
+    if m.width > 2 * x or m.height > 2 * y:
+        m.scale(0.98 * min(2 * x / max(m.width, 1e-6), 2 * y / max(m.height, 1e-6)))
+    dx = max(-x - m.get_left()[0], 0) + min(x - m.get_right()[0], 0)
+    dy = max(-y - m.get_bottom()[1], 0) + min(y - m.get_top()[1], 0)
+    return m.shift([dx, dy, 0])
+"""
+
+CODE_BLUEPRINT = """Write Manim Community v0.20 code for ONE section of an educational video. Work like a typesetter:
+decide where everything goes before you create any object.
+
+Video: {title}
+Section {id}: {stitle}
+It teaches: {teaches}
+What to draw: {visual}
+Narration (show its key words as short on-screen text, not whole sentences): {narration}
+{extra}
+Rules:
+- Exactly: `from manim import *` then `class {cls}(Scene):` with `def construct(self):`. No other imports, no files.
+- 15 to 25 seconds in total (sum of run_time and wait).
+- Use Text for words; MathTex only for formulas. Font sizes 24 to 40; the title small (font_size <= 36).
+- Give every object you show a variable name.
+
+Layout rules:
+1. Blueprint first. The first line of construct is a comment that maps the screen into bands, for example
+   # LAYOUT: title y=3.6 | row A y=2.0 | row B y=0.3 | key y=-3.4
+   The frame is 14.2 wide and 8 high; the usable area is x in [-6.8, 6.8], y in [-3.8, 3.8].
+   Never use to_edge, to_corner or move_to(ORIGIN). The only exception is the title: .to_edge(UP, buff=0.3).
+   Place every top-level object with .move_to([x, y, 0]), using the coordinates of your LAYOUT line.
+2. Group and drop. Build a row or a grid of items as VGroup(...).arrange(RIGHT, buff=0.3), then move_to the whole
+   group once. Before you place a group, write its width as a comment (# width: 6 * 0.8 + 5 * 0.3 = 6.3) and keep it
+   under 13. A sub-label is attached to its object: label.next_to(parent_object, DOWN, buff=0.15). next_to always
+   takes an object, never a bare direction such as LEFT.
+3. One occupant per band. A band holds one top-level object at a time. To put a new object where another one is, use
+   ReplacementTransform(old, new), or FadeOut(old) in the step before. Do not write a label by hand where a built-in
+   one already is (no Text at n2p(0) on a NumberLine that has include_numbers=True).
+4. Sizes. Every Text has at most 6 words and 40 characters; never a whole sentence. NumberLine and Axes take length
+   (or x_length and y_length), at most 12; never unit_size. Wrap every top-level object you place in fit(...):
+   label = fit(Text("Result", font_size=30).move_to([0, 2.0, 0])). fit is already defined for you (it keeps an object
+   inside the usable area); do not define it.
+Return only the Python code."""
+
+
+def ensure_fit(code):
+    """The blueprint prompt lets the scene call fit(); the helper is put after the import when the file lacks it."""
+    if "blueprint" not in FEATURES or "def fit(" in code or "fit(" not in code:
+        return code
+    head = "from manim import *"
+    return code.replace(head, head + "\n\n\n" + FIT, 1) if head in code else FIT + "\n\n" + code
+
+
 FIX_BLOCK = """This Manim section fails or has a layout fault. Fix ONLY the lines shown (lines {a} to {b}).
 
 Problem: {problem}
@@ -126,7 +182,7 @@ Lines {a}-{b}:
 Return JSON: {{"lines": "<the replacement for lines {a}-{b}, same indentation>"}}"""
 
 FIX_WHOLE = """Rewrite this Manim section so it runs and has no layout faults. Keep what it teaches and shows.
-
+{brief}
 Problems:
 {problem}
 
@@ -171,7 +227,9 @@ HINTS = [
 ]
 
 
-#: pipeline features switched on for this process (bench/stages.py sets them; empty = the pilot's pipeline)
+#: pipeline features switched on for this process (bench/stages.py sets them; empty = the pilot's pipeline).
+#: "brief" (2026-11-14): a whole-section rewrite is told what the section must teach and show, and a file that is
+#: not code is written again from that brief instead of being patched.
 FEATURES: set[str] = set()
 
 #: hints added with the `preflight` feature (failure classes the pilot's table missed)
@@ -246,11 +304,13 @@ def cls_of(section):
 
 def strip_fence(text):
     m = re.search(r"```(?:python)?\n(.*?)```", text, re.DOTALL)
+    if not m and (cut := re.search(r"```(?:python)?\n", text)):
+        return text[cut.end() :].strip() + "\n"  # a fence that never closes (a cut-off answer): drop the fence line
     return (m.group(1) if m else text).strip() + "\n"
 
 
 def write_code(p, section, extra="", seed=0):
-    template = CODE_ANCHOR if "anchor" in FEATURES else CODE
+    template = CODE_ANCHOR if "anchor" in FEATURES else CODE_BLUEPRINT if "blueprint" in FEATURES else CODE
     text = llm.ask(
         llm.CODER,
         template.format(
@@ -316,12 +376,22 @@ def patch_block(code, a, b, problem):
     return "\n".join(rows[: a - 1] + new + rows[b:]) + "\n"
 
 
-def rewrite(code, cls, problem):
-    """ScopeRefine's section scope: the whole scene again, with the problems named."""
+def brief_of(p, section, extra=""):
+    """What a section must teach and show, as the coder was first told it (the `brief` feature)."""
+    return (f"Video: {p['title']}\nSection {section['id']}: {section['title']}\nIt teaches: {section['teaches']}\n"
+            f"What to draw: {section['visual']}\nNarration: {section['narration']}\n{extra}").strip()  # fmt: skip
+
+
+def rewrite(code, cls, problem, brief=""):
+    """ScopeRefine's section scope: the whole scene again, with the problems named. Without `brief` the model sees
+    only the code; from code that was broken or cut off it then wrote a scene on another subject (2026-11-14), so
+    build_section passes the brief when the `brief` feature is on. With brief "" the prompt is as it always was."""
+    told = f"\nIt must still teach and show exactly this (the content does not change):\n{brief}\n" if brief else ""
     try:
         text = llm.ask(
-            llm.CODER, FIX_WHOLE.format(problem=problem[-3000:], code=code, cls=cls), temperature=0.2, as_json=False
-        )
+            llm.CODER, FIX_WHOLE.format(problem=problem[-3000:], code=code, cls=cls, brief=told), temperature=0.2,
+            as_json=False,
+        )  # fmt: skip
     except RuntimeError:
         return None  # a repair that cannot be had stands aside
     return strip_fence(text)
@@ -336,7 +406,10 @@ def build_section(p, section, out, log=print, extra="", seed=0):
     if not path.exists() or extra:
         path.write_text(write_code(p, section, extra, seed=seed))
     history = []
+    brief = brief_of(p, section, extra) if "brief" in FEATURES else ""
     for attempt in range(4):
+        if "blueprint" in FEATURES and (given := path.read_text()) != (with_fit := ensure_fit(given)):
+            path.write_text(with_fit)  # also after a repair that rewrote the file without the helper
         if "preflight" in FEATURES:  # F2 also fixes timing faults (c2vlab/temporal.py) before every render
             fixed, applied = temporal.fix(path.read_text())
             if applied:
@@ -356,8 +429,14 @@ def build_section(p, section, out, log=print, extra="", seed=0):
                             "error": problem[-400:]})  # fmt: skip
             log(f"[gen] {section['id']}: preflight {first['kind']} at line {line} ({first['message'][:70]}), repairing by {scope}")
             code = path.read_text()
-            new = (rewrite(code, cls, problem) if scope == "section"
-                   else patch_block(code, line - reach, line + reach, problem))  # fmt: skip
+            if brief and first["kind"] == "syntax" and (line or 1) <= 3:
+                # not code at all (prose, or an answer cut off before it began): patching lines of it cannot help,
+                # and a rewrite would be a guess. Write the section again from its brief.
+                history[-1]["scope"] = "again"
+                new = write_code(p, section, extra + "\nReturn ONLY the Python code, nothing before it.", seed=seed + attempt + 1)
+            else:
+                new = (rewrite(code, cls, problem, brief) if scope == "section"
+                       else patch_block(code, line - reach, line + reach, problem))  # fmt: skip
             if new:
                 path.write_text(new)
             continue
@@ -378,11 +457,13 @@ def build_section(p, section, out, log=print, extra="", seed=0):
         history.append({"attempt": attempt, "ok": False, "line": line, "scope": scope, "error": problem[-400:]})
         log(f"[gen] {section['id']}: render failed at line {line} ({problem[:80]}), repairing by {scope}")
         if scope == "section":
-            new = rewrite(code, cls, f"line {line}: {problem}" if line else problem)
+            new = rewrite(code, cls, f"line {line}: {problem}" if line else problem, brief)
         else:
             new = patch_block(code, line - reach, line + reach, problem)
         if new:
             path.write_text(new)
+    if "blueprint" in FEATURES:
+        path.write_text(ensure_fit(path.read_text()))
     if "preflight" in FEATURES and not preflight.check(path.read_text()):
         mp4, _ = render(path, cls, out / "media")  # the last repair is rendered too (the pilot's loop dropped it)
         history.append({"attempt": 4, "ok": bool(mp4)})

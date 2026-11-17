@@ -1,0 +1,229 @@
+{
+ "topic": "Orbit words",
+ "written": 16,
+ "well_formed": 16,
+ "on_screen": 16,
+ "solved": 16,
+ "kept": 9,
+ "writer": "qwen3.6:latest",
+ "solver": "gemma4:26b",
+ "questions": [
+  {
+   "section": "s1",
+   "question": "What is the right-hand side of the first rewrite rule displayed in the caption?",
+   "options": {
+    "A": "XY",
+    "B": "YYY",
+    "C": "YXX",
+    "D": "XYY"
+   },
+   "answer": "D",
+   "shown": "Each X → XYY",
+   "id": "d2"
+  },
+  {
+   "section": "s2",
+   "question": "What text is shown in the caption at Step 0?",
+   "options": {
+    "A": "Root Node",
+    "B": "Start from X",
+    "C": "Initial State",
+    "D": "Begin with Y"
+   },
+   "answer": "B",
+   "shown": "Start from X",
+   "id": "d5"
+  },
+  {
+   "section": "s2",
+   "question": "What text is shown in the caption describing the simultaneous expansion?",
+   "options": {
+    "A": "every letter, same time",
+    "B": "parallel rewrite",
+    "C": "global update",
+    "D": "all letters at once"
+   },
+   "answer": "A",
+   "shown": "every letter, same time",
+   "id": "d7"
+  },
+  {
+   "section": "s2",
+   "question": "What text is shown in the final caption representing the resulting word?",
+   "options": {
+    "A": "Output: XYYYXYX",
+    "B": "Result: XYYYXYX",
+    "C": "XYY = XYYYXYX",
+    "D": "XYY → XYYYXYX"
+   },
+   "answer": "D",
+   "shown": "XYY → XYYYXYX",
+   "id": "d8"
+  },
+  {
+   "section": "s3",
+   "question": "What is the third word listed in the left-aligned column of previous words?",
+   "options": {
+    "A": "XYYXYX",
+    "B": "XYYYXYX",
+    "C": "XYXYXYX",
+    "D": "XYYXYYX"
+   },
+   "answer": "B",
+   "shown": "XYYYXYX",
+   "id": "d9"
+  },
+  {
+   "section": "s3",
+   "question": "What text is shown in the key phrase at the bottom of the screen?",
+   "options": {
+    "A": "repeats at every step",
+    "B": "holds true always",
+    "C": "invariant property",
+    "D": "constant feature"
+   },
+   "answer": "A",
+   "shown": "repeats at every step",
+   "id": "d11"
+  },
+  {
+   "section": "s4",
+   "question": "What text is shown for the X rewrite rule on the right panel?",
+   "options": {
+    "A": "X expands to 3",
+    "B": "X becomes YYY",
+    "C": "X yields 3 chars",
+    "D": "X → 3 letters"
+   },
+   "answer": "D",
+   "shown": "X → 3 letters",
+   "id": "d13"
+  },
+  {
+   "section": "s4",
+   "question": "What is the last number shown in the chain of lengths on the right?",
+   "options": {
+    "A": "15",
+    "B": "19",
+    "C": "17",
+    "D": "21"
+   },
+   "answer": "C",
+   "shown": "17",
+   "id": "d15"
+  },
+  {
+   "section": "s4",
+   "question": "What text is shown on the arrows connecting the lengths in the chain?",
+   "options": {
+    "A": "grows",
+    "B": "longer",
+    "C": "increases",
+    "D": "bigger"
+   },
+   "answer": "B",
+   "shown": "longer",
+   "id": "d16"
+  }
+ ],
+ "dropped": [
+  {
+   "section": "s1",
+   "question": "Which two letters appear in the first rewrite rule shown on screen?",
+   "options": {
+    "A": "Y and Z",
+    "B": "X and Y",
+    "C": "A and B",
+    "D": "X and Z"
+   },
+   "answer": "B",
+   "shown": "Two letters: X and Y",
+   "id": "d1",
+   "why": "answered without the video (P 0.97)"
+  },
+  {
+   "section": "s1",
+   "question": "What is the right-hand side of the second rewrite rule displayed in the caption?",
+   "options": {
+    "A": "YX",
+    "B": "XX",
+    "C": "XY",
+    "D": "YY"
+   },
+   "answer": "A",
+   "shown": "Each Y → YX",
+   "id": "d3",
+   "why": "answered without the video (P 0.51)"
+  },
+  {
+   "section": "s1",
+   "question": "What label is placed above the white rectangle that boxes the rules?",
+   "options": {
+    "A": "Base Cases",
+    "B": "Transformations",
+    "C": "Rewrite rules",
+    "D": "Orbit Rules"
+   },
+   "answer": "C",
+   "shown": "Rewrite rules",
+   "id": "d4",
+   "why": "answered without the video (P 1.00)"
+  },
+  {
+   "section": "s2",
+   "question": "What text is shown in the caption after Step 1 is formed?",
+   "options": {
+    "A": "One X, Two Ys",
+    "B": "X becomes YY",
+    "C": "X → XYY",
+    "D": "Y → YX"
+   },
+   "answer": "C",
+   "shown": "X → XYY",
+   "id": "d6",
+   "why": "answered without the video (P 0.74)"
+  },
+  {
+   "section": "s3",
+   "question": "What text is shown in the callout label pointing to the first X?",
+   "options": {
+    "A": "first X → XYY → still starts with X",
+    "B": "Invariant: First Letter",
+    "C": "X always becomes XYY",
+    "D": "Starts with X, ends with X"
+   },
+   "answer": "A",
+   "shown": "first X → XYY → still starts with X",
+   "id": "d10",
+   "why": "answered without the video (P 0.59)"
+  },
+  {
+   "section": "s3",
+   "question": "What is the final orbit word displayed in the merged row?",
+   "options": {
+    "A": "XYYYXYXYXXYYXXY",
+    "B": "XYYYXYXYXXYYYXXYY",
+    "C": "XYYYXYXYXYYXXYY",
+    "D": "XYYYXYXYXXYYYXY"
+   },
+   "answer": "B",
+   "shown": "XYYYXYXYXXYYYXXYY",
+   "id": "d12",
+   "why": "answered without the video (P 0.52)"
+  },
+  {
+   "section": "s4",
+   "question": "What text is shown for the Y rewrite rule on the right panel?",
+   "options": {
+    "A": "Y expands to 2",
+    "B": "Y becomes XY",
+    "C": "Y → 2 letters",
+    "D": "Y yields 2 chars"
+   },
+   "answer": "C",
+   "shown": "Y → 2 letters",
+   "id": "d14",
+   "why": "answered without the video (P 0.99)"
+  }
+ ]
+}

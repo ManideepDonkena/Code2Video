@@ -1,0 +1,198 @@
+{
+ "topic": "Vorn sequences",
+ "written": 16,
+ "well_formed": 14,
+ "on_screen": 9,
+ "solved": 9,
+ "kept": 7,
+ "writer": "qwen3.6:latest",
+ "solver": "gemma4:26b",
+ "questions": [
+  {
+   "section": "s1",
+   "question": "Which two numbers are explicitly written as the initial seeds v(1) and v(2)?",
+   "options": {
+    "A": "1 and 3",
+    "B": "1 and 2",
+    "C": "0 and 1",
+    "D": "2 and 4"
+   },
+   "answer": "A",
+   "shown": "v(1) = 1",
+   "id": "d1"
+  },
+  {
+   "section": "s2",
+   "question": "What value is highlighted in yellow as the result of the v(3) calculation?",
+   "options": {
+    "A": "3",
+    "B": "5",
+    "C": "1",
+    "D": "7"
+   },
+   "answer": "B",
+   "shown": "5",
+   "id": "d3"
+  },
+  {
+   "section": "s2",
+   "question": "In the calculation for v(4), what number is added to twice 3?",
+   "options": {
+    "A": "1",
+    "B": "11",
+    "C": "5",
+    "D": "3"
+   },
+   "answer": "C",
+   "shown": "v(4) = 5 + 2 \\times 3",
+   "id": "d4"
+  },
+  {
+   "section": "s2",
+   "question": "Which two numbers are listed in the initial sequence at the top of section s2?",
+   "options": {
+    "A": "1, 5",
+    "B": "1, 3",
+    "C": "0, 1",
+    "D": "3, 5"
+   },
+   "answer": "B",
+   "shown": "1, 3",
+   "id": "d6"
+  },
+  {
+   "section": "s3",
+   "question": "What label is written next to the circle containing the number 5?",
+   "options": {
+    "A": "Prime",
+    "B": "Composite",
+    "C": "Odd",
+    "D": "Even"
+   },
+   "answer": "C",
+   "shown": "Odd",
+   "id": "d7"
+  },
+  {
+   "section": "s3",
+   "question": "What symbol appears to the right of each number in the sequence?",
+   "options": {
+    "A": "x",
+    "B": "\\checkmark",
+    "C": "+",
+    "D": "="
+   },
+   "answer": "B",
+   "shown": "\\checkmark",
+   "id": "d8"
+  },
+  {
+   "section": "s4",
+   "question": "What text appears near the top of the screen describing the growth?",
+   "options": {
+    "A": "Approx. 2x",
+    "B": "Constant",
+    "C": "Linear",
+    "D": "Exponential"
+   },
+   "answer": "A",
+   "shown": "Approx. 2x",
+   "id": "d9"
+  }
+ ],
+ "dropped": [
+  {
+   "section": "s1",
+   "question": "Which two numbers does the narration text identify as the starting seeds?",
+   "options": {
+    "A": "1 and 5",
+    "B": "0 and 2",
+    "C": "2 and 4",
+    "D": "1 and 3"
+   },
+   "answer": "D",
+   "shown": "seeds 1 and 3",
+   "id": "d2",
+   "why": "answered without the video (P 0.70)"
+  },
+  {
+   "section": "s2",
+   "question": "What is the final result of the v(4) calculation shown in yellow?",
+   "options": {
+    "A": "13",
+    "B": "8",
+    "C": "11",
+    "D": "9"
+   },
+   "answer": "C",
+   "shown": "11",
+   "id": "d5",
+   "why": "answered without the video (P 0.54)"
+  },
+  {
+   "section": "s3",
+   "question": "Which color is assigned to the circle containing the number 11 in the sequence?",
+   "options": {
+    "A": "BLUE",
+    "B": "YELLOW",
+    "C": "GREEN",
+    "D": "RED"
+   },
+   "answer": "B",
+   "shown": "YELLOW",
+   "why": "shown text is not in the code"
+  },
+  {
+   "section": "s3",
+   "question": "How many terms are displayed in the sequence group in section s3?",
+   "options": {
+    "A": "5",
+    "B": "4",
+    "C": "2",
+    "D": "3"
+   },
+   "answer": "B",
+   "shown": "1, 3, 5, 11",
+   "why": "shown text is not in the code"
+  },
+  {
+   "section": "s4",
+   "question": "What is the first ratio value displayed on screen?",
+   "options": {
+    "A": "2.00",
+    "B": "5.00",
+    "C": "3.00",
+    "D": "1.67"
+   },
+   "answer": "C",
+   "shown": "3.00",
+   "why": "shown text is not in the code"
+  },
+  {
+   "section": "s4",
+   "question": "What is the second ratio value displayed on screen?",
+   "options": {
+    "A": "1.50",
+    "B": "2.20",
+    "C": "1.67",
+    "D": "3.00"
+   },
+   "answer": "C",
+   "shown": "1.67",
+   "why": "shown text is not in the code"
+  },
+  {
+   "section": "s4",
+   "question": "What is the third ratio value displayed on screen?",
+   "options": {
+    "A": "3.00",
+    "B": "1.67",
+    "C": "2.20",
+    "D": "2.50"
+   },
+   "answer": "C",
+   "shown": "2.20",
+   "why": "shown text is not in the code"
+  }
+ ]
+}

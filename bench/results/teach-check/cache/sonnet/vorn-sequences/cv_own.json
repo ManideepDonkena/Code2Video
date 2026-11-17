@@ -1,0 +1,71 @@
+{
+ "quiz": "95e515b04cd3gemma4:26b",
+ "judge": "gemma4:26b",
+ "frames": 12,
+ "items": [
+  {
+   "id": "t1",
+   "shown": true,
+   "said": true,
+   "frame": 4,
+   "quote": "v(3) = 5",
+   "answered": true
+  },
+  {
+   "id": "t2",
+   "shown": true,
+   "said": true,
+   "frame": 12,
+   "quote": "21 + 2 * 11 = 43",
+   "answered": true
+  },
+  {
+   "id": "t3",
+   "shown": true,
+   "said": true,
+   "frame": 2,
+   "quote": "v(1) = 1, v(2) = 3",
+   "answered": true
+  },
+  {
+   "id": "t4",
+   "shown": true,
+   "said": true,
+   "frame": 1,
+   "quote": "previous + 2 * the one before",
+   "answered": true
+  },
+  {
+   "id": "t5",
+   "shown": true,
+   "said": true,
+   "frame": 9,
+   "quote": "Rule 1: every term is odd",
+   "answered": true
+  },
+  {
+   "id": "t6",
+   "shown": true,
+   "said": true,
+   "frame": 11,
+   "quote": "Rule 2: each term is about twice the one before",
+   "answered": true
+  },
+  {
+   "id": "t7",
+   "shown": true,
+   "said": true,
+   "frame": 7,
+   "quote": "v(4) = 11",
+   "answered": true
+  },
+  {
+   "id": "t8",
+   "shown": true,
+   "said": true,
+   "frame": 1,
+   "quote": "v(n) = v(n-1) + 2 * v(n-2)",
+   "answered": true
+  }
+ ]
+}

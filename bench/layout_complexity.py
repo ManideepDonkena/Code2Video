@@ -6,7 +6,7 @@ broken attachments (labels pulled off their shapes), timing faults, and the layo
 sections of all versions, the rank correlation between objects on screen and faults.
 
     python bench/layout_complexity.py   -> bench/results/layout-complexity/{rows.json, report.json, report.md},
-                                           paper/layout_complexity_numbers.tex
+                                           bench/results/layout-complexity/numbers.tex
 """
 
 from __future__ import annotations
@@ -22,7 +22,10 @@ from scipy.stats import spearmanr
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT), str(ROOT / "bench")]
 
-from c2vlab import attach, generate, layout, mvqs, temporal  # noqa: E402
+from c2vlab import attach, generate, layout, mvqs, scene_graph, temporal  # noqa: E402
+
+# the tracker the reported numbers were measured with (id()-reuse fix, before the 2026-11-14 tracker v2)
+layout.CROWDING, layout.SAFE, scene_graph.V2 = False, False, False
 
 OUT = ROOT / "bench" / "results" / "layout-complexity"
 VERSIONS = {  # name -> folder of the video, given the topic slug
@@ -92,11 +95,11 @@ def main():
     dirty = subprocess.run(["git", "diff", "--quiet", "--", str(sg)], cwd=ROOT).returncode != 0
     rep["tracker"] = {"file": "c2vlab/scene_graph.py", "sha256": hashlib.sha256(sg.read_bytes()).hexdigest()[:12],
                       "uncommitted_changes": dirty,
-                      "note": "measured with the id()-reuse fix (uncommitted at the time)" if dirty else "committed version"}  # fmt: skip
+                      "settings": "scene_graph.V2=False, layout.SAFE=False, layout.CROWDING=False"}  # fmt: skip
     (OUT / "report.json").write_text(json.dumps(rep, indent=1))
     head = "| Version | Videos | Sections | Most objects on screen (mean) | Most text objects | Code lines | MVQS | Lasting conflicts | Broken attachments | Sections with a fault |"
     lines = ["# Layout complexity and faults, one tracker for every version", "",
-             f"Tracker: c2vlab/scene_graph.py {rep['tracker']['sha256']} ({rep['tracker']['note']}).", "", head, "|---" * 10 + "|"]
+             f"Tracker: c2vlab/scene_graph.py {rep['tracker']['sha256']}, run with {rep['tracker']['settings']}.", "", head, "|---" * 10 + "|"]
     for name, v in rep["versions"].items():
         lines.append(f"| {name} | {v['videos']} | {v['sections']} | {v['objects_max_mean']} | {v['text_max_mean']} | "
                      f"{v['lines_mean']} | {v['mvqs_mean']} | {v['conflicts']} | {v['broken_attachments']} | "
@@ -117,7 +120,7 @@ def main():
                 rf"\newcommand{{\LC{w}Lines}}{{{v['lines_mean']}}}", rf"\newcommand{{\LC{w}MVQS}}{{{v['mvqs_mean']}}}"]  # fmt: skip
     mac += [rf"\newcommand{{\LCRho}}{{{o['spearman']}}}", rf"\newcommand{{\LCRhoP}}{{{o['p']}}}",
             rf"\newcommand{{\LCSections}}{{{o['sections']}}}"]  # fmt: skip
-    (ROOT / "paper" / "layout_complexity_numbers.tex").write_text("\n".join(mac) + "\n")
+    (OUT / "numbers.tex").write_text("\n".join(mac) + "\n")
 
 
 if __name__ == "__main__":

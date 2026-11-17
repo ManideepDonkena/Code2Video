@@ -1,0 +1,225 @@
+{
+ "topic": "Dapple numbers",
+ "written": 16,
+ "well_formed": 16,
+ "on_screen": 15,
+ "solved": 15,
+ "kept": 12,
+ "writer": "qwen3.6:latest",
+ "solver": "gemma4:26b",
+ "questions": [
+  {
+   "section": "s1",
+   "question": "What inequality symbol is explicitly written between the digits in section s1?",
+   "options": {
+    "A": "=",
+    "B": "<",
+    "C": ">",
+    "D": "≥"
+   },
+   "answer": "C",
+   "shown": "5 > 2",
+   "id": "d2"
+  },
+  {
+   "section": "s1",
+   "question": "What specific text label appears next to the green check mark in section s1?",
+   "options": {
+    "A": "correct",
+    "B": "yes",
+    "C": "valid",
+    "D": "dapple"
+   },
+   "answer": "D",
+   "shown": "dapple",
+   "id": "d3"
+  },
+  {
+   "section": "s1",
+   "question": "What is the exact definition text displayed in the yellow box in section s1?",
+   "options": {
+    "A": "tens digit >= units digit",
+    "B": "units digit > tens digit",
+    "C": "tens digit < units digit",
+    "D": "tens digit > units digit"
+   },
+   "answer": "D",
+   "shown": "dapple: tens digit > units digit",
+   "id": "d4"
+  },
+  {
+   "section": "s2",
+   "question": "What text appears in the yellow caption at the bottom of section s2 regarding one-digit numbers?",
+   "options": {
+    "A": "one-digit number → units digit only",
+    "B": "one-digit numbers are always dapple",
+    "C": "tens digit is missing for one-digit numbers",
+    "D": "one-digit number → tens digit 0 → never dapple"
+   },
+   "answer": "D",
+   "shown": "one-digit number → tens digit 0 → never dapple",
+   "id": "d7"
+  },
+  {
+   "section": "s3",
+   "question": "In section s3, what color is the 'units' digit text displayed on the tiles?",
+   "options": {
+    "A": "WHITE",
+    "B": "BLUE",
+    "C": "GREEN",
+    "D": "ORANGE"
+   },
+   "answer": "B",
+   "shown": "0",
+   "id": "d8"
+  },
+  {
+   "section": "s3",
+   "question": "What is the range of numbers for the 'tens digit' described in the second key-word line in section s3?",
+   "options": {
+    "A": "0 to 9",
+    "B": "1 to 10",
+    "C": "1 to 9",
+    "D": "2 to 9"
+   },
+   "answer": "C",
+   "shown": "tens digit: 1 to 9",
+   "id": "d9"
+  },
+  {
+   "section": "s3",
+   "question": "What comparison is shown under each tile in section s3?",
+   "options": {
+    "A": "tens > units",
+    "B": "units = 0",
+    "C": "1 to 9 > 0",
+    "D": "tens < units"
+   },
+   "answer": "C",
+   "shown": "1 to 9 > 0, so each passes",
+   "id": "d10"
+  },
+  {
+   "section": "s3",
+   "question": "What is the exact text in the final banner of section s3?",
+   "options": {
+    "A": "Rule 1: multiples of 10 are dapple",
+    "B": "Rule 1: 10 to 90 are dapple",
+    "C": "All numbers ending in 0 are dapple",
+    "D": "Rule 1: every multiple of 10 from 10 to 90 is dapple"
+   },
+   "answer": "D",
+   "shown": "Rule 1: every multiple of 10 from 10 to 90 is dapple",
+   "id": "d11"
+  },
+  {
+   "section": "s4",
+   "question": "In section s4, what comparison is shown after reversing the digits of 52?",
+   "options": {
+    "A": "5 < 2",
+    "B": "2 < 5",
+    "C": "5 > 2",
+    "D": "2 = 5"
+   },
+   "answer": "B",
+   "shown": "2 < 5",
+   "id": "d12"
+  },
+  {
+   "section": "s4",
+   "question": "In section s4, what text label appears below the comparison for the reversed 10 example?",
+   "options": {
+    "A": "invalid number",
+    "B": "tens digit is 0",
+    "C": "one-digit → not dapple",
+    "D": "not dapple"
+   },
+   "answer": "C",
+   "shown": "one-digit → not dapple",
+   "id": "d13"
+  },
+  {
+   "section": "s4",
+   "question": "What is the exact text in the final banner of section s4?",
+   "options": {
+    "A": "Reversed numbers are never dapple",
+    "B": "Rule 2: reversing breaks dapple",
+    "C": "Rule 2: dapple reversed is not dapple",
+    "D": "Rule 2: reverse a dapple number → not dapple"
+   },
+   "answer": "D",
+   "shown": "Rule 2: reverse a dapple number → not dapple",
+   "id": "d14"
+  },
+  {
+   "section": "s4",
+   "question": "In section s4, what comparison is shown after reversing the digits of 83?",
+   "options": {
+    "A": "3 = 8",
+    "B": "3 < 8",
+    "C": "8 > 3",
+    "D": "8 < 3"
+   },
+   "answer": "B",
+   "shown": "3 < 8",
+   "id": "d15"
+  }
+ ],
+ "dropped": [
+  {
+   "section": "s1",
+   "question": "Which two numbers does the worked example in section s1 combine to form the dapple number?",
+   "options": {
+    "A": "2 and 5",
+    "B": "50 and 2",
+    "C": "5 and 2",
+    "D": "20 and 5"
+   },
+   "answer": "C",
+   "shown": "tens: 5,  units: 2",
+   "id": "d1",
+   "why": "answered without the video (P 0.74)"
+  },
+  {
+   "section": "s2",
+   "question": "What specific phrase is written in red text below the number 44 in section s2?",
+   "options": {
+    "A": "not dapple",
+    "B": "not dapple: must be strictly >",
+    "C": "equal digits",
+    "D": "fail"
+   },
+   "answer": "B",
+   "shown": "not dapple: must be strictly >",
+   "id": "d5",
+   "why": "answered without the video (P 0.74)"
+  },
+  {
+   "section": "s2",
+   "question": "In section s2, what gray number is shown in the tens box for the one-digit example 7?",
+   "options": {
+    "A": "0",
+    "B": "1",
+    "C": "none",
+    "D": "7"
+   },
+   "answer": "A",
+   "shown": "0",
+   "id": "d6",
+   "why": "answered without the video (P 0.64)"
+  },
+  {
+   "section": "s2",
+   "question": "In section s2, which comparison operator is shown between the digits of the number 44?",
+   "options": {
+    "A": "<",
+    "B": ">",
+    "C": "≠",
+    "D": "="
+   },
+   "answer": "D",
+   "shown": "4 = 4",
+   "why": "shown text is not in the code"
+  }
+ ]
+}

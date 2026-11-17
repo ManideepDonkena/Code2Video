@@ -46,7 +46,8 @@ def _plain_sentence(node):
     for s in strs:
         if WORDS.search(re.sub(r"\\text\{[^}]*\}|\\mathrm\{[^}]*\}", " ", s)):
             return s
-    if len(strs) == len(node.args) and len(strs) >= 3 and sum(bool(_WORD.fullmatch(s)) for s in strs) >= 3 and all(
+    # one word per part: at least three real words (two letters or more), so MathTex("A", "B", "C") stays a formula
+    if len(strs) == len(node.args) and len(strs) >= 3 and sum(bool(_LONG.fullmatch(s)) for s in strs) >= 3 and all(
         _WORD.fullmatch(s) or not s.strip() for s in strs
     ):
         return " ".join(s for s in strs if s.strip())
@@ -54,6 +55,23 @@ def _plain_sentence(node):
 
 
 _WORD = re.compile(r"[A-Za-z][A-Za-z'-]*[.,!?:;]?")
+_LONG = re.compile(r"[A-Za-z][A-Za-z'-]+[.,!?:;]?")
+_MATH = re.compile(r"[\\^_{}$]")
+
+
+def _has_math(node):
+    """A sentence that also holds a formula ('Area of circle: \\pi r^2'). Turning the call into Text would print
+    the TeX source on screen, so it is reported but never changed automatically."""
+    return any(
+        isinstance(a, ast.Constant) and isinstance(a.value, str)
+        and _MATH.search(re.sub(r"\\text\{[^}]*\}|\\mathrm\{[^}]*\}", " ", a.value))
+        for a in node.args
+    )  # fmt: skip
+
+
+def _col(row, offset):
+    """ast gives columns in UTF-8 bytes; a line with a non-ASCII character before the call needs characters."""
+    return len(row.encode()[:offset].decode(errors="ignore"))
 
 
 def check(code):
@@ -115,26 +133,31 @@ def fix(code):
         return code, []
     rows, applied = code.split("\n"), []
     residue_lines = {f["line"] for f in check(code) if f["kind"] == "residue"}
-    for c in _calls(tree):
+    # right to left within a line: an edit then never moves the columns of the calls still to be edited
+    for c in sorted(_calls(tree), key=lambda c: (c.lineno, c.col_offset), reverse=True):
         if c.func.id == "Transform" and c.lineno in residue_lines and c.lineno == c.end_lineno:
             row = rows[c.lineno - 1]
-            new = row[: c.col_offset] + "Replacement" + row[c.col_offset :]
-            rows[c.lineno - 1] = new
+            at = _col(row, c.col_offset)
+            if row[at : at + 9] != "Transform":
+                continue
+            rows[c.lineno - 1] = row[:at] + "Replacement" + row[at:]
             applied.append({"kind": "residue", "line": c.lineno})
-        elif c.func.id in ("MathTex", "Tex") and _plain_sentence(c) and c.lineno == c.end_lineno:
+        elif c.func.id in ("MathTex", "Tex") and _plain_sentence(c) and c.lineno == c.end_lineno and not _has_math(c):
             row = rows[c.lineno - 1]
             consts = [a for a in c.args if isinstance(a, ast.Constant) and isinstance(a.value, str)]
+            at = _col(row, c.col_offset)
             if len(consts) == len(c.args) and len(consts) >= 3:
                 # one word per part: keep the parts (code may index them); words in \text{}, spaces as math spaces
                 for a in sorted(consts, key=lambda a: a.col_offset, reverse=True):
                     s = a.value
                     lit = repr("\\text{" + s + "}") if s.strip() else repr("\\;")
-                    row = row[: a.col_offset] + lit + row[a.end_col_offset :]
+                    row = row[: _col(row, a.col_offset)] + lit + row[_col(row, a.end_col_offset) :]
                 rows[c.lineno - 1] = row
                 applied.append({"kind": "prose_math", "line": c.lineno})
-            elif row[c.col_offset : c.col_offset + len(c.func.id)] == c.func.id and len(c.args) == 1:
-                rows[c.lineno - 1] = row[: c.col_offset] + "Text" + row[c.col_offset + len(c.func.id) :]
+            elif row[at : at + len(c.func.id)] == c.func.id and len(c.args) == 1:
+                rows[c.lineno - 1] = row[:at] + "Text" + row[at + len(c.func.id) :]
                 applied.append({"kind": "prose_math", "line": c.lineno})
+    applied.reverse()  # in the order of the file, as before
     new = "\n".join(rows)
     try:
         ast.parse(new)

@@ -1,0 +1,340 @@
+{
+ "sets": {
+  "local": {
+   "label": "Local models, base",
+   "videos": 10,
+   "delivery": 0.7155437886374582,
+   "coverage": 0.825,
+   "m9": 0.4244399660386535,
+   "mvqs": 84.19,
+   "delivery_defined": 10,
+   "questions": 7.3,
+   "written": 15.2,
+   "blind": 0.3163975417135642,
+   "own": 0.8110141509163059
+  },
+  "claude_layout": {
+   "label": "Local + Claude layout fix",
+   "videos": 10,
+   "delivery": 0.7917520844075705,
+   "coverage": 0.8875,
+   "m9": 0.47584175455678723,
+   "mvqs": 85.62,
+   "delivery_defined": 10,
+   "questions": 7.3,
+   "written": 15.2,
+   "blind": 0.3163975417135642,
+   "own": 0.86521853382215
+  },
+  "sonnet": {
+   "label": "Claude Sonnet 5.5",
+   "videos": 10,
+   "delivery": 0.8549083876999051,
+   "coverage": 0.875,
+   "m9": 0.6410810860115159,
+   "mvqs": 86.37,
+   "delivery_defined": 10,
+   "questions": 7.9,
+   "written": 15.8,
+   "blind": 0.2992808971825397,
+   "own": 0.914194696686508
+  },
+  "opus": {
+   "label": "Claude Opus 5.5",
+   "videos": 5,
+   "delivery": 0.8483993553460657,
+   "coverage": 0.95,
+   "m9": 0.7649501580482648,
+   "mvqs": 88.46000000000001,
+   "delivery_defined": 5,
+   "questions": 9.4,
+   "written": 16.0,
+   "blind": 0.31870739685425686,
+   "own": 0.8988060085137086
+  }
+ },
+ "controls": {
+  "local": {
+   "delivery_own": 0.7155437886374582,
+   "delivery_other": -0.15002112977573273,
+   "delivery_own_minus_other": {
+    "n": 10,
+    "mean": 0.8656,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.002
+   },
+   "coverage_own": 0.825,
+   "coverage_other": 0.2625,
+   "coverage_own_minus_other": {
+    "n": 10,
+    "mean": 0.5625,
+    "wins": 8,
+    "ties": 1,
+    "losses": 1,
+    "p": 0.0391
+   }
+  }
+ },
+ "relation": {
+  "delivery_vs_m9_all": {
+   "n": 35,
+   "rho": 0.295,
+   "p": 0.0844
+  },
+  "coverage_vs_m9_all": {
+   "n": 35,
+   "rho": -0.032,
+   "p": 0.8597
+  },
+  "mvqs_vs_m9_all": {
+   "n": 35,
+   "rho": 0.365,
+   "p": 0.0347
+  },
+  "delivery_vs_m9_within_concept": {
+   "n": 35,
+   "rho": 0.388,
+   "p": 0.0227
+  },
+  "coverage_vs_m9_within_concept": {
+   "n": 35,
+   "rho": 0.054,
+   "p": 0.7614
+  },
+  "mvqs_vs_m9_within_concept": {
+   "n": 35,
+   "rho": 0.241,
+   "p": 0.1666
+  },
+  "delivery_vs_m9_local": {
+   "n": 10,
+   "rho": 0.636,
+   "p": 0.0541
+  },
+  "coverage_vs_m9_local": {
+   "n": 10,
+   "rho": -0.108,
+   "p": 0.7695
+  },
+  "delivery_vs_coverage_all": {
+   "n": 35,
+   "rho": -0.032,
+   "p": 0.8516
+  }
+ },
+ "covered_gain": {
+  "covered": 245,
+  "not_covered": 35,
+  "gain_covered": 0.3549,
+  "gain_not_covered": 0.1545,
+  "diff": 0.2004,
+  "p": 0.0228
+ },
+ "covered_gain_by_set": {
+  "local": {
+   "covered": 66,
+   "not_covered": 14,
+   "gain_covered": 0.2608,
+   "gain_not_covered": 0.2833,
+   "diff": -0.0225,
+   "p": 0.8792
+  },
+  "claude_layout": {
+   "covered": 71,
+   "not_covered": 9,
+   "gain_covered": 0.3176,
+   "gain_not_covered": 0.0537,
+   "diff": 0.2639,
+   "p": 0.2115
+  },
+  "qwen": {
+   "covered": 0,
+   "not_covered": 0,
+   "diff": null,
+   "p": null,
+   "gain_covered": null,
+   "gain_not_covered": null
+  },
+  "blueprint": {
+   "covered": 0,
+   "not_covered": 0,
+   "diff": null,
+   "p": null,
+   "gain_covered": null,
+   "gain_not_covered": null
+  },
+  "sonnet": {
+   "covered": 70,
+   "not_covered": 10,
+   "gain_covered": 0.4212,
+   "gain_not_covered": 0.0956,
+   "diff": 0.3256,
+   "p": 0.0312
+  },
+  "opus": {
+   "covered": 38,
+   "not_covered": 2,
+   "gain_covered": 0.4657,
+   "gain_not_covered": 0.0011,
+   "diff": 0.4646,
+   "p": 0.4336
+  }
+ },
+ "layout_pairs": {
+  "pairs": [
+   {
+    "slug": "tovan-sums",
+    "questions": 6,
+    "local": 0.8531439850298635,
+    "claude_layout": 0.7436620440388609,
+    "m9_local": 0.7642305854047771,
+    "m9_claude_layout": 0.655258284087181,
+    "mvqs_local": 85.0,
+    "mvqs_claude_layout": 85.6
+   },
+   {
+    "slug": "krell-steps-on-a-grid",
+    "questions": 10,
+    "local": 0.367020405733252,
+    "claude_layout": 0.6920535222587704,
+    "m9_local": 0.2577148333333334,
+    "m9_claude_layout": 0.50013425,
+    "mvqs_local": 78.9,
+    "mvqs_claude_layout": 84.5
+   },
+   {
+    "slug": "vorn-sequences",
+    "questions": 7,
+    "local": 1.0,
+    "claude_layout": 1.0,
+    "m9_local": 0.42709803027781607,
+    "m9_claude_layout": 0.39588729749871576,
+    "mvqs_local": 88.9,
+    "mvqs_claude_layout": 89.0
+   },
+   {
+    "slug": "glint-numbers",
+    "questions": 6,
+    "local": 0.748572716346154,
+    "claude_layout": 0.8365384615384616,
+    "m9_local": 0.7920070735439214,
+    "m9_claude_layout": 0.7121564286621069,
+    "mvqs_local": 88.6,
+    "mvqs_claude_layout": 83.3
+   },
+   {
+    "slug": "mirthful-triangles",
+    "questions": 11,
+    "local": 0.6905022231941105,
+    "claude_layout": 0.7525815778603884,
+    "m9_local": 0.4202685019236289,
+    "m9_claude_layout": 0.16153524584141138,
+    "mvqs_local": 85.2,
+    "mvqs_claude_layout": 86.4
+   },
+   {
+    "slug": "sorrel-counts-of-lattice-rectangles",
+    "questions": 4,
+    "local": 0.5303666666666667,
+    "claude_layout": 0.8336666666666667,
+    "m9_local": -0.27904957128074415,
+    "m9_claude_layout": 0.3477893913718547,
+    "mvqs_local": 81.7,
+    "mvqs_claude_layout": 83.4
+   },
+   {
+    "slug": "quill-distance",
+    "questions": 9,
+    "local": 0.7239632270307118,
+    "claude_layout": 0.8050443081117928,
+    "m9_local": 0.2685658398472454,
+    "m9_claude_layout": 0.3599876113271972,
+    "mvqs_local": 85.0,
+    "mvqs_claude_layout": 85.4
+   },
+   {
+    "slug": "dapple-numbers",
+    "questions": 8,
+    "local": 0.6056004539850889,
+    "claude_layout": 0.6812320216034284,
+    "m9_local": 0.4564441516413873,
+    "m9_claude_layout": 0.48463214604124594,
+    "mvqs_local": 80.3,
+    "mvqs_claude_layout": 85.4
+   },
+   {
+    "slug": "orbit-words",
+    "questions": 4,
+    "local": 1.0,
+    "claude_layout": 1.0,
+    "m9_local": 0.619020123589589,
+    "m9_claude_layout": 0.6503628448492099,
+    "mvqs_local": 83.3,
+    "mvqs_claude_layout": 88.4
+   },
+   {
+    "slug": "vells-of-2-2-grids",
+    "questions": 8,
+    "local": 0.6363035551504101,
+    "claude_layout": 0.5727894257064722,
+    "m9_local": 0.518100092105581,
+    "m9_claude_layout": 0.49067404588894925,
+    "mvqs_local": 85.0,
+    "mvqs_claude_layout": 84.8
+   }
+  ],
+  "delivery": {
+   "n": 10,
+   "mean": 0.0762,
+   "wins": 6,
+   "ties": 2,
+   "losses": 2,
+   "p": 0.2891
+  },
+  "m9": {
+   "n": 10,
+   "mean": 0.0514,
+   "wins": 5,
+   "ties": 0,
+   "losses": 5,
+   "p": 1.0
+  },
+  "mvqs": {
+   "n": 10,
+   "mean": 1.43,
+   "wins": 8,
+   "ties": 0,
+   "losses": 2,
+   "p": 0.1094
+  }
+ },
+ "blueprint_pairs": {
+  "pairs": [],
+  "delivery": {
+   "n": 0,
+   "mean": null,
+   "wins": 0,
+   "ties": 0,
+   "losses": 0,
+   "p": 1.0
+  },
+  "coverage": {
+   "n": 0,
+   "mean": null,
+   "wins": 0,
+   "ties": 0,
+   "losses": 0,
+   "p": 1.0
+  },
+  "m9": {
+   "n": 0,
+   "mean": null,
+   "wins": 0,
+   "ties": 0,
+   "losses": 0,
+   "p": 1.0
+  }
+ }
+}

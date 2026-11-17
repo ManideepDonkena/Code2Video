@@ -1,0 +1,213 @@
+{
+ "topic": "Orbit words",
+ "written": 16,
+ "well_formed": 15,
+ "on_screen": 12,
+ "solved": 11,
+ "kept": 8,
+ "writer": "qwen3.6:latest",
+ "solver": "gemma4:26b",
+ "questions": [
+  {
+   "section": "s1",
+   "question": "What is the exact text displayed as the second rule key?",
+   "options": {
+    "A": "Y → XX",
+    "B": "Y → XY",
+    "C": "X → XY",
+    "D": "Y → YX"
+   },
+   "answer": "D",
+   "shown": "Y → YX",
+   "id": "d2"
+  },
+  {
+   "section": "s2",
+   "question": "What is the resulting string shown in Step 1?",
+   "options": {
+    "A": "YYY",
+    "B": "XYX",
+    "C": "XYY",
+    "D": "XXY"
+   },
+   "answer": "C",
+   "shown": "XYY",
+   "id": "d4"
+  },
+  {
+   "section": "s3",
+   "question": "What is the exact text of Rule 1 shown in blue?",
+   "options": {
+    "A": "Rule 1: starts with X",
+    "B": "Rule 1: starts with Y",
+    "C": "Rule 1: first letter X",
+    "D": "Rule 1: begins with X"
+   },
+   "answer": "A",
+   "shown": "Rule 1: starts with X",
+   "id": "d7"
+  },
+  {
+   "section": "s3",
+   "question": "What word is written next to the yellow arrows indicating growth?",
+   "options": {
+    "A": "wider",
+    "B": "bigger",
+    "C": "longer",
+    "D": "larger"
+   },
+   "answer": "C",
+   "shown": "longer",
+   "id": "d8"
+  },
+  {
+   "section": "s4",
+   "question": "What number is displayed inside the yellow text next to the brace in section s4?",
+   "options": {
+    "A": "15",
+    "B": "17",
+    "C": "16",
+    "D": "18"
+   },
+   "answer": "B",
+   "shown": "17",
+   "id": "d9"
+  },
+  {
+   "section": "s4",
+   "question": "What is the first piece of text shown below the first letter 'X' in the word breakdown?",
+   "options": {
+    "A": "XY",
+    "B": "XXY",
+    "C": "XYY",
+    "D": "YX"
+   },
+   "answer": "C",
+   "shown": "XYY",
+   "id": "d10"
+  },
+  {
+   "section": "s4",
+   "question": "What is the second piece of text shown below the second letter 'Y' in the word breakdown?",
+   "options": {
+    "A": "YY",
+    "B": "YX",
+    "C": "XX",
+    "D": "XY"
+   },
+   "answer": "B",
+   "shown": "YX",
+   "id": "d11"
+  },
+  {
+   "section": "s4",
+   "question": "What is the exact text of the caption at the bottom of section s4?",
+   "options": {
+    "A": "X → XYY → XYYYXYX → …",
+    "B": "X -> YYY -> XYX -> ...",
+    "C": "X → YX → XYY → …",
+    "D": "X → XYY → XYXYX → …"
+   },
+   "answer": "A",
+   "shown": "X → XYY → XYYYXYX → …",
+   "id": "d12"
+  }
+ ],
+ "dropped": [
+  {
+   "section": "s1",
+   "question": "What label is written above the two rule cards?",
+   "options": {
+    "A": "X, Y pairs",
+    "B": "Orbit rules",
+    "C": "Two letters: X, Y",
+    "D": "Rules for X and Y"
+   },
+   "answer": "C",
+   "shown": "Two letters: X, Y",
+   "id": "d3",
+   "why": "answered without the video (P 0.57)"
+  },
+  {
+   "section": "s2",
+   "question": "What is the final combined string shown at the bottom of section s2?",
+   "options": {
+    "A": "XYXYXYX",
+    "B": "XYYXYX",
+    "C": "XYYYXYX",
+    "D": "XYYYXXY"
+   },
+   "answer": "C",
+   "shown": "XYYYXYX",
+   "id": "d5",
+   "why": "answered without the video (P 0.55)"
+  },
+  {
+   "section": "s2",
+   "question": "What phrase is displayed in yellow next to the arrows in section s2?",
+   "options": {
+    "A": "all letters at once",
+    "B": "rewrite simultaneously",
+    "C": "every letter at once",
+    "D": "parallel processing"
+   },
+   "answer": "A",
+   "shown": "all letters at once",
+   "id": "d6",
+   "why": "answered without the video (P 0.67)"
+  },
+  {
+   "section": "s1",
+   "question": "Which two letters are shown on the right-hand side of the first rule card?",
+   "options": {
+    "A": "Y, X",
+    "B": "X, X",
+    "C": "X, Y",
+    "D": "Y, Y"
+   },
+   "answer": "C",
+   "shown": "X, Y",
+   "id": "d1",
+   "why": "solver chose D"
+  },
+  {
+   "section": "s2",
+   "question": "Which three blocks are labeled under the braces in section s2?",
+   "options": {
+    "A": "XY, YX, YX",
+    "B": "XYY, YX, YX",
+    "C": "XYY, XY, YX",
+    "D": "XYY, YX, XY"
+   },
+   "answer": "B",
+   "shown": "XYY, YX, YX",
+   "why": "shown text is not in the code"
+  },
+  {
+   "section": "s3",
+   "question": "What is the length of the word 'XYY' shown in the green bar?",
+   "options": {
+    "A": "2",
+    "B": "3",
+    "C": "1",
+    "D": "4"
+   },
+   "answer": "B",
+   "shown": "3",
+   "why": "shown text is not in the code"
+  },
+  {
+   "section": "s3",
+   "question": "What is the length of the word 'XYYYXYX' shown in the green bar?",
+   "options": {
+    "A": "8",
+    "B": "7",
+    "C": "5",
+    "D": "6"
+   },
+   "answer": "B",
+   "shown": "7",
+   "why": "shown text is not in the code"
+  }
+ ]
+}
