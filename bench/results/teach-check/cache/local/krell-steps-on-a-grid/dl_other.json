@@ -1,0 +1,188 @@
+{
+ "quiz": "c3da816d7ee2|12|01",
+ "frames": 12,
+ "rotations": [
+  {
+   "rotation": 0,
+   "items": [
+    {
+     "id": "d1",
+     "p": {
+      "A": 0.083647,
+      "B": 0.018799,
+      "C": 0.002071,
+      "D": 0.895483
+     },
+     "choice": "D",
+     "right": true,
+     "p_right": 0.895483
+    },
+    {
+     "id": "d2",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d3",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d4",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d5",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d6",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d8",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d9",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d10",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d13",
+     "p": {
+      "A": 0.000108,
+      "B": 0.005188,
+      "C": 7.2e-05,
+      "D": 0.994632
+     },
+     "choice": "D",
+     "right": false,
+     "p_right": 0.000108
+    }
+   ],
+   "missing": 8
+  },
+  {
+   "rotation": 1,
+   "items": [
+    {
+     "id": "d1",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d2",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d3",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d4",
+     "p": {
+      "D": 0.08708,
+      "A": 0.001486,
+      "B": 0.006324,
+      "C": 0.905109
+     },
+     "choice": "C",
+     "right": false,
+     "p_right": 0.001486
+    },
+    {
+     "id": "d5",
+     "p": {
+      "D": 0.024062,
+      "A": 0.064433,
+      "B": 0.864073,
+      "C": 0.047432
+     },
+     "choice": "B",
+     "right": false,
+     "p_right": 0.064433
+    },
+    {
+     "id": "d6",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d8",
+     "p": {
+      "D": 0.644377,
+      "A": 0.334598,
+      "B": 0.002396,
+      "C": 0.018629
+     },
+     "choice": "D",
+     "right": false,
+     "p_right": 0.002396
+    },
+    {
+     "id": "d9",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d10",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d13",
+     "p": {
+      "D": 0.000112,
+      "A": 0.999164,
+      "B": 0.00054,
+      "C": 0.000184
+     },
+     "choice": "A",
+     "right": true,
+     "p_right": 0.999164
+    }
+   ],
+   "missing": 6
+  }
+ ]
+}

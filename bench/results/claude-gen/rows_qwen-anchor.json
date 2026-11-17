@@ -1,0 +1,1106 @@
+[
+ {
+  "topic": "Tovan sums",
+  "slug": "tovan-sums",
+  "family": "qwen-anchor",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 1,
+   "complete": true,
+   "clean": false,
+   "regenerated": 3
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 82.7,
+   "mvqs_min": 77.9,
+   "conflicts": 1,
+   "timing": 6,
+   "broken_attachments": 0
+  },
+  "teaching": {
+   "topic": "tovan-sums",
+   "base": {
+    "m7": 0.15442111637213485,
+    "m9": 0.873171369522336,
+    "s_frames_p": 0.9373748125,
+    "nvg": 0.15442111637213485,
+    "s_visual_p": 0.58247175,
+    "s_static_p": 0.90825575,
+    "s_blind_p": 0.506222,
+    "m5": 0.5,
+    "sections": 4,
+    "mvqs": 82.7
+   },
+   "learner": {
+    "m7": 0.026345214853638797,
+    "m9": 0.7959343571402534,
+    "s_frames_p": 0.899236875,
+    "nvg": 0.026345214853638797,
+    "s_visual_p": 0.5192306875,
+    "s_static_p": 0.9195535,
+    "s_blind_p": 0.506222,
+    "m5": 0.0,
+    "sections": 4,
+    "mvqs": 79.22,
+    "served": "revision",
+    "changed": 1,
+    "fixed": 1,
+    "kept": true,
+    "edit_size": {
+     "s4": 0.254
+    }
+   },
+   "generic": {
+    "m7": 0.15442111637213485,
+    "m9": 0.873171369522336,
+    "s_frames_p": 0.9373748125,
+    "nvg": 0.15442111637213485,
+    "s_visual_p": 0.58247175,
+    "s_static_p": 0.90825575,
+    "s_blind_p": 0.506222,
+    "m5": 0.5,
+    "sections": 4,
+    "mvqs": 82.7,
+    "served": "base",
+    "changed": 1,
+    "fixed": 1,
+    "kept": false,
+    "edit_size": {
+     "s2": 0.046
+    }
+   },
+   "learner_all": {
+    "m7": 0.15442111637213485,
+    "m9": 0.873171369522336,
+    "s_frames_p": 0.9373748125,
+    "nvg": 0.15442111637213485,
+    "s_visual_p": 0.58247175,
+    "s_static_p": 0.90825575,
+    "s_blind_p": 0.506222,
+    "m5": 0.5,
+    "sections": 4,
+    "mvqs": 82.7,
+    "served": "base",
+    "changed": 4,
+    "fixed": 4,
+    "kept": false,
+    "edit_size": {
+     "s1": 0.198,
+     "s2": 0.154,
+     "s3": 0.222,
+     "s4": 0.25
+    }
+   }
+  },
+  "minutes": {
+   "video": 3.0,
+   "admission": 2.0,
+   "repair_and_scoring": 75.4
+  },
+  "claude": {
+   "calls": 50,
+   "in": 45839,
+   "out": 32313,
+   "usd": 0.0262,
+   "seconds": 234,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  }
+ },
+ {
+  "topic": "Vorn sequences",
+  "slug": "vorn-sequences",
+  "family": "qwen-anchor",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 2,
+   "complete": true,
+   "clean": false,
+   "regenerated": 2
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 88.6,
+   "mvqs_min": 86.5,
+   "conflicts": 1,
+   "timing": 0,
+   "broken_attachments": 0
+  },
+  "teaching": {
+   "topic": "vorn-sequences",
+   "base": {
+    "m7": 0.6104141342964582,
+    "m9": 0.44946813642141004,
+    "s_frames_p": 0.771734625,
+    "nvg": 0.5214438217964581,
+    "s_visual_p": 0.8015776875,
+    "s_static_p": 0.6236370625,
+    "s_blind_p": 0.585373,
+    "m5": 0.875,
+    "sections": 4,
+    "mvqs": 88.59
+   },
+   "learner": {
+    "m7": 0.6104141342964582,
+    "m9": 0.44946813642141004,
+    "s_frames_p": 0.771734625,
+    "nvg": 0.5214438217964581,
+    "s_visual_p": 0.8015776875,
+    "s_static_p": 0.6236370625,
+    "s_blind_p": 0.585373,
+    "m5": 0.875,
+    "sections": 4,
+    "mvqs": 88.59,
+    "served": "base",
+    "changed": 0,
+    "fixed": 0,
+    "kept": false,
+    "edit_size": {}
+   },
+   "generic": {
+    "m7": 0.6104141342964582,
+    "m9": 0.44946813642141004,
+    "s_frames_p": 0.771734625,
+    "nvg": 0.5214438217964581,
+    "s_visual_p": 0.8015776875,
+    "s_static_p": 0.6236370625,
+    "s_blind_p": 0.585373,
+    "m5": 0.875,
+    "sections": 4,
+    "mvqs": 88.59,
+    "served": "base",
+    "changed": 0,
+    "fixed": 0,
+    "kept": false,
+    "edit_size": {}
+   },
+   "learner_all": {
+    "m7": 0.6104141342964582,
+    "m9": 0.44946813642141004,
+    "s_frames_p": 0.771734625,
+    "nvg": 0.5214438217964581,
+    "s_visual_p": 0.8015776875,
+    "s_static_p": 0.6236370625,
+    "s_blind_p": 0.585373,
+    "m5": 0.875,
+    "sections": 4,
+    "mvqs": 88.59,
+    "served": "base",
+    "changed": 0,
+    "fixed": 0,
+    "kept": false,
+    "edit_size": {}
+   }
+  },
+  "minutes": {
+   "video": 2.6,
+   "admission": 2.2,
+   "repair_and_scoring": 33.2
+  },
+  "claude": {
+   "calls": 35,
+   "in": 15752,
+   "out": 9121,
+   "usd": 0.0078,
+   "seconds": 67,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  }
+ },
+ {
+  "topic": "Krell steps on a grid",
+  "slug": "krell-steps-on-a-grid",
+  "family": "qwen-anchor",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 3,
+   "ok_first": 1,
+   "complete": true,
+   "clean": false,
+   "regenerated": 3
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 81.2,
+   "mvqs_min": 77.5,
+   "conflicts": 2,
+   "timing": 0,
+   "broken_attachments": 2
+  },
+  "teaching": {
+   "topic": "krell-steps-on-a-grid",
+   "base": {
+    "m7": 0.07558108333333331,
+    "m9": 0.5778346666666666,
+    "s_frames_p": 0.683376,
+    "nvg": 0.07558108333333331,
+    "s_visual_p": 0.3066858125,
+    "s_static_p": 0.423638125,
+    "s_blind_p": 0.2001920625,
+    "m5": 0.16666666666666666,
+    "sections": 4,
+    "mvqs": 81.21
+   },
+   "learner": {
+    "m7": 0.04044383333333331,
+    "m9": 0.6890476666666667,
+    "s_frames_p": 0.76678575,
+    "nvg": 0.04044383333333331,
+    "s_visual_p": 0.280332875,
+    "s_static_p": 0.700285875,
+    "s_blind_p": 0.2001920625,
+    "m5": 0.0,
+    "sections": 4,
+    "mvqs": 81.55,
+    "served": "revision",
+    "changed": 1,
+    "fixed": 1,
+    "kept": true,
+    "edit_size": {
+     "s3": 0.149
+    }
+   },
+   "generic": {
+    "m7": 0.07558108333333331,
+    "m9": 0.5778346666666666,
+    "s_frames_p": 0.683376,
+    "nvg": 0.07558108333333331,
+    "s_visual_p": 0.3066858125,
+    "s_static_p": 0.423638125,
+    "s_blind_p": 0.2001920625,
+    "m5": 0.16666666666666666,
+    "sections": 4,
+    "mvqs": 81.21,
+    "served": "base",
+    "changed": 1,
+    "fixed": 1,
+    "kept": false,
+    "edit_size": {
+     "s4": 0.05
+    }
+   },
+   "learner_all": {
+    "m7": -0.012869666666666668,
+    "m9": 0.7564368333333333,
+    "s_frames_p": 0.817327625,
+    "nvg": -0.012869666666666668,
+    "s_visual_p": 0.24034775,
+    "s_static_p": 0.563722625,
+    "s_blind_p": 0.2001920625,
+    "m5": 0.0,
+    "sections": 4,
+    "mvqs": 79.83,
+    "served": "revision",
+    "changed": 4,
+    "fixed": 4,
+    "kept": true,
+    "edit_size": {
+     "s1": 0.148,
+     "s2": 0.168,
+     "s3": 0.149,
+     "s4": 0.194
+    }
+   }
+  },
+  "minutes": {
+   "video": 54.2,
+   "admission": 2.1,
+   "repair_and_scoring": 107.3
+  },
+  "claude": {
+   "calls": 64,
+   "in": 52625,
+   "out": 39871,
+   "usd": 0.0316,
+   "seconds": 290,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  }
+ },
+ {
+  "topic": "Glint numbers",
+  "slug": "glint-numbers",
+  "family": "qwen-anchor",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 2,
+   "ok_first": 2,
+   "complete": true,
+   "clean": true,
+   "regenerated": 2
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 88.6,
+   "mvqs_min": 84.5,
+   "conflicts": 0,
+   "timing": 0,
+   "broken_attachments": 1
+  },
+  "teaching": {
+   "topic": "glint-numbers",
+   "base": {
+    "m7": 0.2283447756720813,
+    "m9": 0.7920070735439214,
+    "s_frames_p": 0.88326475,
+    "nvg": 0.1588630881720813,
+    "s_visual_p": 0.5279150625,
+    "s_static_p": 0.3889516875,
+    "s_blind_p": 0.43875375,
+    "m5": 0.375,
+    "sections": 4,
+    "mvqs": 88.62
+   },
+   "learner": {
+    "m7": 0.16331148201463497,
+    "m9": 0.711809098947209,
+    "s_frames_p": 0.8382539375,
+    "nvg": 0.12859985701463494,
+    "s_visual_p": 0.5109299375,
+    "s_static_p": 0.4415066875,
+    "s_blind_p": 0.43875375,
+    "m5": 0.3125,
+    "sections": 4,
+    "mvqs": 88.56,
+    "served": "revision",
+    "changed": 2,
+    "fixed": 2,
+    "kept": true,
+    "edit_size": {
+     "s1": 0.143,
+     "s2": 0.075
+    }
+   },
+   "generic": {
+    "m7": 0.26336192980493195,
+    "m9": 0.762440951721281,
+    "s_frames_p": 0.866670875,
+    "nvg": 0.15878580480493193,
+    "s_visual_p": 0.5278716875,
+    "s_static_p": 0.3187194375,
+    "s_blind_p": 0.43875375,
+    "m5": 0.0625,
+    "sections": 4,
+    "mvqs": 88.78,
+    "served": "revision",
+    "changed": 2,
+    "fixed": 2,
+    "kept": true,
+    "edit_size": {
+     "s2": 0.103,
+     "s4": 0.062
+    }
+   },
+   "learner_all": {
+    "m7": 0.2283447756720813,
+    "m9": 0.7920070735439214,
+    "s_frames_p": 0.88326475,
+    "nvg": 0.1588630881720813,
+    "s_visual_p": 0.5279150625,
+    "s_static_p": 0.3889516875,
+    "s_blind_p": 0.43875375,
+    "m5": 0.375,
+    "sections": 4,
+    "mvqs": 88.62,
+    "served": "base",
+    "changed": 4,
+    "fixed": 4,
+    "kept": false,
+    "edit_size": {
+     "s1": 0.22,
+     "s2": 0.54,
+     "s3": 0.53,
+     "s4": 0.31
+    }
+   }
+  },
+  "minutes": {
+   "video": 2.3,
+   "admission": 2.1,
+   "repair_and_scoring": 62.1
+  },
+  "claude": {
+   "calls": 50,
+   "in": 30973,
+   "out": 25339,
+   "usd": 0.0198,
+   "seconds": 183,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  }
+ },
+ {
+  "topic": "Mirthful triangles",
+  "slug": "mirthful-triangles",
+  "family": "qwen-anchor",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 1,
+   "complete": true,
+   "clean": false,
+   "regenerated": 3
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 89.7,
+   "mvqs_min": 88.7,
+   "conflicts": 6,
+   "timing": 0,
+   "broken_attachments": 7
+  },
+  "teaching": {
+   "topic": "mirthful-triangles",
+   "base": {
+    "m7": 0.05237282250528666,
+    "m9": 0.4583802281531569,
+    "s_frames_p": 0.7152885625,
+    "nvg": 0.015726697505286682,
+    "s_visual_p": 0.48260037499999997,
+    "s_static_p": 0.409308125,
+    "s_blind_p": 0.474333375,
+    "m5": 0.0,
+    "sections": 4,
+    "mvqs": 89.67
+   },
+   "learner": {
+    "m7": 0.06375428533245768,
+    "m9": 0.7097137135156717,
+    "s_frames_p": 0.8474061875,
+    "nvg": 0.06375428533245768,
+    "s_visual_p": 0.507846875,
+    "s_static_p": 0.6039303125,
+    "s_blind_p": 0.474333375,
+    "m5": 0.2,
+    "sections": 4,
+    "mvqs": 89.79,
+    "served": "revision",
+    "changed": 1,
+    "fixed": 1,
+    "kept": true,
+    "edit_size": {
+     "s1": 0.254
+    }
+   },
+   "generic": {
+    "m7": 0.1822099779586347,
+    "m9": 0.3282703177132465,
+    "s_frames_p": 0.646894125,
+    "nvg": 0.10917613420863467,
+    "s_visual_p": 0.531723625,
+    "s_static_p": 0.3856559375,
+    "s_blind_p": 0.474333375,
+    "m5": 0.2625,
+    "sections": 4,
+    "mvqs": 89.76,
+    "served": "revision",
+    "changed": 1,
+    "fixed": 1,
+    "kept": true,
+    "edit_size": {
+     "s3": 0.056
+    }
+   },
+   "learner_all": {
+    "m7": 0.05237282250528666,
+    "m9": 0.4583802281531569,
+    "s_frames_p": 0.7152885625,
+    "nvg": 0.015726697505286682,
+    "s_visual_p": 0.48260037499999997,
+    "s_static_p": 0.409308125,
+    "s_blind_p": 0.474333375,
+    "m5": 0.0,
+    "sections": 4,
+    "mvqs": 89.67,
+    "served": "base",
+    "changed": 4,
+    "fixed": 4,
+    "kept": false,
+    "edit_size": {
+     "s1": 0.25,
+     "s2": 0.207,
+     "s3": 0.208,
+     "s4": 0.185
+    }
+   }
+  },
+  "minutes": {
+   "video": 2.4,
+   "admission": 1.5,
+   "repair_and_scoring": 38.8
+  },
+  "claude": {
+   "calls": 40,
+   "in": 30527,
+   "out": 23180,
+   "usd": 0.0184,
+   "seconds": 127,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  }
+ },
+ {
+  "topic": "Sorrel counts of lattice rectangles",
+  "slug": "sorrel-counts-of-lattice-rectangles",
+  "family": "qwen-anchor",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 1,
+   "complete": true,
+   "clean": false,
+   "regenerated": 3
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 83.7,
+   "mvqs_min": 75.5,
+   "conflicts": 3,
+   "timing": 0,
+   "broken_attachments": 2
+  },
+  "teaching": {
+   "topic": "sorrel-counts-of-lattice-rectangles",
+   "base": {
+    "m7": -0.6048372953327262,
+    "m9": -0.036735549346183165,
+    "s_frames_p": 0.6552909375,
+    "nvg": -0.6048372953327262,
+    "s_visual_p": 0.466400125,
+    "s_static_p": 0.583457625,
+    "s_blind_p": 0.6675053125,
+    "m5": -0.3333333333333333,
+    "sections": 4,
+    "mvqs": 83.66
+   },
+   "learner": {
+    "m7": -0.3590442704441707,
+    "m9": 0.18115947341263922,
+    "s_frames_p": 0.727739875,
+    "nvg": -0.3590442704441707,
+    "s_visual_p": 0.548125,
+    "s_static_p": 0.6460991875,
+    "s_blind_p": 0.6675053125,
+    "m5": -0.3333333333333333,
+    "sections": 4,
+    "mvqs": 83.98,
+    "served": "revision",
+    "changed": 1,
+    "fixed": 1,
+    "kept": true,
+    "edit_size": {
+     "s2": 0.257
+    }
+   },
+   "generic": {
+    "m7": -0.6048372953327262,
+    "m9": -0.036735549346183165,
+    "s_frames_p": 0.6552909375,
+    "nvg": -0.6048372953327262,
+    "s_visual_p": 0.466400125,
+    "s_static_p": 0.583457625,
+    "s_blind_p": 0.6675053125,
+    "m5": -0.3333333333333333,
+    "sections": 4,
+    "mvqs": 83.66,
+    "served": "base",
+    "changed": 1,
+    "fixed": 1,
+    "kept": false,
+    "edit_size": {
+     "s2": 0.103
+    }
+   },
+   "learner_all": {
+    "m7": -0.6048372953327262,
+    "m9": -0.036735549346183165,
+    "s_frames_p": 0.6552909375,
+    "nvg": -0.6048372953327262,
+    "s_visual_p": 0.466400125,
+    "s_static_p": 0.583457625,
+    "s_blind_p": 0.6675053125,
+    "m5": -0.3333333333333333,
+    "sections": 4,
+    "mvqs": 83.66,
+    "served": "base",
+    "changed": 4,
+    "fixed": 4,
+    "kept": false,
+    "edit_size": {
+     "s1": 0.112,
+     "s2": 0.257,
+     "s3": 0.15,
+     "s4": 0.122
+    }
+   }
+  },
+  "minutes": {
+   "video": 2.1,
+   "admission": 1.7,
+   "repair_and_scoring": 30.0
+  },
+  "claude": {
+   "calls": 46,
+   "in": 31338,
+   "out": 23132,
+   "usd": 0.0186,
+   "seconds": 127,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  }
+ },
+ {
+  "topic": "Quill distance",
+  "slug": "quill-distance",
+  "family": "qwen-anchor",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 3,
+   "complete": true,
+   "clean": false,
+   "regenerated": 1
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 82.8,
+   "mvqs_min": 80.7,
+   "conflicts": 1,
+   "timing": 0,
+   "broken_attachments": 0
+  },
+  "teaching": {
+   "topic": "quill-distance",
+   "base": {
+    "m7": 0.11340506531958645,
+    "m9": 0.36297332491825973,
+    "s_frames_p": 0.5234643125,
+    "nvg": 0.11340506531958645,
+    "s_visual_p": 0.33677168749999997,
+    "s_static_p": 0.484563875,
+    "s_blind_p": 0.251937625,
+    "m5": -0.16666666666666666,
+    "sections": 4,
+    "mvqs": 82.81
+   },
+   "learner": {
+    "m7": 0.08834356894369938,
+    "m9": 0.4278778390638883,
+    "s_frames_p": 0.5720169375,
+    "nvg": 0.08834356894369938,
+    "s_visual_p": 0.318024125,
+    "s_static_p": 0.5550789375,
+    "s_blind_p": 0.251937625,
+    "m5": 0.0,
+    "sections": 4,
+    "mvqs": 82.78,
+    "served": "revision",
+    "changed": 1,
+    "fixed": 1,
+    "kept": true,
+    "edit_size": {
+     "s3": 0.138
+    }
+   },
+   "generic": {
+    "m7": 0.11357241433242782,
+    "m9": 0.3510462613495298,
+    "s_frames_p": 0.514542125,
+    "nvg": 0.11357241433242782,
+    "s_visual_p": 0.336896875,
+    "s_static_p": 0.4786313125,
+    "s_blind_p": 0.251937625,
+    "m5": -0.16666666666666666,
+    "sections": 4,
+    "mvqs": 82.81,
+    "served": "revision",
+    "changed": 1,
+    "fixed": 1,
+    "kept": true,
+    "edit_size": {
+     "s3": 0.03
+    }
+   },
+   "learner_all": {
+    "m7": 0.15340381876578144,
+    "m9": 0.2390920275866033,
+    "s_frames_p": 0.430793375,
+    "nvg": 0.15340381876578144,
+    "s_visual_p": 0.36669325,
+    "s_static_p": 0.5819383124999999,
+    "s_blind_p": 0.251937625,
+    "m5": 0.16666666666666666,
+    "sections": 4,
+    "mvqs": 81.14,
+    "served": "revision",
+    "changed": 4,
+    "fixed": 4,
+    "kept": true,
+    "edit_size": {
+     "s1": 0.18,
+     "s2": 0.212,
+     "s3": 0.138,
+     "s4": 0.234
+    }
+   }
+  },
+  "minutes": {
+   "video": 4.4,
+   "admission": 1.7,
+   "repair_and_scoring": 46.5
+  },
+  "claude": {
+   "calls": 55,
+   "in": 26997,
+   "out": 18134,
+   "usd": 0.0148,
+   "seconds": 122,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  }
+ },
+ {
+  "topic": "Dapple numbers",
+  "slug": "dapple-numbers",
+  "family": "qwen-anchor",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 2,
+   "complete": true,
+   "clean": false,
+   "regenerated": 2
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 79.4,
+   "mvqs_min": 69.8,
+   "conflicts": 7,
+   "timing": 0,
+   "broken_attachments": 0
+  },
+  "teaching": {
+   "topic": "dapple-numbers",
+   "base": {
+    "m7": 0.14551273315281885,
+    "m9": 0.4572810042382049,
+    "s_frames_p": 0.640312375,
+    "nvg": 0.13676513940281884,
+    "s_visual_p": 0.427890125,
+    "s_static_p": 0.4103949375,
+    "s_blind_p": 0.337248875,
+    "m5": 0.0,
+    "sections": 4,
+    "mvqs": 79.36
+   },
+   "learner": {
+    "m7": 0.008895496028015037,
+    "m9": 0.36491658162028767,
+    "s_frames_p": 0.57909775,
+    "nvg": 0.008895496028015037,
+    "s_visual_p": 0.343144375,
+    "s_static_p": 0.7416633125,
+    "s_blind_p": 0.337248875,
+    "m5": 0.0,
+    "sections": 4,
+    "mvqs": 76.3,
+    "served": "revision",
+    "changed": 1,
+    "fixed": 1,
+    "kept": true,
+    "edit_size": {
+     "s1": 0.395
+    }
+   },
+   "generic": {
+    "m7": 0.02943440873072827,
+    "m9": 0.4628206025300975,
+    "s_frames_p": 0.64398375,
+    "nvg": 0.02943440873072827,
+    "s_visual_p": 0.3567565625,
+    "s_static_p": 0.37557225,
+    "s_blind_p": 0.337248875,
+    "m5": 0.0,
+    "sections": 4,
+    "mvqs": 79.14,
+    "served": "revision",
+    "changed": 1,
+    "fixed": 1,
+    "kept": true,
+    "edit_size": {
+     "s4": 0.039
+    }
+   },
+   "learner_all": {
+    "m7": 0.20302907822299054,
+    "m9": 0.43905593144032756,
+    "s_frames_p": 0.6282336875,
+    "nvg": 0.20302907822299054,
+    "s_visual_p": 0.471806625,
+    "s_static_p": 0.625380125,
+    "s_blind_p": 0.337248875,
+    "m5": 0.0,
+    "sections": 4,
+    "mvqs": 75.69,
+    "served": "revision",
+    "changed": 4,
+    "fixed": 4,
+    "kept": true,
+    "edit_size": {
+     "s1": 0.395,
+     "s2": 0.124,
+     "s3": 0.302,
+     "s4": 0.167
+    }
+   }
+  },
+  "minutes": {
+   "video": 2.8,
+   "admission": 1.3,
+   "repair_and_scoring": 45.9
+  },
+  "claude": {
+   "calls": 57,
+   "in": 38216,
+   "out": 23135,
+   "usd": 0.0195,
+   "seconds": 139,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  }
+ },
+ {
+  "topic": "Vells of 2×2 grids",
+  "slug": "vells-of-2-2-grids",
+  "family": "qwen-anchor",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 3,
+   "complete": true,
+   "clean": true,
+   "regenerated": 1
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 88.3,
+   "mvqs_min": 85.0,
+   "conflicts": 0,
+   "timing": 0,
+   "broken_attachments": 1
+  },
+  "teaching": {
+   "topic": "vells-of-2-2-grids",
+   "base": {
+    "m7": 0.06111534541062287,
+    "m9": 0.3687336589279549,
+    "s_frames_p": 0.5703999375,
+    "nvg": 0.06111534541062287,
+    "s_visual_p": 0.3610543125,
+    "s_static_p": 0.417012,
+    "s_blind_p": 0.3194630625,
+    "m5": 0.0,
+    "sections": 4,
+    "mvqs": 88.34
+   },
+   "learner": {
+    "m7": 0.06111534541062287,
+    "m9": 0.3687336589279549,
+    "s_frames_p": 0.5703999375,
+    "nvg": 0.06111534541062287,
+    "s_visual_p": 0.3610543125,
+    "s_static_p": 0.417012,
+    "s_blind_p": 0.3194630625,
+    "m5": 0.0,
+    "sections": 4,
+    "mvqs": 88.34,
+    "served": "base",
+    "changed": 0,
+    "fixed": 0,
+    "kept": false,
+    "edit_size": {}
+   },
+   "generic": {
+    "m7": 0.06111534541062287,
+    "m9": 0.3687336589279549,
+    "s_frames_p": 0.5703999375,
+    "nvg": 0.06111534541062287,
+    "s_visual_p": 0.3610543125,
+    "s_static_p": 0.417012,
+    "s_blind_p": 0.3194630625,
+    "m5": 0.0,
+    "sections": 4,
+    "mvqs": 88.34,
+    "served": "base",
+    "changed": 0,
+    "fixed": 0,
+    "kept": false,
+    "edit_size": {}
+   },
+   "learner_all": {
+    "m7": 0.06111534541062287,
+    "m9": 0.3687336589279549,
+    "s_frames_p": 0.5703999375,
+    "nvg": 0.06111534541062287,
+    "s_visual_p": 0.3610543125,
+    "s_static_p": 0.417012,
+    "s_blind_p": 0.3194630625,
+    "m5": 0.0,
+    "sections": 4,
+    "mvqs": 88.34,
+    "served": "base",
+    "changed": 0,
+    "fixed": 0,
+    "kept": false,
+    "edit_size": {}
+   }
+  },
+  "minutes": {
+   "video": 1.7,
+   "admission": 0.6,
+   "repair_and_scoring": 3.0
+  },
+  "claude": {
+   "calls": 23,
+   "in": 10960,
+   "out": 4570,
+   "usd": 0.0043,
+   "seconds": 32,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  }
+ },
+ {
+  "topic": "Orbit words",
+  "slug": "orbit-words",
+  "family": "qwen-anchor",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 3,
+   "complete": true,
+   "clean": true,
+   "regenerated": 1
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 88.2,
+   "mvqs_min": 85.8,
+   "conflicts": 0,
+   "timing": 0,
+   "broken_attachments": 2
+  },
+  "teaching": {
+   "topic": "orbit-words",
+   "base": {
+    "m7": 0.3267416189701223,
+    "m9": 0.6991289940484676,
+    "s_frames_p": 0.795413,
+    "nvg": 0.3267416189701223,
+    "s_visual_p": 0.542196125,
+    "s_static_p": 0.637963125,
+    "s_blind_p": 0.3200175625,
+    "m5": 0.5,
+    "sections": 4,
+    "mvqs": 88.16
+   },
+   "learner": {
+    "m7": 0.32170316163496504,
+    "m9": 0.6557123396293598,
+    "s_frames_p": 0.7658904375,
+    "nvg": 0.32170316163496504,
+    "s_visual_p": 0.5387700625,
+    "s_static_p": 0.6991491875,
+    "s_blind_p": 0.3200175625,
+    "m5": 0.5,
+    "sections": 4,
+    "mvqs": 88.41,
+    "served": "revision",
+    "changed": 1,
+    "fixed": 1,
+    "kept": true,
+    "edit_size": {
+     "s3": 0.248
+    }
+   },
+   "generic": {
+    "m7": 0.3233407958422455,
+    "m9": 0.6712669693031594,
+    "s_frames_p": 0.7764673125,
+    "nvg": 0.3233407958422455,
+    "s_visual_p": 0.539883625,
+    "s_static_p": 0.7480825625,
+    "s_blind_p": 0.3200175625,
+    "m5": 0.5,
+    "sections": 4,
+    "mvqs": 87.42,
+    "served": "revision",
+    "changed": 1,
+    "fixed": 1,
+    "kept": true,
+    "edit_size": {
+     "s4": 0.098
+    }
+   },
+   "learner_all": {
+    "m7": 0.2214266747146686,
+    "m9": 0.6429644920057218,
+    "s_frames_p": 0.757222125,
+    "nvg": 0.2214266747146686,
+    "s_visual_p": 0.4705838125,
+    "s_static_p": 0.7589564375,
+    "s_blind_p": 0.3200175625,
+    "m5": 0.3333333333333333,
+    "sections": 4,
+    "mvqs": 88.88,
+    "served": "revision",
+    "changed": 4,
+    "fixed": 4,
+    "kept": true,
+    "edit_size": {
+     "s1": 0.156,
+     "s2": 0.143,
+     "s3": 0.175,
+     "s4": 0.169
+    }
+   }
+  },
+  "minutes": {
+   "video": 1.1,
+   "admission": 0.5,
+   "repair_and_scoring": 15.2
+  },
+  "claude": {
+   "calls": 33,
+   "in": 16637,
+   "out": 10766,
+   "usd": 0.0089,
+   "seconds": 64,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  }
+ }
+]

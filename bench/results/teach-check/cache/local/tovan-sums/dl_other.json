@@ -1,0 +1,142 @@
+{
+ "quiz": "f9a24dd025f6|12|01",
+ "frames": 12,
+ "rotations": [
+  {
+   "rotation": 0,
+   "items": [
+    {
+     "id": "d1",
+     "p": {
+      "A": 0.001102,
+      "B": 0.01465,
+      "C": 0.984248,
+      "D": 0.0
+     },
+     "choice": "C",
+     "right": false,
+     "p_right": 0.001102
+    },
+    {
+     "id": "d2",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d3",
+     "p": {
+      "A": 0.000259,
+      "B": 0.999593,
+      "C": 3e-05,
+      "D": 0.000118
+     },
+     "choice": "B",
+     "right": false,
+     "p_right": 0.000118
+    },
+    {
+     "id": "d6",
+     "p": {
+      "A": 0.013447,
+      "B": 0.011016,
+      "C": 0.97242,
+      "D": 0.003117
+     },
+     "choice": "C",
+     "right": false,
+     "p_right": 0.003117
+    },
+    {
+     "id": "d9",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d11",
+     "p": {
+      "A": 0.050997,
+      "B": 0.022679,
+      "C": 0.003953,
+      "D": 0.922372
+     },
+     "choice": "D",
+     "right": true,
+     "p_right": 0.922372
+    }
+   ],
+   "missing": 2
+  },
+  {
+   "rotation": 1,
+   "items": [
+    {
+     "id": "d1",
+     "p": {
+      "D": 0.002755,
+      "A": 0.996461,
+      "B": 0.000356,
+      "C": 0.000429
+     },
+     "choice": "A",
+     "right": true,
+     "p_right": 0.996461
+    },
+    {
+     "id": "d2",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d3",
+     "p": {
+      "D": 1.2e-05,
+      "A": 7.2e-05,
+      "B": 0.999895,
+      "C": 2.1e-05
+     },
+     "choice": "B",
+     "right": false,
+     "p_right": 1.2e-05
+    },
+    {
+     "id": "d6",
+     "p": {
+      "D": 0.000269,
+      "A": 0.001622,
+      "B": 0.010743,
+      "C": 0.987365
+     },
+     "choice": "C",
+     "right": false,
+     "p_right": 0.000269
+    },
+    {
+     "id": "d9",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d11",
+     "p": {
+      "D": 0.362422,
+      "A": 0.602514,
+      "B": 0.001819,
+      "C": 0.033245
+     },
+     "choice": "A",
+     "right": false,
+     "p_right": 0.362422
+    }
+   ],
+   "missing": 2
+  }
+ ]
+}

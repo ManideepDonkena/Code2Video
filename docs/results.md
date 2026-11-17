@@ -2,6 +2,11 @@
 
 ## Pilot on MMMC (2026-11-12): no signal, and why
 
+> **Superseded measurement.** These TEST numbers were graded before the answer-matching fix: in 42% of student runs
+> the student copied the template's ids and all its answers were scored NULL (DEV was unaffected). The corrected
+> TeachQuiz (M1), D-VGAIN and the rest of the metric ladder are in `bench/results/mmmc-n12-seed0-ladder/` and in
+> the paper (`paper/`, built by `paper/build.sh`).
+
 12 topics (`bench/run_bench.py --n 12 --seed 0`), all models local, 4 planned sections each. TEST = MMMC's 5
 official questions per topic, 3 student runs (`gemma4:26b` on 3 frames per section). Analysis:
 `bench/results/mmmc-n12-seed0/analysis.json`. No leaked TEST items in any topic, so `teachquiz_clean` equals

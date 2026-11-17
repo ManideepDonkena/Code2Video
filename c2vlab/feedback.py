@@ -6,7 +6,8 @@
      words, the missing idea. An idea that copies the question or an option (6 words in a row) is refused.
   2. revise: only the sections named are written again with their missing ideas, layout-checked and rendered. A
      section whose new version does not render keeps its old one (the incumbent is never lost).
-  3. gate: the revision is marked kept when DEV TeachQuiz does not fall and MVQS falls by less than 5 points.
+  3. gate: the revision is marked kept when DEV TeachQuiz does not fall, MVQS falls by less than 5 points, and
+     (while layout.CROWDING is on) the rewritten sections have no more layout faults than they had (layout.faults).
 TEST is never shown to any step.
 
 Modes (same diagnosis, so the same number of sections is rewritten where it applies):
@@ -76,7 +77,8 @@ def plan_fixes(plan, failed):
         try:
             reply = llm.ask(
                 llm.PLANNER,
-                MAP.format(topic=plan["topic"], sections=sections, question=teachquiz.quiz_text([q])),
+                MAP.format(topic=plan["topic"], sections=sections, question=teachquiz.quiz_text([q]))
+                + (generate.SOURCE.format(source=plan["source"]) if plan.get("source") else ""),
                 note="map",
             )
         except RuntimeError:
@@ -93,7 +95,9 @@ def plan_fixes(plan, failed):
 def revise(run_dir, new_dir, fixes, log=print):
     if new_dir.exists():
         shutil.rmtree(new_dir)
-    shutil.copytree(run_dir, new_dir, ignore=shutil.ignore_patterns("frames", "eval_*.json", "row.json", *MODES))  # a copied score would be read as this video's
+    # A copied score or probe cache would be read as this video's (dv_*.json included: c2vlab/stages.py already skips them).
+    shutil.copytree(run_dir, new_dir, ignore=shutil.ignore_patterns("frames", "eval_*.json", "row.json", "dv_*.json",
+                                                                    "stages", *MODES))  # fmt: skip
     plan = json.loads((new_dir / "plan.json").read_text())
     clips, changed = {}, []
     kept = new_dir / "kept"
@@ -136,6 +140,13 @@ def section_mvqs(run_dir):
     return round(sum(scores) / len(scores), 2) if scores else None
 
 
+def layout_faults(run_dir, new_dir, changed):
+    """Layout faults of the rewritten sections, before and after (None, None when the check is off)."""
+    if not layout.CROWDING or not changed:
+        return None, None
+    return layout.fault_count(run_dir, changed), layout.fault_count(new_dir, changed)
+
+
 def diagnose(run_dir, log=print):
     """Gaps and the fixes they ask for, worked out once per base video and shared by every mode."""
     path = run_dir / "diagnosis.json"
@@ -170,9 +181,11 @@ def round_(run_dir, mode="learner", log=print):
     before = teachquiz.evaluate(run_dir, "dev", runs=2)
     after = teachquiz.evaluate(new_dir, "dev", runs=2)
     m0, m1 = section_mvqs(run_dir), section_mvqs(new_dir)
-    kept = bool(changed) and after["teachquiz"] >= before["teachquiz"] and (m0 is None or m1 is None or m1 > m0 - 5)
+    f0, f1 = layout_faults(run_dir, new_dir, changed)
+    kept = (bool(changed) and after["teachquiz"] >= before["teachquiz"] and (m0 is None or m1 is None or m1 > m0 - 5)
+            and (f0 is None or f1 <= f0))  # fmt: skip
     report = {"mode": mode, "gaps": diag["gaps"], "fixes": fixes, "changed": changed,
               "dev_before": before["teachquiz"], "dev_after": after["teachquiz"], "mvqs_before": m0,
-              "mvqs_after": m1, "kept": kept, "dir": str(new_dir)}  # fmt: skip
+              "mvqs_after": m1, "faults_before": f0, "faults_after": f1, "kept": kept, "dir": str(new_dir)}  # fmt: skip
     (new_dir / "feedback.json").write_text(json.dumps(report, indent=1, ensure_ascii=False))
     return report

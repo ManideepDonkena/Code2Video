@@ -1,0 +1,227 @@
+{
+ "topic": "Krell steps on a grid",
+ "written": 16,
+ "well_formed": 16,
+ "on_screen": 12,
+ "solved": 11,
+ "kept": 7,
+ "writer": "qwen3.6:latest",
+ "solver": "gemma4:26b",
+ "questions": [
+  {
+   "section": "s1",
+   "question": "Which coordinate pair is displayed next to the blue dot at the start of section s1?",
+   "options": {
+    "A": "(1, 4)",
+    "B": "(5, 4)",
+    "C": "(0, 0)",
+    "D": "(3, 5)"
+   },
+   "answer": "D",
+   "shown": "(3, 5)",
+   "id": "d1"
+  },
+  {
+   "section": "s1",
+   "question": "Which number appears inside the box that flashes yellow in section s1?",
+   "options": {
+    "A": "3",
+    "B": "5",
+    "C": "4",
+    "D": "1"
+   },
+   "answer": "A",
+   "shown": "3",
+   "id": "d3"
+  },
+  {
+   "section": "s1",
+   "question": "What is the final coordinate pair shown in orange text at the end of section s1?",
+   "options": {
+    "A": "(0, 1)",
+    "B": "(5, 4)",
+    "C": "(4, 6)",
+    "D": "(3, 5)"
+   },
+   "answer": "B",
+   "shown": "(5, 4)",
+   "id": "d4"
+  },
+  {
+   "section": "s2",
+   "question": "What is the general formula displayed in yellow at the bottom of section s2?",
+   "options": {
+    "A": "(x, y) \\to (y, x + 1)",
+    "B": "(x, y) \\to (x, y)",
+    "C": "(x, y) \\to (y + 1, x)",
+    "D": "(x, y) \\to (x + 1, y)"
+   },
+   "answer": "A",
+   "shown": "(x, y) \\to (y, x + 1)",
+   "id": "d5"
+  },
+  {
+   "section": "s2",
+   "question": "What phrase is written in green text below the general formula in section s2?",
+   "options": {
+    "A": "Never between the lines",
+    "B": "Always on grid points",
+    "C": "Whole numbers only",
+    "D": "Integer coordinates"
+   },
+   "answer": "A",
+   "shown": "Never between the lines",
+   "id": "d6"
+  },
+  {
+   "section": "s3",
+   "question": "What direction word is displayed in yellow during the second step of section s3?",
+   "options": {
+    "A": "up",
+    "B": "left",
+    "C": "down",
+    "D": "right"
+   },
+   "answer": "D",
+   "shown": "right",
+   "id": "d8"
+  },
+  {
+   "section": "s4",
+   "question": "What is the final coordinate pair shown in green in the grid example of section s4?",
+   "options": {
+    "A": "(5,4)",
+    "B": "(3,5)",
+    "C": "(4,6)",
+    "D": "(2,2)"
+   },
+   "answer": "C",
+   "shown": "(4,6)",
+   "id": "d12"
+  }
+ ],
+ "dropped": [
+  {
+   "section": "s1",
+   "question": "What is the exact text of the rule written in the right column during section s1?",
+   "options": {
+    "A": "krell step: (x, y) → (x + 1, y)",
+    "B": "krell step: (x, y) → (y, x + 1)",
+    "C": "krell step: (y, x) → (x, y)",
+    "D": "krell step: swap and add 1"
+   },
+   "answer": "B",
+   "shown": "krell step: (x, y) → (y, x + 1)",
+   "id": "d2",
+   "why": "answered without the video (P 0.50)"
+  },
+  {
+   "section": "s3",
+   "question": "What is the first coordinate pair in the staircase chain displayed at the end of section s3?",
+   "options": {
+    "A": "(0,1)",
+    "B": "(2,2)",
+    "C": "(1,1)",
+    "D": "(0,0)"
+   },
+   "answer": "D",
+   "shown": "(0,0)",
+   "id": "d7",
+   "why": "answered without the video (P 0.85)"
+  },
+  {
+   "section": "s3",
+   "question": "What is the final coordinate pair in the chain shown at the end of section s3?",
+   "options": {
+    "A": "(3,3)",
+    "B": "(0,1)",
+    "C": "(2,2)",
+    "D": "(1,2)"
+   },
+   "answer": "C",
+   "shown": "(2,2)",
+   "id": "d9",
+   "why": "answered without the video (P 0.53)"
+  },
+  {
+   "section": "s4",
+   "question": "What text describes the diagonal move in yellow at the bottom right of section s4?",
+   "options": {
+    "A": "diagonal unit",
+    "B": "two steps",
+    "C": "+1 right, +1 up",
+    "D": "swap and add 1"
+   },
+   "answer": "C",
+   "shown": "+1 right, +1 up",
+   "id": "d11",
+   "why": "answered without the video (P 0.53)"
+  },
+  {
+   "section": "s4",
+   "question": "What is the coordinate label for the blue dot in the grid example of section s4?",
+   "options": {
+    "A": "(4,6)",
+    "B": "(5,4)",
+    "C": "(0,0)",
+    "D": "(3,5)"
+   },
+   "answer": "B",
+   "shown": "(5,4)",
+   "id": "d10",
+   "why": "solver chose D"
+  },
+  {
+   "section": "s2",
+   "question": "Which example pair is listed first in the 'examples' array in section s2?",
+   "options": {
+    "A": "((2, 0), (0, 3))",
+    "B": "((0, 0), (0, 1))",
+    "C": "((4, 3), (3, 5))",
+    "D": "((1, 4), (4, 2))"
+   },
+   "answer": "D",
+   "shown": "((1, 4), (4, 2))",
+   "why": "shown text is not in the code"
+  },
+  {
+   "section": "s2",
+   "question": "What is the second example pair shown in section s2?",
+   "options": {
+    "A": "((1, 4), (4, 2))",
+    "B": "((3, 5), (5, 4))",
+    "C": "((2, 0), (0, 3))",
+    "D": "((4, 3), (3, 5))"
+   },
+   "answer": "C",
+   "shown": "((2, 0), (0, 3))",
+   "why": "shown text is not in the code"
+  },
+  {
+   "section": "s3",
+   "question": "What text is written in the summary box at the end of section s3?",
+   "options": {
+    "A": "Repeated krell steps\\nclimb a staircase",
+    "B": "Climbing the Staircase",
+    "C": "Keep taking krell steps",
+    "D": "Two steps make a diagonal"
+   },
+   "answer": "A",
+   "shown": "Repeated krell steps\\nclimb a staircase",
+   "why": "shown text is not in the code"
+  },
+  {
+   "section": "s4",
+   "question": "What is the intermediate coordinate pair shown in yellow in the algebra section of s4?",
+   "options": {
+    "A": "(x+1, y+1)",
+    "B": "(x, y)",
+    "C": "(y, x+1)",
+    "D": "(x+1, y)"
+   },
+   "answer": "A",
+   "shown": "(x+1, y+1)",
+   "why": "shown text is not in the code"
+  }
+ ]
+}

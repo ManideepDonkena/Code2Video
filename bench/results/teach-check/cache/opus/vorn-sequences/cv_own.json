@@ -1,0 +1,71 @@
+{
+ "quiz": "95e515b04cd3gemma4:26b",
+ "judge": "gemma4:26b",
+ "frames": 12,
+ "items": [
+  {
+   "id": "t1",
+   "shown": true,
+   "said": true,
+   "frame": 3,
+   "quote": "v(1) 1, v(2) 3, v(3) 5",
+   "answered": true
+  },
+  {
+   "id": "t2",
+   "shown": true,
+   "said": true,
+   "frame": 3,
+   "quote": "v(1) 1, v(2) 3, v(3) 5, v(4) 11, v(5) 21, v(6) 43",
+   "answered": true
+  },
+  {
+   "id": "t3",
+   "shown": true,
+   "said": true,
+   "frame": 1,
+   "quote": "1, 3",
+   "answered": true
+  },
+  {
+   "id": "t4",
+   "shown": true,
+   "said": true,
+   "frame": 2,
+   "quote": "v(n) = v(n-1) + 2 * v(n-2)",
+   "answered": true
+  },
+  {
+   "id": "t5",
+   "shown": true,
+   "said": true,
+   "frame": 4,
+   "quote": "Rule 1: Every Term Is Odd",
+   "answered": true
+  },
+  {
+   "id": "t6",
+   "shown": true,
+   "said": true,
+   "frame": 6,
+   "quote": "Rule 2: Each Term Is About Twice the One Before",
+   "answered": true
+  },
+  {
+   "id": "t7",
+   "shown": true,
+   "said": true,
+   "frame": 3,
+   "quote": "v(4) 11",
+   "answered": true
+  },
+  {
+   "id": "t8",
+   "shown": true,
+   "said": true,
+   "frame": 2,
+   "quote": "v(n) = v(n-1) + 2 * v(n-2)",
+   "answered": true
+  }
+ ]
+}

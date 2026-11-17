@@ -1,0 +1,121 @@
+{
+ "versions": {
+  "local": {
+   "videos": 10,
+   "sections": 40,
+   "objects_max_mean": 10.6,
+   "text_max_mean": 6.7,
+   "lines_mean": 68,
+   "conflicts": 27,
+   "broken_attachments": 13,
+   "timing": 4,
+   "sections_with_fault": 17,
+   "mvqs_mean": 84.2,
+   "anchor_sections": 0
+  },
+  "local_claude_layout": {
+   "videos": 10,
+   "sections": 40,
+   "objects_max_mean": 10.2,
+   "text_max_mean": 6.7,
+   "lines_mean": 68,
+   "conflicts": 4,
+   "broken_attachments": 4,
+   "timing": 0,
+   "sections_with_fault": 7,
+   "mvqs_mean": 85.6,
+   "anchor_sections": 0
+  },
+  "qwen": {
+   "videos": 10,
+   "sections": 40,
+   "objects_max_mean": 10.4,
+   "text_max_mean": 6.6,
+   "lines_mean": 68,
+   "conflicts": 13,
+   "broken_attachments": 9,
+   "timing": 0,
+   "sections_with_fault": 13,
+   "mvqs_mean": 84.7,
+   "anchor_sections": 0
+  },
+  "qwen-anchor": {
+   "videos": 10,
+   "sections": 40,
+   "objects_max_mean": 10.4,
+   "text_max_mean": 7.0,
+   "lines_mean": 72,
+   "conflicts": 21,
+   "broken_attachments": 15,
+   "timing": 6,
+   "sections_with_fault": 17,
+   "mvqs_mean": 85.3,
+   "anchor_sections": 5
+  },
+  "haiku": {
+   "videos": 10,
+   "sections": 40,
+   "objects_max_mean": 27.1,
+   "text_max_mean": 13.1,
+   "lines_mean": 99,
+   "conflicts": 3,
+   "broken_attachments": 5,
+   "timing": 0,
+   "sections_with_fault": 5,
+   "mvqs_mean": 86.6,
+   "anchor_sections": 0
+  },
+  "sonnet": {
+   "videos": 10,
+   "sections": 40,
+   "objects_max_mean": 20.6,
+   "text_max_mean": 11.3,
+   "lines_mean": 62,
+   "conflicts": 1,
+   "broken_attachments": 10,
+   "timing": 2,
+   "sections_with_fault": 7,
+   "mvqs_mean": 86.4,
+   "anchor_sections": 0
+  },
+  "opus": {
+   "videos": 10,
+   "sections": 40,
+   "objects_max_mean": 28.5,
+   "text_max_mean": 14.4,
+   "lines_mean": 104,
+   "conflicts": 0,
+   "broken_attachments": 1,
+   "timing": 0,
+   "sections_with_fault": 1,
+   "mvqs_mean": 89.0,
+   "anchor_sections": 0
+  },
+  "sonnet-anchor": {
+   "videos": 10,
+   "sections": 40,
+   "objects_max_mean": 21.4,
+   "text_max_mean": 12.1,
+   "lines_mean": 70,
+   "conflicts": 0,
+   "broken_attachments": 4,
+   "timing": 1,
+   "sections_with_fault": 2,
+   "mvqs_mean": 86.9,
+   "anchor_sections": 8
+  }
+ },
+ "objects_vs_faults": {
+  "sections": 320,
+  "spearman": -0.13,
+  "p": 0.024,
+  "lines_spearman": -0.06,
+  "lines_p": 0.33
+ },
+ "tracker": {
+  "file": "c2vlab/scene_graph.py",
+  "sha256": "277a060476c4",
+  "uncommitted_changes": true,
+  "settings": "scene_graph.V2=False, layout.SAFE=False, layout.CROWDING=False"
+ }
+}

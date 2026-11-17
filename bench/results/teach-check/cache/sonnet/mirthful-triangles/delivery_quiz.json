@@ -1,0 +1,214 @@
+{
+ "topic": "Mirthful triangles",
+ "written": 16,
+ "well_formed": 15,
+ "on_screen": 15,
+ "solved": 13,
+ "kept": 10,
+ "writer": "qwen3.6:latest",
+ "solver": "gemma4:26b",
+ "questions": [
+  {
+   "section": "s1",
+   "question": "What text label is written next to the longest side in the worked example?",
+   "options": {
+    "A": "hypotenuse (H)",
+    "B": "shortest (S)",
+    "C": "longest (L)",
+    "D": "base (B)"
+   },
+   "answer": "C",
+   "shown": "longest (L)",
+   "id": "d2"
+  },
+  {
+   "section": "s1",
+   "question": "What value is shown next to the blue bar representing the shortest side comparison?",
+   "options": {
+    "A": "S / 1.5",
+    "B": "1.5 \\cdot S",
+    "C": "3 \\times S",
+    "D": "2 \\times S"
+   },
+   "answer": "B",
+   "shown": "1.5 \\cdot S",
+   "id": "d3"
+  },
+  {
+   "section": "s1",
+   "question": "What word is displayed next to the green checkmark to indicate the result?",
+   "options": {
+    "A": "equal",
+    "B": "mirthful",
+    "C": "true",
+    "D": "valid"
+   },
+   "answer": "B",
+   "shown": "mirthful",
+   "id": "d4"
+  },
+  {
+   "section": "s2",
+   "question": "Which number is shown next to the longest side of the left triangle?",
+   "options": {
+    "A": "6",
+    "B": "4",
+    "C": "3",
+    "D": "5"
+   },
+   "answer": "A",
+   "shown": "6",
+   "id": "d5"
+  },
+  {
+   "section": "s2",
+   "question": "What is the first calculation shown for the left triangle?",
+   "options": {
+    "A": "3 \\times 5 = 15",
+    "B": "3 \\times 4 = 12",
+    "C": "2 \\times 6 = 12",
+    "D": "2 \\times 5 = 10"
+   },
+   "answer": "C",
+   "shown": "2 \\times 6 = 12",
+   "id": "d6"
+  },
+  {
+   "section": "s2",
+   "question": "What result text is shown for the right triangle?",
+   "options": {
+    "A": "equal",
+    "B": "NOT mirthful",
+    "C": "false",
+    "D": "MIRTHFUL"
+   },
+   "answer": "B",
+   "shown": "NOT mirthful",
+   "id": "d7"
+  },
+  {
+   "section": "s2",
+   "question": "What phrase is written in yellow at the bottom of the screen?",
+   "options": {
+    "A": "equal is okay",
+    "B": "equality still counts",
+    "C": "limit holds",
+    "D": "boundary case"
+   },
+   "answer": "B",
+   "shown": "equality still counts",
+   "id": "d8"
+  },
+  {
+   "section": "s3",
+   "question": "What inequality is shown for the scaled 6,8,10 triangle?",
+   "options": {
+    "A": "2\\times 10 = 20 \\le 3\\times 6 = 18",
+    "B": "20 > 18",
+    "C": "24 = 24",
+    "D": "2\\times 12 = 24 \\le 3\\times 8 = 24"
+   },
+   "answer": "D",
+   "shown": "2\\times 12 = 24 \\le 3\\times 8 = 24",
+   "id": "d10"
+  },
+  {
+   "section": "s4",
+   "question": "What word is shown next to the middle side label in both examples?",
+   "options": {
+    "A": "null",
+    "B": "none",
+    "C": "ignored",
+    "D": "skip"
+   },
+   "answer": "C",
+   "shown": "ignored",
+   "id": "d14"
+  },
+  {
+   "section": "s4",
+   "question": "What formula is shown at the bottom of the screen?",
+   "options": {
+    "A": "2\\times 6 = 12 \\le 3\\times 4 = 12",
+    "B": "L \\le 1.5 \\times S",
+    "C": "6 \\le 4",
+    "D": "2\\times 5 = 10 \\le 3\\times 4 = 12"
+   },
+   "answer": "A",
+   "shown": "2\\times 6 = 12 \\le 3\\times 4 = 12",
+   "id": "d15"
+  }
+ ],
+ "dropped": [
+  {
+   "section": "s1",
+   "question": "Which two numbers appear in the first inequality rule displayed on screen?",
+   "options": {
+    "A": "3 and 4",
+    "B": "1.5 and 3",
+    "C": "2 and 3",
+    "D": "2 and 1.5"
+   },
+   "answer": "C",
+   "shown": "2 \\times L \\le 3 \\times S",
+   "id": "d1",
+   "why": "answered without the video (P 0.52)"
+  },
+  {
+   "section": "s3",
+   "question": "What inequality is shown for the equilateral triangle?",
+   "options": {
+    "A": "2a = 3a",
+    "B": "2a > 3a",
+    "C": "a \\le 1.5a",
+    "D": "2a \\le 3a"
+   },
+   "answer": "D",
+   "shown": "2a \\le 3a",
+   "id": "d9",
+   "why": "answered without the video (P 0.99)"
+  },
+  {
+   "section": "s3",
+   "question": "What inequality is shown for the 6,8,10 triangle that fails?",
+   "options": {
+    "A": "24 = 24",
+    "B": "20 > 18",
+    "C": "12 \\le 12",
+    "D": "10 < 15"
+   },
+   "answer": "B",
+   "shown": "20 > 18",
+   "id": "d11",
+   "why": "answered without the video (P 0.99)"
+  },
+  {
+   "section": "s4",
+   "question": "What number is shown next to the longest side in both examples?",
+   "options": {
+    "A": "5",
+    "B": "3",
+    "C": "6",
+    "D": "4"
+   },
+   "answer": "C",
+   "shown": "6",
+   "id": "d12",
+   "why": "solver chose N"
+  },
+  {
+   "section": "s4",
+   "question": "What number is shown next to the shortest side in both examples?",
+   "options": {
+    "A": "3",
+    "B": "4",
+    "C": "5",
+    "D": "6"
+   },
+   "answer": "B",
+   "shown": "4",
+   "id": "d13",
+   "why": "solver chose N"
+  }
+ ]
+}

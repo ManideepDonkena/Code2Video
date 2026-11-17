@@ -1,0 +1,70 @@
+{
+ "local": {
+  "concepts": 10,
+  "sections_rendered_first_try": "33/40",
+  "sections_clean_first_try": "23/40",
+  "complete_after_admission": "10/10",
+  "clean_after_admission": "5/10",
+  "mvqs": 84.2,
+  "conflicts": 31,
+  "timing_faults": 4,
+  "broken_attachments": 13,
+  "M9_base": 42.4,
+  "M7_base": 17.6,
+  "frames_confidence": 67.5,
+  "M9 learner - base": {
+   "n": 10,
+   "mean_diff": 0.0601,
+   "ci95": [
+    0.0063,
+    0.1265
+   ],
+   "wins": 4,
+   "ties": 6,
+   "losses": 0,
+   "wilcoxon_p": 0.125
+  },
+  "M9 learner - generic": {
+   "n": 10,
+   "mean_diff": 0.0628,
+   "ci95": [
+    0.01,
+    0.1299
+   ],
+   "wins": 5,
+   "ties": 5,
+   "losses": 0,
+   "wilcoxon_p": 0.0625
+  }
+ },
+ "sonnet": {
+  "concepts": 1,
+  "sections_rendered_first_try": "4/4",
+  "sections_clean_first_try": "4/4",
+  "complete_after_admission": "1/1",
+  "clean_after_admission": "1/1",
+  "mvqs": 88.0,
+  "conflicts": 0,
+  "timing_faults": 0,
+  "broken_attachments": 0,
+  "M9_base": 82.5,
+  "M7_base": 6.2,
+  "frames_confidence": 91.3,
+  "M9 learner - base": null,
+  "M9 learner - generic": null,
+  "per_video": {
+   "tokens_in": 20211,
+   "tokens_out": 17245,
+   "usd": 0.213,
+   "calls": 17,
+   "api_minutes": 2.6
+  },
+  "total_usd": 0.213,
+  "minutes_per_video": {
+   "video": 3.7,
+   "admission": 0.0,
+   "repair_and_scoring": 1.8
+  },
+  "M9 base vs local": null
+ }
+}

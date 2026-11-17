@@ -1,0 +1,230 @@
+{
+ "topic": "Quill distance",
+ "written": 16,
+ "well_formed": 16,
+ "on_screen": 15,
+ "solved": 15,
+ "kept": 7,
+ "writer": "qwen3.6:latest",
+ "solver": "gemma4:26b",
+ "questions": [
+  {
+   "section": "s2",
+   "question": "What text describes the sideways cost in the key words on the right in section s2?",
+   "options": {
+    "A": "Up: 2 × 2",
+    "B": "Sideways: 3 × 1",
+    "C": "Total: 7",
+    "D": "Sideways: 3"
+   },
+   "answer": "B",
+   "shown": "Sideways: 3 × 1",
+   "id": "d5"
+  },
+  {
+   "section": "s2",
+   "question": "What number is displayed in the yellow box at the end of the calculation in section s2?",
+   "options": {
+    "A": "5",
+    "B": "6",
+    "C": "4",
+    "D": "7"
+   },
+   "answer": "D",
+   "shown": "7",
+   "id": "d6"
+  },
+  {
+   "section": "s2",
+   "question": "What is the second line of the computation shown below the grid in section s2?",
+   "options": {
+    "A": "|0-3| = 3",
+    "B": "3+4=",
+    "C": "2\\times|0-2| = 4",
+    "D": "2\\times|0-1| = 2"
+   },
+   "answer": "C",
+   "shown": "2\\times|0-2| = 4",
+   "id": "d7"
+  },
+  {
+   "section": "s3",
+   "question": "What text is next to the red vertical arrow in section s3?",
+   "options": {
+    "A": "Vertical: 2",
+    "B": "cost 2",
+    "C": "cost 1",
+    "D": "Up costs double"
+   },
+   "answer": "B",
+   "shown": "cost 2",
+   "id": "d11"
+  },
+  {
+   "section": "s4",
+   "question": "What text is next to the green point at (2,0) in section s4?",
+   "options": {
+    "A": "1 vertical = 2",
+    "B": "cost 2",
+    "C": "2 sideways = 2",
+    "D": "Distance 2"
+   },
+   "answer": "C",
+   "shown": "2 sideways = 2",
+   "id": "d12"
+  },
+  {
+   "section": "s4",
+   "question": "What text is next to the orange point at (0,1) in section s4?",
+   "options": {
+    "A": "cost 1",
+    "B": "1 vertical = 2",
+    "C": "Up costs double",
+    "D": "2 sideways = 2"
+   },
+   "answer": "B",
+   "shown": "1 vertical = 2",
+   "id": "d13"
+  },
+  {
+   "section": "s4",
+   "question": "What text is next to the gray point at (1,1) in section s4?",
+   "options": {
+    "A": "1 + 2 = 3",
+    "B": "Distance 2",
+    "C": "cost 3",
+    "D": "Invalid"
+   },
+   "answer": "A",
+   "shown": "1 + 2 = 3",
+   "id": "d14"
+  }
+ ],
+ "dropped": [
+  {
+   "section": "s1",
+   "question": "Which text label appears next to the green horizontal arrow in section s1?",
+   "options": {
+    "A": "Sideways: 1",
+    "B": "+2 up",
+    "C": "+1 sideways",
+    "D": "Up: 2"
+   },
+   "answer": "C",
+   "shown": "+1 sideways",
+   "id": "d1",
+   "why": "answered without the video (P 0.63)"
+  },
+  {
+   "section": "s1",
+   "question": "What is the exact text of the note describing the vertical movement in section s1?",
+   "options": {
+    "A": "Vertical: 2",
+    "B": "Sideways: 1",
+    "C": "Up: 2",
+    "D": "+2 up"
+   },
+   "answer": "C",
+   "shown": "Up: 2",
+   "id": "d2",
+   "why": "answered without the video (P 0.54)"
+  },
+  {
+   "section": "s1",
+   "question": "Which part of the formula is colored GREEN in section s1?",
+   "options": {
+    "A": "|y_1 - y_2|",
+    "B": "+",
+    "C": "|x_1 - x_2|",
+    "D": "2\\times|y_1 - y_2|"
+   },
+   "answer": "C",
+   "shown": "|x_1 - x_2|",
+   "id": "d3",
+   "why": "answered without the video (P 0.60)"
+  },
+  {
+   "section": "s2",
+   "question": "What is the text label for point A in section s2?",
+   "options": {
+    "A": "Origin",
+    "B": "(0,0)",
+    "C": "A(0,0)",
+    "D": "B(3,2)"
+   },
+   "answer": "C",
+   "shown": "A(0,0)",
+   "id": "d4",
+   "why": "answered without the video (P 0.70)"
+  },
+  {
+   "section": "s3",
+   "question": "What text appears next to point A in section s3?",
+   "options": {
+    "A": "A→B = 7",
+    "B": "7",
+    "C": "Same both ways",
+    "D": "cost 1"
+   },
+   "answer": "B",
+   "shown": "7",
+   "id": "d8",
+   "why": "answered without the video (P 0.74)"
+  },
+  {
+   "section": "s3",
+   "question": "What is the text of the key phrase summarizing the symmetry in section s3?",
+   "options": {
+    "A": "Distance 2",
+    "B": "Up costs double",
+    "C": "A→B = 7",
+    "D": "Same both ways"
+   },
+   "answer": "D",
+   "shown": "Same both ways",
+   "id": "d9",
+   "why": "answered without the video (P 1.00)"
+  },
+  {
+   "section": "s3",
+   "question": "What text is next to the green horizontal arrow in section s3?",
+   "options": {
+    "A": "Sideways: 1",
+    "B": "cost 1",
+    "C": "cost 2",
+    "D": "Up: 2"
+   },
+   "answer": "B",
+   "shown": "cost 1",
+   "id": "d10",
+   "why": "answered without the video (P 0.78)"
+  },
+  {
+   "section": "s4",
+   "question": "What is the text of the final caption at the bottom of section s4?",
+   "options": {
+    "A": "Which points cost 2?",
+    "B": "Distance 2: 2 sideways or 1 up/down",
+    "C": "Up costs double",
+    "D": "Same both ways"
+   },
+   "answer": "B",
+   "shown": "Distance 2: 2 sideways or 1 up/down",
+   "id": "d15",
+   "why": "answered without the video (P 0.61)"
+  },
+  {
+   "section": "s1",
+   "question": "What color is the label 'A' next to the origin dot in section s1?",
+   "options": {
+    "A": "ORANGE",
+    "B": "WHITE",
+    "C": "GREEN",
+    "D": "BLUE"
+   },
+   "answer": "D",
+   "shown": "BLUE",
+   "why": "shown text is not in the code"
+  }
+ ]
+}

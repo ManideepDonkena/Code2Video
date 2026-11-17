@@ -1,0 +1,103 @@
+{
+ "quiz": "29bc843a4224|9|01",
+ "frames": 9,
+ "rotations": [
+  {
+   "rotation": 0,
+   "items": [
+    {
+     "id": "d2",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d3",
+     "p": {
+      "A": 0.007104,
+      "B": 0.106066,
+      "C": 0.000351,
+      "D": 0.88648
+     },
+     "choice": "D",
+     "right": false,
+     "p_right": 0.106066
+    },
+    {
+     "id": "d4",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d6",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d7",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    }
+   ],
+   "missing": 4
+  },
+  {
+   "rotation": 1,
+   "items": [
+    {
+     "id": "d2",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d3",
+     "p": {
+      "D": 0.929228,
+      "A": 0.001898,
+      "B": 0.032582,
+      "C": 0.036292
+     },
+     "choice": "D",
+     "right": false,
+     "p_right": 0.032582
+    },
+    {
+     "id": "d4",
+     "p": {
+      "D": 0.001679,
+      "A": 0.00327,
+      "B": 3.6e-05,
+      "C": 0.995015
+     },
+     "choice": "C",
+     "right": false,
+     "p_right": 0.001679
+    },
+    {
+     "id": "d6",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    },
+    {
+     "id": "d7",
+     "p": null,
+     "choice": null,
+     "right": false,
+     "p_right": null
+    }
+   ],
+   "missing": 3
+  }
+ ]
+}

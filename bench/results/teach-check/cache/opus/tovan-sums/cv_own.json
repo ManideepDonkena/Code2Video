@@ -1,0 +1,71 @@
+{
+ "quiz": "5ba027cd4e20gemma4:26b",
+ "judge": "gemma4:26b",
+ "frames": 12,
+ "items": [
+  {
+   "id": "t1",
+   "shown": true,
+   "said": true,
+   "frame": 1,
+   "quote": "a ⊕ b = a + b + a × b",
+   "answered": true
+  },
+  {
+   "id": "t2",
+   "shown": true,
+   "said": true,
+   "frame": 1,
+   "quote": "a ⊕ b = a + b + a × b",
+   "answered": true
+  },
+  {
+   "id": "t3",
+   "shown": true,
+   "said": true,
+   "frame": 9,
+   "quote": "Rule 2: 0 is neutral",
+   "answered": true
+  },
+  {
+   "id": "t4",
+   "shown": true,
+   "said": true,
+   "frame": 10,
+   "quote": "Rule 3: -1 swallows everything",
+   "answered": true
+  },
+  {
+   "id": "t5",
+   "shown": true,
+   "said": true,
+   "frame": 11,
+   "quote": "Rule 4: Chains Go Left to Right",
+   "answered": true
+  },
+  {
+   "id": "t6",
+   "shown": true,
+   "said": true,
+   "frame": 4,
+   "quote": "Rule 1: Order Does Not Matter",
+   "answered": true
+  },
+  {
+   "id": "t7",
+   "shown": true,
+   "said": true,
+   "frame": 9,
+   "quote": "Rule 2: 0 is neutral",
+   "answered": true
+  },
+  {
+   "id": "t8",
+   "shown": true,
+   "said": true,
+   "frame": 1,
+   "quote": "a ⊕ b = a + b + a × b",
+   "answered": true
+  }
+ ]
+}

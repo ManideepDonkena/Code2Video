@@ -1,0 +1,71 @@
+{
+ "quiz": "51ee1452a478gemma4:26b",
+ "judge": "gemma4:26b",
+ "frames": 12,
+ "items": [
+  {
+   "id": "t1",
+   "shown": true,
+   "said": true,
+   "frame": 1,
+   "quote": "tens > units",
+   "answered": true
+  },
+  {
+   "id": "t2",
+   "shown": true,
+   "said": true,
+   "frame": 10,
+   "quote": "Rule 1: multiples of 10... 10, 20, ..., 90 are all dapple",
+   "answered": true
+  },
+  {
+   "id": "t3",
+   "shown": true,
+   "said": true,
+   "frame": 4,
+   "quote": "tens digit = 0... 0 > 7? ... 0 > 3?",
+   "answered": true
+  },
+  {
+   "id": "t4",
+   "shown": false,
+   "said": false,
+   "frame": 10,
+   "quote": "Rule 1: multiples of 10... 10, 20, ..., 90 are all dapple",
+   "answered": true
+  },
+  {
+   "id": "t5",
+   "shown": false,
+   "said": false,
+   "frame": 10,
+   "quote": "Rule 1: multiples of 10... 10, 20, ..., 90 are all dapple",
+   "answered": true
+  },
+  {
+   "id": "t6",
+   "shown": true,
+   "said": true,
+   "frame": 12,
+   "quote": "Rule 2: reverse a dapple number with different digits, and it is not dapple.",
+   "answered": true
+  },
+  {
+   "id": "t7",
+   "shown": true,
+   "said": true,
+   "frame": 2,
+   "quote": "4 > 4? X not dapple",
+   "answered": true
+  },
+  {
+   "id": "t8",
+   "shown": true,
+   "said": true,
+   "frame": 1,
+   "quote": "tens > units",
+   "answered": true
+  }
+ ]
+}

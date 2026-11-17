@@ -35,8 +35,8 @@ def paired(a, b, iters=10000):
     d = [x - y for x, y in pairs]
     rng = random.Random(0)
     boots = sorted(st.mean(rng.choices(d, k=len(d))) for _ in range(iters))
-    out = {"n": len(d), "mean_diff": round(st.mean(d), 2), "ci95": [round(boots[int(0.025 * iters)], 2),
-           round(boots[int(0.975 * iters)], 2)], "wins": sum(x > 0 for x in d), "ties": sum(x == 0 for x in d),
+    out = {"n": len(d), "mean_diff": round(st.mean(d), 4), "ci95": [round(boots[int(0.025 * iters)], 4),
+           round(boots[int(0.975 * iters)], 4)], "wins": sum(x > 0 for x in d), "ties": sum(x == 0 for x in d),
            "losses": sum(x < 0 for x in d)}  # fmt: skip
     try:
         from scipy.stats import wilcoxon

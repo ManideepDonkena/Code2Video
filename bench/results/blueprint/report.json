@@ -1,0 +1,254 @@
+{
+ "concepts": 10,
+ "failed": [],
+ "table": {
+  "Sections rendered on the first try": {
+   "blueprint": 38,
+   "plain": 38
+  },
+  "Sections clean on the first try": {
+   "blueprint": 27,
+   "plain": 24
+  },
+  "Sections in the final video": {
+   "blueprint": 39,
+   "plain": 40
+  },
+  "Videos clean after admission": {
+   "blueprint": 7,
+   "plain": 4
+  },
+  "Lasting conflicts": {
+   "blueprint": 8,
+   "plain": 13
+  },
+  "Timing faults": {
+   "blueprint": 0,
+   "plain": 0
+  },
+  "Broken attachments": {
+   "blueprint": 2,
+   "plain": 9
+  },
+  "Rule: layout comment": {
+   "blueprint": 39,
+   "plain": 0
+  },
+  "Rule: fit calls": {
+   "blueprint": 338,
+   "plain": 0
+  },
+  "Rule: move to xyz": {
+   "blueprint": 262,
+   "plain": 2
+  },
+  "Rule: arrange": {
+   "blueprint": 19,
+   "plain": 6
+  },
+  "Rule: to edge or corner": {
+   "blueprint": 0,
+   "plain": 64
+  },
+  "Rule: move to origin": {
+   "blueprint": 0,
+   "plain": 20
+  },
+  "Rule: unit size": {
+   "blueprint": 0,
+   "plain": 1
+  },
+  "Rule: texts": {
+   "blueprint": 248,
+   "plain": 166
+  },
+  "Rule: long texts": {
+   "blueprint": 27,
+   "plain": 38
+  }
+ },
+ "paired": {
+  "Layout score (MVQS)": {
+   "blueprint": 0.8523,
+   "plain": 0.8468,
+   "diff": {
+    "n": 10,
+    "mean_diff": 0.0055,
+    "ci95": [
+     -0.0117,
+     0.0228
+    ],
+    "wins": 6,
+    "ties": 0,
+    "losses": 4,
+    "wilcoxon_p": 0.4766
+   }
+  },
+  "M9": {
+   "blueprint": 0.5676968604479371,
+   "plain": 0.4504514323597279,
+   "diff": {
+    "n": 10,
+    "mean_diff": 0.1172,
+    "ci95": [
+     -0.0304,
+     0.2788
+    ],
+    "wins": 6,
+    "ties": 0,
+    "losses": 4,
+    "wilcoxon_p": 0.1934
+   }
+  },
+  "Confidence with 3 frames": {
+   "blueprint": 0.73767153125,
+   "plain": 0.6818255750000001,
+   "diff": {
+    "n": 10,
+    "mean_diff": 0.0558,
+    "ci95": [
+     -0.0208,
+     0.1336
+    ],
+    "wins": 6,
+    "ties": 0,
+    "losses": 4,
+    "wilcoxon_p": 0.2754
+   }
+  }
+ },
+ "runs": {
+  "plain, seed 0": {
+   "videos": 10,
+   "sections": 40,
+   "conflicts": 13,
+   "broken_attachments": 9,
+   "clean_videos": 4,
+   "mvqs": 84.7,
+   "m9": 45.0,
+   "per_concept": {}
+  },
+  "blueprint, seed 0": {
+   "videos": 10,
+   "sections": 39,
+   "conflicts": 8,
+   "broken_attachments": 2,
+   "clean_videos": 7,
+   "mvqs": 85.2,
+   "m9": 56.8,
+   "per_concept": {
+    "krell-steps-on-a-grid": {
+     "conflicts": 2,
+     "broken": 0,
+     "m9": 0.5217995833333333
+    },
+    "tovan-sums": {
+     "conflicts": 0,
+     "broken": 0,
+     "m9": 0.870967317296437
+    },
+    "vorn-sequences": {
+     "conflicts": 0,
+     "broken": 0,
+     "m9": 0.6743858033847289
+    },
+    "glint-numbers": {
+     "conflicts": 0,
+     "broken": 0,
+     "m9": 0.723255277874908
+    },
+    "mirthful-triangles": {
+     "conflicts": 0,
+     "broken": 0,
+     "m9": 0.5670508138118907
+    },
+    "quill-distance": {
+     "conflicts": 0,
+     "broken": 2,
+     "m9": 0.412638217501582
+    },
+    "sorrel-counts-of-lattice-rectangles": {
+     "conflicts": 4,
+     "broken": 0,
+     "m9": 0.5193953286847629
+    },
+    "orbit-words": {
+     "conflicts": 0,
+     "broken": 0,
+     "m9": 0.6152248049788785
+    },
+    "dapple-numbers": {
+     "conflicts": 2,
+     "broken": 0,
+     "m9": 0.24958190376515768
+    },
+    "vells-of-2-2-grids": {
+     "conflicts": 0,
+     "broken": 0,
+     "m9": 0.5226695538476924
+    }
+   }
+  },
+  "plain, seed 1": {
+   "videos": 10,
+   "sections": 40,
+   "conflicts": 24,
+   "broken_attachments": 10,
+   "clean_videos": 4,
+   "mvqs": 85.1,
+   "m9": 45.5,
+   "per_concept": {
+    "tovan-sums": {
+     "conflicts": 0,
+     "broken": 1,
+     "m9": 0.8710271873189976
+    },
+    "krell-steps-on-a-grid": {
+     "conflicts": 4,
+     "broken": 1,
+     "m9": 0.41206466666666675
+    },
+    "vorn-sequences": {
+     "conflicts": 3,
+     "broken": 0,
+     "m9": 0.57153839474998
+    },
+    "glint-numbers": {
+     "conflicts": 0,
+     "broken": 1,
+     "m9": 0.49886625077673125
+    },
+    "mirthful-triangles": {
+     "conflicts": 5,
+     "broken": 2,
+     "m9": 0.16135345286568276
+    },
+    "sorrel-counts-of-lattice-rectangles": {
+     "conflicts": 3,
+     "broken": 2,
+     "m9": 0.41501001425774653
+    },
+    "dapple-numbers": {
+     "conflicts": 8,
+     "broken": 1,
+     "m9": 0.31937827717757544
+    },
+    "quill-distance": {
+     "conflicts": 1,
+     "broken": 0,
+     "m9": 0.433472375883094
+    },
+    "orbit-words": {
+     "conflicts": 0,
+     "broken": 0,
+     "m9": 0.5845615130317244
+    },
+    "vells-of-2-2-grids": {
+     "conflicts": 0,
+     "broken": 2,
+     "m9": 0.28702363786095003
+    }
+   }
+  }
+ }
+}

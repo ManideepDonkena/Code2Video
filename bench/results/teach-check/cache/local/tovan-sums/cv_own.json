@@ -1,0 +1,71 @@
+{
+ "quiz": "5ba027cd4e20gemma4:26b",
+ "judge": "gemma4:26b",
+ "frames": 12,
+ "items": [
+  {
+   "id": "t1",
+   "shown": true,
+   "said": true,
+   "frame": 1,
+   "quote": "a \\oplus b \\rightarrow a + b + (a \\times b)",
+   "answered": true
+  },
+  {
+   "id": "t2",
+   "shown": true,
+   "said": true,
+   "frame": 1,
+   "quote": "a \\oplus b \\rightarrow a + b + (a \\times b)",
+   "answered": true
+  },
+  {
+   "id": "t3",
+   "shown": true,
+   "said": true,
+   "frame": 4,
+   "quote": "\\oplus 7 = 7",
+   "answered": true
+  },
+  {
+   "id": "t4",
+   "shown": true,
+   "said": true,
+   "frame": 10,
+   "quote": "The Absorbing Element (-1)",
+   "answered": true
+  },
+  {
+   "id": "t5",
+   "shown": true,
+   "said": true,
+   "frame": 12,
+   "quote": "2 + 3 + (2 \\times 3) = 11",
+   "answered": true
+  },
+  {
+   "id": "t6",
+   "shown": true,
+   "said": true,
+   "frame": 9,
+   "quote": "a \\oplus b = b \\oplus a",
+   "answered": true
+  },
+  {
+   "id": "t7",
+   "shown": true,
+   "said": true,
+   "frame": 7,
+   "quote": "7 \\oplus 0 = 7",
+   "answered": true
+  },
+  {
+   "id": "t8",
+   "shown": true,
+   "said": true,
+   "frame": 1,
+   "quote": "a \\oplus b \\rightarrow a + b + (a \\times b)",
+   "answered": true
+  }
+ ]
+}

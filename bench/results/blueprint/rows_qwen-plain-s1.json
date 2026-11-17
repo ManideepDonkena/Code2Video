@@ -1,0 +1,862 @@
+[
+ {
+  "topic": "Tovan sums",
+  "slug": "tovan-sums",
+  "family": "qwen-plain-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 4,
+   "complete": true,
+   "clean": true,
+   "regenerated": 0
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 85.4,
+   "mvqs_min": 83.5,
+   "conflicts": 0,
+   "timing": 0,
+   "broken_attachments": 1
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.8710271873189976,
+    "s_frames_p": 0.9363160625,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.506222,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 85.44
+   }
+  },
+  "minutes": {
+   "video": 1.0,
+   "admission": 0.0,
+   "repair_and_scoring": 0.2
+  },
+  "claude": {
+   "calls": 15,
+   "in": 8242,
+   "out": 6174,
+   "usd": 0.0049,
+   "seconds": 45,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 0,
+   "to_edge_or_corner": 5,
+   "move_to_origin": 2,
+   "unit_size": 0,
+   "texts": 11,
+   "long_texts": 3,
+   "fit_calls": 0,
+   "move_to_xyz": 0,
+   "arrange": 0
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 85.7,
+    "mvqs_min": 85.0,
+    "conflicts": 0,
+    "timing": 0,
+    "broken_attachments": 1
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 5,
+    "move_to_origin": 2,
+    "unit_size": 0,
+    "texts": 10,
+    "long_texts": 0,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 0
+   }
+  }
+ },
+ {
+  "topic": "Krell steps on a grid",
+  "slug": "krell-steps-on-a-grid",
+  "family": "qwen-plain-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 2,
+   "complete": true,
+   "clean": false,
+   "regenerated": 2
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 82.0,
+   "mvqs_min": 75.3,
+   "conflicts": 4,
+   "timing": 0,
+   "broken_attachments": 1
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.41206466666666675,
+    "s_frames_p": 0.5590485000000001,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.2001920625,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 82.0
+   }
+  },
+  "minutes": {
+   "video": 1.7,
+   "admission": 0.9,
+   "repair_and_scoring": 0.2
+  },
+  "claude": {
+   "calls": 29,
+   "in": 19504,
+   "out": 16618,
+   "usd": 0.0129,
+   "seconds": 101,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 0,
+   "to_edge_or_corner": 5,
+   "move_to_origin": 0,
+   "unit_size": 0,
+   "texts": 16,
+   "long_texts": 3,
+   "fit_calls": 0,
+   "move_to_xyz": 2,
+   "arrange": 0
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 80.0,
+    "mvqs_min": 72.7,
+    "conflicts": 1,
+    "timing": 0,
+    "broken_attachments": 3
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 7,
+    "move_to_origin": 0,
+    "unit_size": 0,
+    "texts": 19,
+    "long_texts": 5,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 0
+   }
+  }
+ },
+ {
+  "topic": "Vorn sequences",
+  "slug": "vorn-sequences",
+  "family": "qwen-plain-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 2,
+   "complete": true,
+   "clean": false,
+   "regenerated": 2
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 85.2,
+   "mvqs_min": 77.8,
+   "conflicts": 3,
+   "timing": 0,
+   "broken_attachments": 0
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.57153839474998,
+    "s_frames_p": 0.82234825,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.585373,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 85.17
+   }
+  },
+  "minutes": {
+   "video": 1.8,
+   "admission": 0.9,
+   "repair_and_scoring": 0.2
+  },
+  "claude": {
+   "calls": 23,
+   "in": 12710,
+   "out": 10222,
+   "usd": 0.008,
+   "seconds": 72,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 0,
+   "to_edge_or_corner": 5,
+   "move_to_origin": 0,
+   "unit_size": 0,
+   "texts": 19,
+   "long_texts": 4,
+   "fit_calls": 0,
+   "move_to_xyz": 0,
+   "arrange": 1
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 88.6,
+    "mvqs_min": 86.5,
+    "conflicts": 1,
+    "timing": 0,
+    "broken_attachments": 0
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 11,
+    "move_to_origin": 0,
+    "unit_size": 0,
+    "texts": 14,
+    "long_texts": 7,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 1
+   }
+  }
+ },
+ {
+  "topic": "Glint numbers",
+  "slug": "glint-numbers",
+  "family": "qwen-plain-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 2,
+   "ok_first": 2,
+   "complete": true,
+   "clean": true,
+   "regenerated": 2
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 88.6,
+   "mvqs_min": 85.3,
+   "conflicts": 0,
+   "timing": 0,
+   "broken_attachments": 1
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.49886625077673125,
+    "s_frames_p": 0.7187405625,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.43875375,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 88.62
+   }
+  },
+  "minutes": {
+   "video": 1.3,
+   "admission": 0.9,
+   "repair_and_scoring": 0.3
+  },
+  "claude": {
+   "calls": 29,
+   "in": 15107,
+   "out": 11771,
+   "usd": 0.0093,
+   "seconds": 78,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 0,
+   "to_edge_or_corner": 7,
+   "move_to_origin": 3,
+   "unit_size": 0,
+   "texts": 21,
+   "long_texts": 8,
+   "fit_calls": 0,
+   "move_to_xyz": 0,
+   "arrange": 0
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 88.4,
+    "mvqs_min": 84.5,
+    "conflicts": 0,
+    "timing": 0,
+    "broken_attachments": 1
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 6,
+    "move_to_origin": 5,
+    "unit_size": 0,
+    "texts": 18,
+    "long_texts": 6,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 0
+   }
+  }
+ },
+ {
+  "topic": "Mirthful triangles",
+  "slug": "mirthful-triangles",
+  "family": "qwen-plain-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 1,
+   "complete": true,
+   "clean": false,
+   "regenerated": 3
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 90.5,
+   "mvqs_min": 89.7,
+   "conflicts": 5,
+   "timing": 0,
+   "broken_attachments": 2
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.16135345286568276,
+    "s_frames_p": 0.5591515,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.474333375,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 90.54
+   }
+  },
+  "minutes": {
+   "video": 1.6,
+   "admission": 1.4,
+   "repair_and_scoring": 0.3
+  },
+  "claude": {
+   "calls": 25,
+   "in": 17468,
+   "out": 15564,
+   "usd": 0.012,
+   "seconds": 87,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 0,
+   "to_edge_or_corner": 5,
+   "move_to_origin": 1,
+   "unit_size": 0,
+   "texts": 21,
+   "long_texts": 2,
+   "fit_calls": 0,
+   "move_to_xyz": 0,
+   "arrange": 0
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 88.0,
+    "mvqs_min": 87.0,
+    "conflicts": 0,
+    "timing": 0,
+    "broken_attachments": 1
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 5,
+    "move_to_origin": 1,
+    "unit_size": 0,
+    "texts": 21,
+    "long_texts": 1,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 0
+   }
+  }
+ },
+ {
+  "topic": "Sorrel counts of lattice rectangles",
+  "slug": "sorrel-counts-of-lattice-rectangles",
+  "family": "qwen-plain-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 1,
+   "complete": true,
+   "clean": false,
+   "regenerated": 3
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 86.1,
+   "mvqs_min": 82.8,
+   "conflicts": 3,
+   "timing": 0,
+   "broken_attachments": 2
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.41501001425774653,
+    "s_frames_p": 0.8054939375,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.6675053125,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 86.13
+   }
+  },
+  "minutes": {
+   "video": 1.8,
+   "admission": 2.2,
+   "repair_and_scoring": 0.3
+  },
+  "claude": {
+   "calls": 37,
+   "in": 26581,
+   "out": 24970,
+   "usd": 0.019,
+   "seconds": 159,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 0,
+   "to_edge_or_corner": 7,
+   "move_to_origin": 6,
+   "unit_size": 0,
+   "texts": 8,
+   "long_texts": 3,
+   "fit_calls": 0,
+   "move_to_xyz": 1,
+   "arrange": 0
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 83.0,
+    "mvqs_min": 75.5,
+    "conflicts": 2,
+    "timing": 0,
+    "broken_attachments": 1
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 5,
+    "move_to_origin": 5,
+    "unit_size": 0,
+    "texts": 7,
+    "long_texts": 2,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 0
+   }
+  }
+ },
+ {
+  "topic": "Dapple numbers",
+  "slug": "dapple-numbers",
+  "family": "qwen-plain-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 2,
+   "ok_first": 2,
+   "complete": true,
+   "clean": false,
+   "regenerated": 2
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 77.6,
+   "mvqs_min": 65.2,
+   "conflicts": 8,
+   "timing": 0,
+   "broken_attachments": 1
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.31937827717757544,
+    "s_frames_p": 0.5489171875,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.337248875,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 77.64
+   }
+  },
+  "minutes": {
+   "video": 1.4,
+   "admission": 0.9,
+   "repair_and_scoring": 0.3
+  },
+  "claude": {
+   "calls": 47,
+   "in": 29975,
+   "out": 22035,
+   "usd": 0.0177,
+   "seconds": 172,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 0,
+   "to_edge_or_corner": 2,
+   "move_to_origin": 4,
+   "unit_size": 0,
+   "texts": 16,
+   "long_texts": 2,
+   "fit_calls": 0,
+   "move_to_xyz": 0,
+   "arrange": 2
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 79.4,
+    "mvqs_min": 69.8,
+    "conflicts": 7,
+    "timing": 0,
+    "broken_attachments": 0
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 5,
+    "move_to_origin": 0,
+    "unit_size": 1,
+    "texts": 21,
+    "long_texts": 5,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 1
+   }
+  }
+ },
+ {
+  "topic": "Quill distance",
+  "slug": "quill-distance",
+  "family": "qwen-plain-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 2,
+   "complete": true,
+   "clean": false,
+   "regenerated": 2
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 82.9,
+   "mvqs_min": 80.9,
+   "conflicts": 1,
+   "timing": 0,
+   "broken_attachments": 0
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.433472375883094,
+    "s_frames_p": 0.576202,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.251937625,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 82.91
+   }
+  },
+  "minutes": {
+   "video": 4.6,
+   "admission": 1.2,
+   "repair_and_scoring": 0.3
+  },
+  "claude": {
+   "calls": 30,
+   "in": 15778,
+   "out": 14829,
+   "usd": 0.0113,
+   "seconds": 95,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 0,
+   "to_edge_or_corner": 12,
+   "move_to_origin": 2,
+   "unit_size": 0,
+   "texts": 21,
+   "long_texts": 6,
+   "fit_calls": 0,
+   "move_to_xyz": 3,
+   "arrange": 0
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 82.8,
+    "mvqs_min": 80.7,
+    "conflicts": 1,
+    "timing": 0,
+    "broken_attachments": 0
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 9,
+    "move_to_origin": 0,
+    "unit_size": 0,
+    "texts": 15,
+    "long_texts": 3,
+    "fit_calls": 0,
+    "move_to_xyz": 2,
+    "arrange": 0
+   }
+  }
+ },
+ {
+  "topic": "Orbit words",
+  "slug": "orbit-words",
+  "family": "qwen-plain-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 2,
+   "complete": true,
+   "clean": true,
+   "regenerated": 2
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 85.0,
+   "mvqs_min": 79.0,
+   "conflicts": 0,
+   "timing": 0,
+   "broken_attachments": 0
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.5845615130317244,
+    "s_frames_p": 0.717509125,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.3200175625,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 85.04
+   }
+  },
+  "minutes": {
+   "video": 1.5,
+   "admission": 0.6,
+   "repair_and_scoring": 0.3
+  },
+  "claude": {
+   "calls": 18,
+   "in": 10546,
+   "out": 8593,
+   "usd": 0.0067,
+   "seconds": 59,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 0,
+   "to_edge_or_corner": 4,
+   "move_to_origin": 6,
+   "unit_size": 0,
+   "texts": 29,
+   "long_texts": 6,
+   "fit_calls": 0,
+   "move_to_xyz": 0,
+   "arrange": 4
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 85.8,
+    "mvqs_min": 84.2,
+    "conflicts": 1,
+    "timing": 0,
+    "broken_attachments": 1
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 3,
+    "move_to_origin": 6,
+    "unit_size": 0,
+    "texts": 29,
+    "long_texts": 5,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 4
+   }
+  }
+ },
+ {
+  "topic": "Vells of 2×2 grids",
+  "slug": "vells-of-2-2-grids",
+  "family": "qwen-plain-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 4,
+   "complete": true,
+   "clean": true,
+   "regenerated": 0
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 87.8,
+   "mvqs_min": 84.0,
+   "conflicts": 0,
+   "timing": 0,
+   "broken_attachments": 2
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.28702363786095003,
+    "s_frames_p": 0.51479325,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.3194630625,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 87.78
+   }
+  },
+  "minutes": {
+   "video": 1.3,
+   "admission": 0.0,
+   "repair_and_scoring": 0.2
+  },
+  "claude": {
+   "calls": 25,
+   "in": 17186,
+   "out": 13604,
+   "usd": 0.0107,
+   "seconds": 79,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 0,
+   "to_edge_or_corner": 4,
+   "move_to_origin": 0,
+   "unit_size": 0,
+   "texts": 10,
+   "long_texts": 0,
+   "fit_calls": 0,
+   "move_to_xyz": 0,
+   "arrange": 0
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 85.1,
+    "mvqs_min": 83.1,
+    "conflicts": 0,
+    "timing": 0,
+    "broken_attachments": 1
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 8,
+    "move_to_origin": 1,
+    "unit_size": 0,
+    "texts": 12,
+    "long_texts": 4,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 0
+   }
+  }
+ }
+]

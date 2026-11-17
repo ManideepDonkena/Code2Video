@@ -1,0 +1,188 @@
+{
+ "topic": "Vells of 2×2 grids",
+ "written": 16,
+ "well_formed": 13,
+ "on_screen": 13,
+ "solved": 11,
+ "kept": 8,
+ "writer": "qwen3.6:latest",
+ "solver": "gemma4:26b",
+ "questions": [
+  {
+   "section": "s1",
+   "question": "What is the final calculated result shown in the worked example equation in section s1?",
+   "options": {
+    "A": "4",
+    "B": "5",
+    "C": "3",
+    "D": "6"
+   },
+   "answer": "A",
+   "shown": "2 \\times 4 - 1 - 3 = 4",
+   "id": "d2"
+  },
+  {
+   "section": "s1",
+   "question": "Which variables are crossed out in red in the grid of section s1?",
+   "options": {
+    "A": "b and c",
+    "B": "c and d",
+    "C": "a and d",
+    "D": "a and b"
+   },
+   "answer": "A",
+   "shown": "b - c",
+   "id": "d3"
+  },
+  {
+   "section": "s2",
+   "question": "What is the final value assigned to 'Vell' at the end of section s2?",
+   "options": {
+    "A": "5",
+    "B": "3",
+    "C": "4",
+    "D": "6"
+   },
+   "answer": "C",
+   "shown": "Vell = 4",
+   "id": "d6"
+  },
+  {
+   "section": "s2",
+   "question": "Which number is subtracted first in the step-by-step calculation shown in section s2?",
+   "options": {
+    "A": "3",
+    "B": "2",
+    "C": "4",
+    "D": "1"
+   },
+   "answer": "D",
+   "shown": "1",
+   "id": "d7"
+  },
+  {
+   "section": "s2",
+   "question": "What is the second number subtracted in the calculation sequence of section s2?",
+   "options": {
+    "A": "3",
+    "B": "2",
+    "C": "1",
+    "D": "4"
+   },
+   "answer": "A",
+   "shown": "3",
+   "id": "d8"
+  },
+  {
+   "section": "s3",
+   "question": "Which two elements are connected by the yellow line in the first grid of section s3?",
+   "options": {
+    "A": "a and b",
+    "B": "c and d",
+    "C": "b and c",
+    "D": "a and d"
+   },
+   "answer": "D",
+   "shown": "a",
+   "id": "d9"
+  },
+  {
+   "section": "s3",
+   "question": "Which pair of adjacent elements is explicitly stated as never being multiplied directly?",
+   "options": {
+    "A": "b and c",
+    "B": "a and b",
+    "C": "c and d",
+    "D": "a and d"
+   },
+   "answer": "A",
+   "shown": "b and c",
+   "id": "d11"
+  },
+  {
+   "section": "s4",
+   "question": "What is the label text above the first grid in section s4?",
+   "options": {
+    "A": "Original Grid",
+    "B": "New Matrix",
+    "C": "Swapped Grid",
+    "D": "Base Case"
+   },
+   "answer": "A",
+   "shown": "Original Grid",
+   "id": "d12"
+  }
+ ],
+ "dropped": [
+  {
+   "section": "s1",
+   "question": "What is the value of 'a' in the matrix shown in the worked example of section s1?",
+   "options": {
+    "A": "3",
+    "B": "2",
+    "C": "4",
+    "D": "1"
+   },
+   "answer": "B",
+   "shown": "\\begin{bmatrix} 2 & 1 \\\\ 3 & 4 \\end{bmatrix}",
+   "id": "d4",
+   "why": "answered without the video (P 0.59)"
+  },
+  {
+   "section": "s3",
+   "question": "What color is the line connecting 'b' and 'c' in the first grid of section s3?",
+   "options": {
+    "A": "YELLOW",
+    "B": "GREEN",
+    "C": "GRAY",
+    "D": "RED"
+   },
+   "answer": "C",
+   "shown": "b",
+   "id": "d10",
+   "why": "answered without the video (P 0.99)"
+  },
+  {
+   "section": "s4",
+   "question": "What symbol is displayed next to the rearranged formula to indicate correctness in section s4?",
+   "options": {
+    "A": "?",
+    "B": "X",
+    "C": "✓",
+    "D": "="
+   },
+   "answer": "C",
+   "shown": "\\checkmark",
+   "id": "d13",
+   "why": "answered without the video (P 1.00)"
+  },
+  {
+   "section": "s1",
+   "question": "Which two numbers are highlighted with a yellow arrow in the worked example of section s1?",
+   "options": {
+    "A": "2 and 3",
+    "B": "1 and 4",
+    "C": "2 and 4",
+    "D": "1 and 3"
+   },
+   "answer": "C",
+   "shown": "a \\times d - b - c",
+   "id": "d1",
+   "why": "solver chose N"
+  },
+  {
+   "section": "s2",
+   "question": "What intermediate multiplication result is displayed next to the yellow-highlighted numbers in section s2?",
+   "options": {
+    "A": "8",
+    "B": "12",
+    "C": "10",
+    "D": "6"
+   },
+   "answer": "A",
+   "shown": "8",
+   "id": "d5",
+   "why": "solver chose nothing"
+  }
+ ]
+}

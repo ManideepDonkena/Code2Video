@@ -1,0 +1,71 @@
+{
+ "quiz": "878ee08581a3gemma4:26b",
+ "judge": "gemma4:26b",
+ "frames": 12,
+ "items": [
+  {
+   "id": "t1",
+   "shown": true,
+   "said": true,
+   "frame": 2,
+   "quote": "X → XYY",
+   "answered": true
+  },
+  {
+   "id": "t2",
+   "shown": true,
+   "said": true,
+   "frame": 2,
+   "quote": "Each Y → YX",
+   "answered": true
+  },
+  {
+   "id": "t3",
+   "shown": true,
+   "said": true,
+   "frame": 4,
+   "quote": "X → XYY → XYYYXYX",
+   "answered": true
+  },
+  {
+   "id": "t4",
+   "shown": true,
+   "said": true,
+   "frame": 12,
+   "quote": "1 → 3 → 7 → 17",
+   "answered": true
+  },
+  {
+   "id": "t5",
+   "shown": false,
+   "said": false,
+   "frame": 4,
+   "quote": "",
+   "answered": true
+  },
+  {
+   "id": "t6",
+   "shown": true,
+   "said": true,
+   "frame": 10,
+   "quote": "Rule 1: Every Orbit Word Starts with X",
+   "answered": true
+  },
+  {
+   "id": "t7",
+   "shown": false,
+   "said": false,
+   "frame": 4,
+   "quote": "",
+   "answered": true
+  },
+  {
+   "id": "t8",
+   "shown": true,
+   "said": true,
+   "frame": 3,
+   "quote": "Rewrite Every Letter at Once",
+   "answered": true
+  }
+ ]
+}

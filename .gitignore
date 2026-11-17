@@ -5,3 +5,18 @@ __pycache__/
 media/
 manual/
 bench/*.log
+
+# separate venv for the Anthropic SDK (bench/claude_call.py)
+.venv-claude/
+
+# LaTeX build products and the zips made by paper/make_zip.sh (the PDFs themselves are kept)
+paper/dist/
+paper/*.aux
+paper/*.log
+paper/*.bbl
+paper/*.blg
+paper/*.out
+paper/*.toc
+
+# copy of the paper taken by bench/queue_phase3.sh before it rewrites the tables
+before_phase3/

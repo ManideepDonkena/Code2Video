@@ -1,0 +1,690 @@
+[
+ {
+  "topic": "Tovan sums",
+  "slug": "tovan-sums",
+  "family": "qwen-blueprint-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 4,
+   "complete": true,
+   "clean": true,
+   "regenerated": 0
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 85.9,
+   "mvqs_min": 85.5,
+   "conflicts": 0,
+   "timing": 0,
+   "broken_attachments": 0
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.8201495662018153,
+    "s_frames_p": 0.9111938125,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.506222,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 85.93
+   }
+  },
+  "minutes": {
+   "video": 1.2,
+   "admission": 0.0,
+   "repair_and_scoring": 0.2
+  },
+  "claude": {
+   "calls": 19,
+   "in": 12075,
+   "out": 9128,
+   "usd": 0.0073,
+   "seconds": 64,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 4,
+   "to_edge_or_corner": 0,
+   "move_to_origin": 0,
+   "unit_size": 0,
+   "texts": 13,
+   "long_texts": 4,
+   "fit_calls": 43,
+   "move_to_xyz": 43,
+   "arrange": 2
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 85.7,
+    "mvqs_min": 85.0,
+    "conflicts": 0,
+    "timing": 0,
+    "broken_attachments": 1
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 5,
+    "move_to_origin": 2,
+    "unit_size": 0,
+    "texts": 10,
+    "long_texts": 0,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 0
+   }
+  }
+ },
+ {
+  "topic": "Krell steps on a grid",
+  "slug": "krell-steps-on-a-grid",
+  "family": "qwen-blueprint-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 3,
+   "complete": true,
+   "clean": false,
+   "regenerated": 1
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 85.6,
+   "mvqs_min": 83.2,
+   "conflicts": 1,
+   "timing": 0,
+   "broken_attachments": 1
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.5591946666666666,
+    "s_frames_p": 0.669396,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.2001920625,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 85.62
+   }
+  },
+  "minutes": {
+   "video": 1.5,
+   "admission": 0.7,
+   "repair_and_scoring": 0.2
+  },
+  "claude": {
+   "calls": 41,
+   "in": 29422,
+   "out": 23917,
+   "usd": 0.0188,
+   "seconds": 147,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 4,
+   "to_edge_or_corner": 0,
+   "move_to_origin": 0,
+   "unit_size": 0,
+   "texts": 28,
+   "long_texts": 3,
+   "fit_calls": 29,
+   "move_to_xyz": 17,
+   "arrange": 3
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 80.0,
+    "mvqs_min": 72.7,
+    "conflicts": 1,
+    "timing": 0,
+    "broken_attachments": 3
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 7,
+    "move_to_origin": 0,
+    "unit_size": 0,
+    "texts": 19,
+    "long_texts": 5,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 0
+   }
+  }
+ },
+ {
+  "topic": "Vorn sequences",
+  "slug": "vorn-sequences",
+  "family": "qwen-blueprint-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 4,
+   "complete": true,
+   "clean": true,
+   "regenerated": 0
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 84.0,
+   "mvqs_min": 82.2,
+   "conflicts": 0,
+   "timing": 0,
+   "broken_attachments": 2
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.5139489830618845,
+    "s_frames_p": 0.798470125,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.585373,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 84.04
+   }
+  },
+  "minutes": {
+   "video": 0.9,
+   "admission": 0.0,
+   "repair_and_scoring": 0.2
+  },
+  "claude": {
+   "calls": 27,
+   "in": 16411,
+   "out": 12952,
+   "usd": 0.0102,
+   "seconds": 86,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 4,
+   "to_edge_or_corner": 0,
+   "move_to_origin": 0,
+   "unit_size": 0,
+   "texts": 29,
+   "long_texts": 2,
+   "fit_calls": 32,
+   "move_to_xyz": 28,
+   "arrange": 3
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 88.6,
+    "mvqs_min": 86.5,
+    "conflicts": 1,
+    "timing": 0,
+    "broken_attachments": 0
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 11,
+    "move_to_origin": 0,
+    "unit_size": 0,
+    "texts": 14,
+    "long_texts": 7,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 1
+   }
+  }
+ },
+ {
+  "topic": "Glint numbers",
+  "slug": "glint-numbers",
+  "family": "qwen-blueprint-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 4,
+   "complete": true,
+   "clean": true,
+   "regenerated": 0
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 84.4,
+   "mvqs_min": 80.9,
+   "conflicts": 0,
+   "timing": 0,
+   "broken_attachments": 0
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.7924022877658427,
+    "s_frames_p": 0.8834865625,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.43875375,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 84.43
+   }
+  },
+  "minutes": {
+   "video": 0.8,
+   "admission": 0.0,
+   "repair_and_scoring": 0.3
+  },
+  "claude": {
+   "calls": 33,
+   "in": 18886,
+   "out": 13937,
+   "usd": 0.0112,
+   "seconds": 89,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 4,
+   "to_edge_or_corner": 0,
+   "move_to_origin": 0,
+   "unit_size": 0,
+   "texts": 24,
+   "long_texts": 6,
+   "fit_calls": 28,
+   "move_to_xyz": 24,
+   "arrange": 0
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 88.4,
+    "mvqs_min": 84.5,
+    "conflicts": 0,
+    "timing": 0,
+    "broken_attachments": 1
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 6,
+    "move_to_origin": 5,
+    "unit_size": 0,
+    "texts": 18,
+    "long_texts": 6,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 0
+   }
+  }
+ },
+ {
+  "topic": "Mirthful triangles",
+  "slug": "mirthful-triangles",
+  "family": "qwen-blueprint-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 2,
+   "complete": true,
+   "clean": true,
+   "regenerated": 2
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 90.1,
+   "mvqs_min": 87.3,
+   "conflicts": 0,
+   "timing": 0,
+   "broken_attachments": 0
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.27772449886846057,
+    "s_frames_p": 0.620323875,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.474333375,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 90.12
+   }
+  },
+  "minutes": {
+   "video": 1.3,
+   "admission": 0.9,
+   "repair_and_scoring": 0.3
+  },
+  "claude": {
+   "calls": 33,
+   "in": 25669,
+   "out": 22472,
+   "usd": 0.0173,
+   "seconds": 125,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 4,
+   "to_edge_or_corner": 0,
+   "move_to_origin": 0,
+   "unit_size": 0,
+   "texts": 24,
+   "long_texts": 0,
+   "fit_calls": 32,
+   "move_to_xyz": 35,
+   "arrange": 2
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 88.0,
+    "mvqs_min": 87.0,
+    "conflicts": 0,
+    "timing": 0,
+    "broken_attachments": 1
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 5,
+    "move_to_origin": 1,
+    "unit_size": 0,
+    "texts": 21,
+    "long_texts": 1,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 0
+   }
+  }
+ },
+ {
+  "topic": "Sorrel counts of lattice rectangles",
+  "slug": "sorrel-counts-of-lattice-rectangles",
+  "family": "qwen-blueprint-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 2,
+   "complete": true,
+   "clean": false,
+   "regenerated": 2
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 77.3,
+   "mvqs_min": 72.1,
+   "conflicts": 6,
+   "timing": 0,
+   "broken_attachments": 0
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": -0.12624938556349105,
+    "s_frames_p": 0.6255280625,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.6675053125,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 77.29
+   }
+  },
+  "minutes": {
+   "video": 1.9,
+   "admission": 1.6,
+   "repair_and_scoring": 0.3
+  },
+  "claude": {
+   "calls": 50,
+   "in": 38297,
+   "out": 33424,
+   "usd": 0.0258,
+   "seconds": 208,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 4,
+   "to_edge_or_corner": 0,
+   "move_to_origin": 0,
+   "unit_size": 0,
+   "texts": 23,
+   "long_texts": 4,
+   "fit_calls": 30,
+   "move_to_xyz": 38,
+   "arrange": 2
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 83.0,
+    "mvqs_min": 75.5,
+    "conflicts": 2,
+    "timing": 0,
+    "broken_attachments": 1
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 5,
+    "move_to_origin": 5,
+    "unit_size": 0,
+    "texts": 7,
+    "long_texts": 2,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 0
+   }
+  }
+ },
+ {
+  "topic": "Quill distance",
+  "slug": "quill-distance",
+  "family": "qwen-blueprint-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 3,
+   "complete": true,
+   "clean": false,
+   "regenerated": 1
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 80.0,
+   "mvqs_min": 74.9,
+   "conflicts": 1,
+   "timing": 0,
+   "broken_attachments": 0
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.47664390954029734,
+    "s_frames_p": 0.608497,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.251937625,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 79.97
+   }
+  },
+  "minutes": {
+   "video": 1.6,
+   "admission": 2.0,
+   "repair_and_scoring": 0.3
+  },
+  "claude": {
+   "calls": 45,
+   "in": 25010,
+   "out": 22461,
+   "usd": 0.0172,
+   "seconds": 148,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 4,
+   "to_edge_or_corner": 0,
+   "move_to_origin": 0,
+   "unit_size": 0,
+   "texts": 32,
+   "long_texts": 4,
+   "fit_calls": 40,
+   "move_to_xyz": 24,
+   "arrange": 0
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 82.8,
+    "mvqs_min": 80.7,
+    "conflicts": 1,
+    "timing": 0,
+    "broken_attachments": 0
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 9,
+    "move_to_origin": 0,
+    "unit_size": 0,
+    "texts": 15,
+    "long_texts": 3,
+    "fit_calls": 0,
+    "move_to_xyz": 2,
+    "arrange": 0
+   }
+  }
+ },
+ {
+  "topic": "Dapple numbers",
+  "slug": "dapple-numbers",
+  "family": "qwen-blueprint-s1",
+  "model": "qwen3.6 + qwen3-coder:30b",
+  "admission": {
+   "sections": 4,
+   "rendered_first": 4,
+   "ok_first": 3,
+   "complete": true,
+   "clean": false,
+   "regenerated": 1
+  },
+  "layout": {
+   "sections": 4,
+   "planned": 4,
+   "mvqs_mean": 81.7,
+   "mvqs_min": 77.7,
+   "conflicts": 1,
+   "timing": 0,
+   "broken_attachments": 0
+  },
+  "teaching": {
+   "base": {
+    "m7": null,
+    "m9": 0.35538774076015334,
+    "s_frames_p": 0.5727825,
+    "nvg": null,
+    "s_visual_p": null,
+    "s_static_p": null,
+    "s_blind_p": 0.337248875,
+    "m5": null,
+    "sections": 4,
+    "mvqs": 81.65
+   }
+  },
+  "minutes": {
+   "video": 1.2,
+   "admission": 0.6,
+   "repair_and_scoring": 0.2
+  },
+  "claude": {
+   "calls": 56,
+   "in": 38061,
+   "out": 27290,
+   "usd": 0.0221,
+   "seconds": 204,
+   "fallback": 0,
+   "priced_as": "OpenRouter"
+  },
+  "rules": {
+   "sections": 4,
+   "layout_comment": 4,
+   "to_edge_or_corner": 0,
+   "move_to_origin": 0,
+   "unit_size": 0,
+   "texts": 25,
+   "long_texts": 1,
+   "fit_calls": 30,
+   "move_to_xyz": 22,
+   "arrange": 0
+  },
+  "ref": {
+   "layout": {
+    "sections": 4,
+    "planned": 4,
+    "mvqs_mean": 79.4,
+    "mvqs_min": 69.8,
+    "conflicts": 7,
+    "timing": 0,
+    "broken_attachments": 0
+   },
+   "rules": {
+    "sections": 4,
+    "layout_comment": 0,
+    "to_edge_or_corner": 5,
+    "move_to_origin": 0,
+    "unit_size": 1,
+    "texts": 21,
+    "long_texts": 5,
+    "fit_calls": 0,
+    "move_to_xyz": 0,
+    "arrange": 1
+   }
+  }
+ }
+]

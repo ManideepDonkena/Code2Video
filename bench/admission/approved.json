@@ -1,0 +1,43 @@
+{
+ "date": "2026-11-13",
+ "approved_by": "user (review of bench/admission/compare/index.html)",
+ "topics": [
+  "Tovan sums",
+  "Krell steps on a grid",
+  "Vorn sequences",
+  "Glint numbers",
+  "Mirthful triangles",
+  "Sorrel counts of lattice rectangles",
+  "Quill distance",
+  "Dapple numbers",
+  "Orbit words",
+  "Vells of 2×2 grids"
+ ],
+ "excluded": {
+  "Brisk folds of a list": "incomplete after one regeneration attempt",
+  "Lumen clocks": "incomplete after one regeneration attempt"
+ },
+ "hard_to_read": {
+  "Glint numbers": [
+   "s2"
+  ],
+  "Mirthful triangles": [
+   "s3"
+  ],
+  "Quill distance": [
+   "s3"
+  ],
+  "Dapple numbers": [
+   "s2",
+   "s4"
+  ],
+  "Vells of 2×2 grids": [
+   "s2"
+  ],
+  "Sorrel counts of lattice rectangles": [
+   "s1",
+   "s3"
+  ]
+ },
+ "note": "videos kept exactly as the pipeline made them; no false statement seen in any frame"
+}
